@@ -1,3 +1,3 @@
 # Cheetsheats
 
-1. [GitHub Cheetsheats](./GitHub.md)
+1. [GitHub Cheetsheat](./GitHub.md)
