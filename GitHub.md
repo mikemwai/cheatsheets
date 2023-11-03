@@ -1,6 +1,6 @@
 # GitHub 
 
-# Checking Git version installed
+## Checking Git version installed
 ```sh
    git --version
 ```
