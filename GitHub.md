@@ -19,7 +19,7 @@
 ```sh
    git commit -m "<message>"
 ```
-   `NOTE`: Replace `"<message>"` with your own message.
+   `NOTE`: Replace `<message>` with your own message.
 - Commit modified files:
 ```sh
    git commit -a -m "<message>"
@@ -46,13 +46,13 @@
 ```sh
   git config --global user.name "<USER_NAME>"
 ```
- `NOTE`: Replace `"<USER_NAME>"` with your username.
+ `NOTE`: Replace `<USER_NAME>` with your username.
   
 - Enter your email address used in GitHub:
 ```sh
   git config --global user.email "<USER_EMAIL>"
 ```
- `NOTE`: Replace `"<USER_EMAIL>"` with your email address.
+ `NOTE`: Replace `<USER_EMAIL>` with your email address.
 - Check the changes made:
 ```sh
   git config --list
