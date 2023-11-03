@@ -60,10 +60,10 @@
 - - -  
 ## Other Git Commands
 - Check Git version installed:
-   ```sh
-      git --version
-   ```
+```sh
+  git --version
+```
 - Get help from Git:
-   ```sh
-      git --help
-   ```
+```sh
+  git --help
+```
