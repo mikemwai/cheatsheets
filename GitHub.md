@@ -9,7 +9,7 @@ Replace "<USER_NAME>" with the username you want.
 ```sh
    git config --global user.name "<USER_NAME>"
 ```
-Replace "<USER_EMAIL>" with the username you want.
+Replace "<USER_EMAIL>" with the email address you want.
 ```sh
    git config --global user.email "<USER_EMAIL>"
 ```
