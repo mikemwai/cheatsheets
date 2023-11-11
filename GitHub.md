@@ -24,6 +24,10 @@
 ```sh
    git commit -a -m "<message>"
 ```
+- Making a commit after modifing a committed file:
+```sh
+  git commit -m "<message>" <filename>
+```
 - Check status of the working tree:
 ```sh
   git status
@@ -35,6 +39,10 @@
 - Check information about previous commits in a more concise listing:
 ```sh
   git log --oneline
+```
+- Check information on the latest commit made:
+```sh
+  git log -n1
 ```
 - Track changes made on a file:
 ```sh
@@ -57,6 +65,27 @@
 ```sh
   git config --list
 ```
+
+## 3) Fix Simple Mistakes
+- Ever been in a situation where you forgot to add a file after making a commit? Here is a simple way to fix that:
+```sh
+  git commit --amend --no-edit
+```
+- Recover a deleted file using `git checkout`:
+```sh
+  git checkout  -- <filename>
+```
+- Recover a deleted file after accidentally running `git rm`:
+```sh
+  git reset HEAD <filename>
+  git checkout -- <filename>
+```
+- Revert a Commit:
+```sh
+  git reset --hard HEAD^
+```
+
+
 - - -  
 ## Other Git Commands
 - Check Git version installed:
@@ -66,4 +95,8 @@
 - Get help from Git:
 ```sh
   git --help
+```
+- Deleting files in Git:
+```sh
+  git rm filename
 ```
