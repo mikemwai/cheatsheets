@@ -26,7 +26,7 @@
 ```
 - Making a commit after modifing a committed file:
 ```sh
-  git commit -m "<message>" <filename>
+  git commit -m "<message>" filename
 ```
 - Check status of the working tree:
 ```sh
@@ -73,12 +73,12 @@
 ```
 - Recover a deleted file using `git checkout`:
 ```sh
-  git checkout  -- <filename>
+  git checkout  -- filename
 ```
 - Recover a deleted file after accidentally running `git rm`:
 ```sh
-  git reset HEAD <filename>
-  git checkout -- <filename>
+  git reset HEAD filename
+  git checkout -- filename
 ```
 - Revert a Commit:
 ```sh
