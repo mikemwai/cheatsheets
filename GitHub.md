@@ -33,6 +33,10 @@
 ```sh
   git commit -m "<message>" filename
 ```
+- Pushing changes to the repo:
+```sh
+  git push -u origin main
+```
 - Check status of the working tree:
 ```sh
   git status
@@ -108,6 +112,32 @@
 - Merge pull request changes into original repo:
 ```sh
   git pull remote-username main
+```
+
+## 5) Git Branches
+- Create a new branch:
+```sh
+  git branch branchname
+```
+- Create a new branch and switch to it:
+```sh
+  git checkout -b branchname
+```
+- Switch to another branch:
+```sh
+  git checkout branchname
+```
+- List the available branches:
+```sh
+  git branch -a
+```
+- Rename a branch:
+```sh
+  git branch -m old_branchname new_branchname
+```
+- Delete a branch:
+```sh
+  git branch delete --delete branchname
 ```
 
 - - -  
