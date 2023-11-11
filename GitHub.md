@@ -10,6 +10,11 @@
 ```sh
    git init 
 ```
+- Initialize a new repository and set the default branch to main:
+```sh
+  git init -b main
+```
+`NOTE:` Feel free to change `main` into the branch name of your choice
 - Add files to the staging area:
 ```sh
    git add .
@@ -19,7 +24,7 @@
 ```sh
    git commit -m "<message>"
 ```
-   `NOTE`: Replace `<message>` with your own message.
+   `NOTE`: Replace `<message>` with your own message. Ensure the commit message is less than 50 words.
 - Commit modified files:
 ```sh
    git commit -a -m "<message>"
@@ -80,11 +85,30 @@
   git reset HEAD filename
   git checkout -- filename
 ```
+`NOTE:` `git checkout` updates your files with the present one in the git index while `git reset` unstages deleted files.
 - Revert a Commit:
 ```sh
   git reset --hard HEAD^
 ```
+- Revert a commit without adding a commit message:
+```sh
+  git revert --no-edit HEAD
+```
 
+## 4) Collaborating with other developers
+- Clone the project
+- After modifing a file and committing it, make a pull request to the original repo:
+```sh
+  git request-pull -p origin/main .
+```
+- Create a remote on your local machine:
+```sh
+  git remote add remote-username repo_url_path
+```
+- Merge pull request changes into original repo:
+```sh
+  git pull remote-username main
+```
 
 - - -  
 ## Other Git Commands
