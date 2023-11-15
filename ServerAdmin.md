@@ -23,7 +23,7 @@
 - It's a combination of 4 technologies which include Linux, Enginx, MySql and Php. This stack can be used to host web apps built using php frameworks such as Laravel.
 
 ## Steps to host the Laravel app
-## a) Login to the Ubuntu Server
+## Login to the Ubuntu Server
 - Open the terminal and login as the root in the server:
   ```
    ssh root@ipaddress
@@ -48,14 +48,14 @@
   ```
   `NOTE:` `newuser` is the newly created user and `ipaddress` is the server ipaddress. `Avoid running commands using root` for the next steps.
   
-## b) Update the package manager
+## Update the package manager
 - Ensure the server is upto date before installing any packages.
 
    ```
    sudo apt-get update
    ```
 
-## c) Install Nginx (Enginx)
+## Install Nginx (Enginx)
 - Install nginx in your server:
   
   ```
@@ -64,7 +64,7 @@
 
 - Confirm if it has installed by checking `http://server-ipaddress` on the browser. The nginx welcome page will be displayed.
 
-## d) Install MySql
+## Install MySql
 - Install the MySql server where the laravel app database will be stored.
 
   ```
@@ -87,7 +87,7 @@
   Reload the privileges table: Y
   ```
 
-## e) Install PHP
+## Install PHP
 - Plugins to install:
   - `php-fpm`: Stands for FastCGI Process Manager. Used for processing.
     
@@ -109,7 +109,7 @@
      php -v
   ```
 
-## f) Install Composer
+## Install Composer
 - Composer: PHP dependency manager that will keep track of libraries and dependencies that PHP applications need. Install it:
 
   ```
@@ -128,7 +128,7 @@
     composer --version
   ```
 
-## g) Configure PHP
+## Configure PHP
 - Install the `nano` editor:
 
   ```
@@ -152,7 +152,7 @@
     sudo systemctl restart php8.2-fpm
   ```
 
-## h) Configure Nginx
+## Configure Nginx
 - Open the nginx configuration file:
 
   ```
@@ -185,6 +185,172 @@
           }
      }
     ```
+
+    `NOTE:` Replace root /var/www/laravel/`project-folder`/public  as per the project folder name and `server-ipaddress`.
+
+- Confirm the configuration file has no errors:
+
+  ```
+    sudo nginx -t
+  ```
+
+- Restart nginx:
+
+  ```
+    sudo systemctl reload nginx
+  ```
+
+## Configure MySql
+- Login to the MySql server:
+
+  ```
+    mysql -u root -p
+  ```
+
+  - Enter the user password when prompted.
+ 
+- Create the project database:
+
+  ```
+    CREATE DATABASE project-database;
+  ```
+
+- Assign the privileges to the user handling the database:
+
+  ```
+    GRANT ALL PRIVILEGES ON database_name.* TO 'username'@'localhost';
+  ```
+
+- Flush the privileges for the changes to take place:
+
+  ```
+    FLUSH PRIVILEGES;
+  ```
+
+- Check if the database has been created:
+
+  ```
+    SHOW DATABASES;
+  ```
+
+## Install Laravel
+- Create the directory that will host the Laravel application:
+
+  ```
+    sudo mkdir /var/www/laravel && cd /var/www/laravel
+  ```
+
+- Clone the project from GitHub:
+
+  ```
+    git clone https://github.com/username/project.git
+  ```
+
+- Run Composer:
+
+  ```
+    composer install --no-dev
+  ```
+
+## Permissions
+- Change the ownership of the project to the web group:
+
+  ```
+    sudo chown -R user:www-data /var/www/laravel/project
+  ```
+
+-  Assigning read-write permissions to the storage folder:
+
+   ```
+     sudo chmod -R 775 /var/www/laravel/project/storage
+   ```
+
+## Configure Laravel
+- Change directory to the cloned project folder using `cd /var/www/laravel/project`
+
+- Generate the encryption key for the app:
+
+  ```
+    php artisan key:generate
+  ```
+
+- Add credentials to the .env file:
+
+  ```
+    sudo nano .env
+  ```
+
+  Configurations:
+
+    ```
+      APP_ENV=production
+      APP_DEBUG=false
+      APP_KEY=base64:kGKg6DnMqMGBJrLGDh4Jg+bTIXqcVXZKqJdqueTlkCk=
+      APP_URL=http://mydomain.com
+      
+      DB_HOST=localhost
+      DB_DATABASE=yourdatabasename
+      DB_USERNAME='root'
+      DB_PASSWORD='yourdatabasepassword'
+      
+      CACHE_DRIVER=file
+      SESSION_DRIVER=file
+      QUEUE_DRIVER=sync
+      
+      REDIS_HOST=localhost
+      REDIS_PASSWORD=null
+      REDIS_PORT=6379
+      
+      MAIL_DRIVER=smtp
+      MAIL_HOST=googlemail.com
+      MAIL_PORT=465
+      MAIL_USERNAME=XXXXXXXXXXX
+      MAIL_PASSWORD=XXXXXXXXXXX
+      MAIL_ENCRYPTION=null
+    ```
+
+    `NOTE:` Replace `APP_URL` to the registered domain mentioned in the prerequisites, `DB_DATABASE` to the name of the project database, `DB_USERNAME` to the user handling the project database and `DB_PASSWORD` to the mysql user password. Don't change your `APP_KEY` configuration.
+
+- Create a symlink to the public folder to display files:
+
+  ```
+    sudo php artisan storage:link
+  ```
+
+- Cache necessary configurations to make the app faster:
+
+  ```
+    sudo php artisan optimize
+  ```
+
+- Migrate the database:
+
+  ```
+    sudo php artisan migrate --force
+  ```
+
+- Seed the database:
+
+  ```
+    sudo php artisan db:seed
+  ```
+
+- Acces the Laravel application on your browser using `http://server-ipaddress` or `http://www.project.com`.
+
+## Configure a Secure SSL Certificate
+- Install Certbot client:
+
+  ```
+    sudo apt-get install certbot python3-certbot-nginx -y
+  ```
+
+- Request the SSL certificate for the registered domain:
+
+  ```
+    sudo certbot --nginx -d www.project.com
+  ```
+
+- Access the app using `https://www.project.com`. 
 
 - - - - -
 
