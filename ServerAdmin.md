@@ -1,4 +1,5 @@
-# Table of Contents
+# Server Administration
+## Table of Contents
 
 1. [Hosting a Laravel app using the LEMP Stack](#1-lemp-stack)
 2. [Hosting a Laravel app using the LAMP Stack](#2-lamp-stack)
