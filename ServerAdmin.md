@@ -153,6 +153,38 @@
   ```
 
 ## h) Configure Nginx
+- Open the nginx configuration file:
+
+  ```
+    sudo nano /etc/nginx/sites-available/default
+  ```
+
+  - Modify the file to look like:
+
+    ```
+      server {
+          listen 80 default_server;
+          listen [::]:80 default_server;
+      
+          root /var/www/laravel/project-folder/public;
+          index index.php index.html index.htm index.nginx-debian.html;
+      
+          server_name server-ipaddress;
+      
+          location / {
+              try_files $uri $uri/ /index.php?$query_string;
+          }
+      
+          location ~ \.php$ {
+              include snippets/fastcgi-php.conf;
+              fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+          }
+      
+          location ~ /\.ht {
+              deny all;
+          }
+     }
+    ```
 
 - - - - -
 
