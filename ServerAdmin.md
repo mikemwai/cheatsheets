@@ -20,7 +20,7 @@
    - Register and buy a new domain for the Laravel application through [Namecheap](https://www.namecheap.com/).
      
 ## What is a LEMP Stack?
-- It's a combination of 4 technologies which include Linux, Enginx, MySql and Php. This stack can be used to host web apps built using php frameworks such as Laravel.
+- It's a combination of four technologies which include Linux, Enginx, MySql and Php. This stack can be used to host web apps built using php frameworks such as Laravel.
 
 ## Steps to host the Laravel app
 ## Login to the Ubuntu Server
