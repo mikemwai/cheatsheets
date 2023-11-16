@@ -47,7 +47,7 @@
   ```
    ssh newuser@ipaddress
   ```
-  `NOTE:` `newuser` is the newly created user and `ipaddress` is the server ipaddress. `Avoid running commands using root` for the next steps.
+  `NOTE:` `newuser` is the new user you created and `ipaddress` is the ipaddress of your server. `Avoid running commands using root` for the next steps.
   
 ## Update the package manager
 - Ensure the server is upto date before installing any packages.
@@ -73,10 +73,12 @@
   ```
 
 ### Secure MySql
-- Secure a database server in production:
+- Secure the database server in production:
+  
   ```
     sudo mysql_secure_installation
   ```
+  
   Configurations:
   
   ```
@@ -187,7 +189,7 @@
      }
     ```
 
-    `NOTE:` Replace root /var/www/laravel/`project-folder`/public  as per the project folder name and `server-ipaddress`.
+    `NOTE:` Replace root /var/www/laravel/`project-folder`/public  as per the name of your project folder name and `server-ipaddress`.
 
 - Confirm the configuration file has no errors:
 
