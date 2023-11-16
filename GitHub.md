@@ -114,6 +114,11 @@
   git pull remote-username main
 ```
 
+- Merge changes into the current branch `main`:
+```sh
+  git pull 
+```
+
 ## 5) Git Branches
 - Create a new branch:
 ```sh
@@ -138,6 +143,22 @@
 - Delete a branch:
 ```sh
   git branch delete --delete branchname
+```
+
+- Merge a specific branch such as `branch1` into the current branch such as `main`:
+```sh
+  git checkout main
+  git merge branch1
+```
+
+- Restore the current branch `main` before the attempted merge:
+```sh
+  git merge --abort
+```
+
+- Return back to the original state of the current branch `main` before the completed merge:
+```sh
+  git reset --hard
 ```
 
 - - -  
