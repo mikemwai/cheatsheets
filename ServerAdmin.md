@@ -355,9 +355,9 @@
 
 - Access the app using `https://www.project.com`. 
 
-- - - - -
-
 ## Resources
 - [How-to-deploy-a-laravel-app-on-lemp-stack](https://www.iankumu.com/blog/how-to-deploy-a-laravel-app-on-lemp-stack/#1-log-in-via-ssh)
+  
+- - - - -
 
 ## 2. LAMP Stack
