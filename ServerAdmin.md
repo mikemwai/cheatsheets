@@ -277,7 +277,7 @@
     php artisan key:generate
   ```
 
-- Add credentials to the .env file:
+- Update the credentials in the .env file:
 
   ```
     sudo nano .env
