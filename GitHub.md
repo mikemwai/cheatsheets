@@ -110,7 +110,6 @@
 ```
 
 ## 4) Collaborating with other developers
-- Clone the project
 - After modifing a file and committing it, make a pull request to the original repo:
 ```sh
   git request-pull -p origin/main .
