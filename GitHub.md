@@ -20,14 +20,22 @@
    git add .
 ```
    `NOTE`: Works for new files that have not been added to Git.
+- Unstaging a specific file:
+```sh
+  git reset filename
+```
 - Commit the files to Git:
 ```sh
    git commit -m "<message>"
 ```
    `NOTE`: Replace `<message>` with your own message. Ensure the commit message is less than 50 words.
-- Commit modified files:
+- Add and commit modified files together:
 ```sh
    git commit -a -m "<message>"
+```
+- Updating your last Git commit:
+```sh
+   git commit --amend -m 'message'
 ```
 - Making a commit after modifing a committed file:
 ```sh
@@ -84,6 +92,8 @@
 ```sh
   git checkout  -- filename
 ```
+  `NOTE:` `git checkout --filename` can also be used to revert a file to it's last committed state.
+  
 - Recover a deleted file after accidentally running `git rm`:
 ```sh
   git reset HEAD filename
@@ -141,13 +151,19 @@
   git branch -m old_branchname new_branchname
 ```
 - Delete a branch:
-```sh
-  git branch delete --delete branchname
-```
+   - Safe Deletion (Checks for merge):
+     
+   ```sh
+     git branch -d branchname
+   ```
+   - Force Deletion (Doesn't check for merge):
+     
+   ```sh
+     git branch -D branchname
+   ```
 
 - Merge a specific branch such as `branch1` into the current branch such as `main`:
 ```sh
-  git checkout main
   git merge branch1
 ```
 
@@ -161,7 +177,61 @@
   git reset --hard
 ```
 
+## 6) Stashing changes
+- Stash changes:
+```sh
+   git stash
+```
+   `NOTE:` `git stash` helps in temporarily saving changes that are not ready to be committed (Incomplete work) which helps in switching branches.
+
+- Recovering stashed changes after switching back to the original branch:
+```sh
+  git stash pop
+```
+
+- Listing stashes:
+```sh
+  git stash list
+```
+
+- Cleaning up the stash:
+```sh
+  git stash clear
+```
+
+## 7) Reverting Git commits
+-  Revert a specific git commit:
+```sh
+   git revert commitHash
+```
+   `NOTE:` `commitHash` refers to the `commit ID` of the git commits. Replace it with the correct `commitHash`.
+
+- List commitHashes of git commits made:
+```sh
+  git reflog
+```
+
+## 8) Resetting Git commits
+- Soft Reset:
+```sh
+  git reset --soft HEAD^
+```
+  `NOTE:` It easily allows to backtrack last commit but preserves the changes in the staging area.
+  
+- Mixed Reset:
+```sh
+  git reset --mixed HEAD^
+```
+  `NOTE:` It uncommits the last commit and removes it's changes from the staging area.
+  
+- Hard Reset:
+```sh
+  git reset --hard HEAD^
+```
+  `NOTE:` It completely erases the last commit along with associated changes from the Git history.
+
 - - -  
+
 ## Other Git Commands
 - Check Git version installed:
 ```sh
