@@ -3,33 +3,33 @@
 # Basic Commands
 
 ## Directories
-- Create a new directory
+- Create a new directory:
 ```sh
   mkdir directory_name
 ```
 
-- Changing directory
+- Changing directory:
 ```sh
   cd directory_name
 ```
 
-- Delete an empty directory
+- Delete an empty directory:
 ```sh
   rmdir directory_name
 ```
 
-- Delete a directory with contents
+- Delete a directory with contents:
 ```sh
   rmdir /s /q directory_name
 ```
 
-- List contents in a directory
+- List contents in a directory:
 ```sh
   dir
 ```
 
 ## Files
-- Create a new file
+- Create a new file:
 ```sh
    echo. > filename.txt
 ```
@@ -38,7 +38,7 @@
    type nul > filename.txt
 ```
 
-- Delete a file
+- Delete a file:
 ```sh
   del filename.txt
 ```
