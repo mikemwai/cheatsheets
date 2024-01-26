@@ -42,3 +42,14 @@
 ```sh
   del filename.txt
 ```
+
+## Networking
+- View the Wi-Fi network profiles you previously connected to:
+```sh
+  netsh wlan show profile 
+```
+
+- View the password of a Wi-Fi network you previously connected to:
+```sh
+  netsh wlan show profile wifi_name key=clear
+```
