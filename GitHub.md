@@ -244,3 +244,31 @@
 ```sh
   git rm filename
 ```
+---
+- Ever found yourself in a situation you need to gitignore files or folders you have committed? Follow these steps:
+  
+  - Create the .gitignore file and list the files or folders to be gitignored:
+    ```sh
+       touch .gitignore
+       nano .gitignore
+       vim .gitignore
+       emacs .gitignore
+    ```
+    `N/B`: Use one of the commands that will work on your machine.
+    
+  - After listing, remove all tracked files from the Git index:
+    ```sh
+       git rm -r --cached .
+    ```
+  - Add the files to the staging area:
+    ```sh
+       git add .
+    ```
+  - Commit the changes:
+    ```sh
+       git commit - m "commit message"
+    ```
+  - Push the changes to the repo:
+    ```sh
+       git push
+    ```
