@@ -3,6 +3,21 @@
 ## Basic Commands
 
 ## 1) Build with Docker
+- Before building a docker image, ensure you have created a Docker file with the format:
+  
+```sh
+  # syntax=docker/dockerfile:1
+
+  FROM node:18-alpine
+  WORKDIR /app
+  COPY . .
+  RUN yarn install --production
+  CMD ["node", "src/index.js"]
+  EXPOSE 3000
+```
+
+`N/B`: Change the commands as per the programming language used for the project.
+
 - Build a docker image:
 
 ```sh
