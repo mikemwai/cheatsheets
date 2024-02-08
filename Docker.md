@@ -21,7 +21,7 @@
 - Build a docker image:
 
 ```sh
-  docker build --tag=projectname .
+  docker build -t projectname .
 ```
 
 `N/B`: For the image name, it is best to use the project name to avoid confusion. In addition to that, it creates an image with the tag (name) `projectname`.
