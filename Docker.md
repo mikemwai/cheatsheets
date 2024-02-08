@@ -48,3 +48,16 @@
   docker stop projectname
 ```
 
+---
+
+- Start the app container using the specified image:
+
+```sh
+  docker run -dp 127.0.0.1:3000:3000 imagename
+```
+
+- List the containers:
+
+```sh
+  docker ps
+```
