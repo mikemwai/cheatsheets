@@ -61,3 +61,9 @@
 ```sh
   docker ps
 ```
+
+- Delete the Docker container:
+
+```sh
+  docker rm container_id
+```
