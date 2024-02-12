@@ -48,6 +48,25 @@
   docker stop projectname
 ```
 
+## 2) Push the Docker image to Docker Hub
+- First sign in to Docker Hub:
+
+```sh
+  docker login -u username
+```
+
+- Replace the image name:
+
+```sh
+  docker tag image_name username/image_name
+```
+
+- Push the image to Docker Hub:
+
+```sh
+  docker push username/image_name
+```
+
 ---
 
 - Start the app container using the specified image:
@@ -60,6 +79,12 @@
 
 ```sh
   docker ps
+```
+
+- List the docker images:
+
+```sh
+  docker image ls
 ```
 
 - Delete the Docker container:
