@@ -53,3 +53,16 @@
 ```sh
   netsh wlan show profile wifi_name key=clear
 ```
+
+## VS Code
+- Opening a project in a new window:
+
+```sh
+  code projectname
+```
+
+- Opening a project in a most recently used window:
+
+```sh
+  code -r projectname
+```
