@@ -274,23 +274,25 @@
     ```
 
 - Ever found yourself that you have initialized a project and you need to connect it to github repo? Follow these steps:
--  Copy the URL of the GitHub repo.
--  Add the URL for the remote repo where your local repo will be pushed:
-
-```sh
-   git remote add origin <remote_repo_URL>
-```
-
-- Verify that the remote URL has been added:
-
-```sh
-   git remote -v
-```
-
-- Push the changes to the remote repo:
-
-```sh
-   git add .
-   git commit -m "commit_message"
-   git push origin main
-```
+  
+   -  Copy the URL of the GitHub repo.
+     
+   -  Add the URL for the remote repo where your local repo will be pushed:
+   
+   ```sh
+      git remote add origin <remote_repo_URL>
+   ```
+   
+   - Verify that the remote URL has been added:
+   
+   ```sh
+      git remote -v
+   ```
+   
+   - Push the changes to the remote repo:
+   
+   ```sh
+      git add .
+      git commit -m "commit_message"
+      git push origin main
+   ```
