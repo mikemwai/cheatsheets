@@ -5,4 +5,5 @@
 3. [Windows Command Prompt Cheatsheet](./Windows.md)
 4. [.NET Cheatsheet](./.NET.md)
 5. [Docker Cheatsheet](./Docker.md)
-6. [JS Frameworks](./js_frameworks.md)
+6. [JS Frameworks Cheatsheet](./js_frameworks.md)
+7. [VS Code Cheatsheet](./vscode.md)
