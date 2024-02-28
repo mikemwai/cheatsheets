@@ -54,6 +54,17 @@
   netsh wlan show profile wifi_name key=clear
 ```
 
+## Programs
+- Open an app from the command prompt:
+```sh
+  start appname
+```
+
+- List all installed programs:
+```sh
+  wmic product get name,version,installdate
+```
+
 ## VS Code
 - Opening a project in a new window:
 
@@ -65,4 +76,11 @@
 
 ```sh
   code -r projectname
+```
+
+---
+
+- View the PC serial number:
+```sh
+  wmic bios get serialnumber
 ```
