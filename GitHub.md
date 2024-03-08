@@ -229,6 +229,37 @@
 ```
   `NOTE:` It completely erases the last commit along with associated changes from the Git history.
 
+## 9) Git Tagging
+- List all the Git tags:
+```sh
+   git tag
+```
+
+- Create Git tags for a project:
+```sh
+   git tag -a tagname -m "Release tagname"
+```
+
+- View tag data:
+```sh
+   git show tagname
+```
+
+- Push one tag:
+```sh
+   git push origin tagname
+```
+
+- Push multiple tags:
+```sh
+   git push origin --tags
+```
+
+- Deleting a tag:
+```sh
+   git tag -d tagname
+```
+
 - - -  
 
 ## Other Git Commands
