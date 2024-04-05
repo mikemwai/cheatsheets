@@ -1,9 +1,9 @@
 # Cheatsheets
 
-1. [GitHub Cheatsheet](./GitHub.md)
-2. [Server Administration Cheatsheet](./ServerAdmin.md)
-3. [Windows Command Prompt Cheatsheet](./Windows.md)
-4. [.NET Cheatsheet](./.NET.md)
-5. [Docker Cheatsheet](./Docker.md)
-6. [JS Frameworks Cheatsheet](./js_frameworks.md)
-7. [VS Code Cheatsheet](./vscode.md)
+1. [GitHub cheatsheet](./GitHub.md)
+2. [Server administration cheatsheet](./ServerAdmin.md)
+3. [Windows command prompt cheatsheet](./Windows.md)
+4. [.NET cheatsheet](./.NET.md)
+5. [Docker cheatsheet](./Docker.md)
+6. [JS frameworks cheatsheet](./js_frameworks.md)
+7. [VS Code cheatsheet](./vscode.md)
