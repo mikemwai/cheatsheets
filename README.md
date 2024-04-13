@@ -1,7 +1,7 @@
 # Cheatsheets
 
 1. [GitHub cheatsheet](./GitHub.md)
-2. [Server administration cheatsheet](./ServerAdmin.md)
+2. [Server Administration cheatsheet](./ServerAdmin.md)
 3. [Windows command prompt cheatsheet](./Windows.md)
 4. [.NET cheatsheet](./.NET.md)
 5. [Docker cheatsheet](./Docker.md)
