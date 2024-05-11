@@ -327,3 +327,22 @@
       git commit -m "commit_message"
       git push origin main
    ```
+
+- Ever found yourself that you wanted to gitignore a file/ folder but you have already pushed the commit? Follow these steps:
+
+  - Open the terminal and type:
+
+  ```sh
+     git rm -r --cached filename/ foldername
+  ```
+
+  - Commit and push the changes:
+
+  ```sh
+     git commit -m "Removed filename/ foldername"
+     git push origin main
+  ```
+
+  - `git rm -r --cached filename/ foldername` removes the filename/ foldername from the repository but will still exist in your local system.
+ 
+  - Now you can finally gitignore the filename/ foldername and push the commit made.
