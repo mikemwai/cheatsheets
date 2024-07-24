@@ -2,6 +2,12 @@
 
 ## Files and Folders
 
+- Creating a new file:
+
+```sh
+  touch filename
+```
+
 - Creating a new directory:
 
 ```sh
