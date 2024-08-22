@@ -34,10 +34,49 @@
 
 ---- 
 
+## Compilers
+
 ```sh
   df -h
 ```
 
 ```sh
   ls -lrt
+```
+
+- Compiler code for `main.c`:
+
+```sh
+  #include <stdio.h>
+
+  int main(){
+    print("Hello, World!\n");
+    return 0;
+  }
+```
+
+- Instructions to run:
+
+```sh
+ gcc -E main.c -o main_preprocessed.c
+```
+
+```sh
+ gcc -S main_preprocessed.c -o main_assembly.s
+```
+
+```sh
+ gcc -c main_assembly.s -o main_object.o
+```
+
+```sh
+ gcc main_object.o -o my_program
+```
+
+```sh
+ gcc main_object.o -o my_program
+```
+
+```sh
+ ./my_program
 ```
