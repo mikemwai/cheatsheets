@@ -32,6 +32,8 @@
   rm -rf directoryname
 ```
 
+---- 
+
 ```sh
   df -h
 ```
