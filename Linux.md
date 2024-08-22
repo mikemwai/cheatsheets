@@ -31,3 +31,11 @@
 ```sh
   rm -rf directoryname
 ```
+
+```sh
+  df -h
+```
+
+```sh
+  ls -lrt
+```
