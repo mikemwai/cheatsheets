@@ -32,51 +32,14 @@
   rm -rf directoryname
 ```
 
----- 
-
-## Compilers
+- Displays disk space usage and availability:
 
 ```sh
   df -h
 ```
 
+- Lists files and directories in the current directory in an organized manner based on modification time:
+  
 ```sh
   ls -lrt
-```
-
-- Compiler code for `main.c`:
-
-```sh
-  #include <stdio.h>
-
-  int main(){
-    print("Hello, World!\n");
-    return 0;
-  }
-```
-
-- Instructions to run:
-
-```sh
- gcc -E main.c -o main_preprocessed.c
-```
-
-```sh
- gcc -S main_preprocessed.c -o main_assembly.s
-```
-
-```sh
- gcc -c main_assembly.s -o main_object.o
-```
-
-```sh
- gcc main_object.o -o my_program
-```
-
-```sh
- gcc main_object.o -o my_program
-```
-
-```sh
- ./my_program
 ```
