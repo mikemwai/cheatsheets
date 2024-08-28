@@ -366,3 +366,10 @@
 - - - - -
 
 ## 2. LAMP Stack
+
+---
+
+## 3. Flask
+
+## Resources
+- [How-to-depploy-a-flask-app-using-nginx](https://www.rosehosting.com/blog/how-to-deploy-flask-application-with-nginx-and-gunicorn-on-ubuntu-20-04/)
