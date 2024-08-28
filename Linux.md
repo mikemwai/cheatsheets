@@ -51,3 +51,9 @@
 ```sh
   sudo apt-get update
 ```
+
+- Verify the logged in user:
+
+```sh
+  whoami
+```
