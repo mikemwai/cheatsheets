@@ -63,3 +63,9 @@
 ```sh
   whoami
 ```
+
+- Install a package for a `Debian based distro`:
+
+```sh
+  sudo apt install package
+```
