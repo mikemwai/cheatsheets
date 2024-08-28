@@ -49,5 +49,5 @@
 - Run updates for a `Debian based distro`:
 
 ```sh
-  sudo apt update
+  sudo apt-get update
 ```
