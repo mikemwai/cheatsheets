@@ -52,6 +52,12 @@
   sudo apt-get update
 ```
 
+- Switch to a specific sudo user `user1`:
+
+```sh
+  sudo su - user1
+```
+
 - Verify the logged in user:
 
 ```sh
