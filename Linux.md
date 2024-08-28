@@ -43,3 +43,11 @@
 ```sh
   ls -lrt
 ```
+
+## Common commands
+
+- Run updates for a `Debian based distro`:
+
+```sh
+  sudo apt update
+```
