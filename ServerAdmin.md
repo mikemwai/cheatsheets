@@ -41,6 +41,11 @@
   ```
    sudo visudo
   ```
+
+  ```sh
+   # User privilege specification
+  root    ALL=(ALL:ALL) ALL
+  ```
   
 - Logout and login as the new user:
   
