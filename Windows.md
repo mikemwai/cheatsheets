@@ -2,6 +2,11 @@
 
 # Basic Commands
 
+- Checking users in Windows:
+```sh
+  net user
+```
+
 ## Directories
 - Create a new directory:
 ```sh
