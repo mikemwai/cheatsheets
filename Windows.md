@@ -89,3 +89,8 @@
 ```sh
   wmic bios get serialnumber
 ```
+
+- View the battery life of your Windows laptop:
+```sh
+  powercfg /batteryreport
+```
