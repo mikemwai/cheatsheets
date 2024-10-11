@@ -52,6 +52,12 @@
   sudo apt-get update
 ```
 
+- Download and install updates for each outdated package for a `Debian based distro`:
+
+```sh
+  sudo apt-get upgrade
+```
+
 - Switch to a specific sudo user `user1`:
 
 ```sh
