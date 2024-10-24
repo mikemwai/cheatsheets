@@ -3,5 +3,5 @@
 - Install a package:
   
 ```sh
-  install.packages("DeSeq2")
+  install.packages("package_name")
 ```
