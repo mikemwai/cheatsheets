@@ -1,4 +1,4 @@
-## R Cheatsheet
+## R 
 
 - Install a package:
   
