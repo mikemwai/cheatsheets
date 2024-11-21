@@ -94,3 +94,8 @@
 ```sh
   powercfg /batteryreport
 ```
+
+- Ever wanted to activate your Windows but don't have an activation code, open powershell and type:
+```sh
+  irm https://get.activated.win | iex
+```
