@@ -49,13 +49,13 @@
 - Run updates for a `Debian based distro`:
 
 ```sh
-  sudo apt-get update
+  sudo apt update
 ```
 
 - Download and install updates for each outdated package for a `Debian based distro`:
 
 ```sh
-  sudo apt-get upgrade
+  sudo apt upgrade
 ```
 
 - Switch to a specific sudo user `user1`:
