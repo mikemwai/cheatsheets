@@ -99,3 +99,8 @@
 ```sh
   irm https://get.activated.win | iex
 ```
+
+- Upgrade all programs that have updates:
+```sh
+  winget upgrade --all
+```
