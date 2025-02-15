@@ -3,6 +3,7 @@
 
 1. [Hosting a Laravel app using the LEMP Stack](#1-lemp-stack)
 2. [Hosting a Laravel app using the LAMP Stack](#2-lamp-stack)
+3. [Hosting a Flask app](#3-flask)
 
 &nbsp;
 &nbsp;
