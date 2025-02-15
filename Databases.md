@@ -18,8 +18,12 @@
 ```
 
 ## Create
-- db.collectionname.insertOne({"name": "Laptop", "rating": 4.5})
-- db.collectionname.insertMany([{"name": "Laptop", "rating": 4.5},{"name": "Laptop", "rating": 4.5}]);
+```sh
+    db.collectionname.insertOne({"name": "Laptop", "rating": 4.5})
+```
+```sh
+    db.collectionname.insertMany([{"name": "Laptop", "rating": 4.5},{"name": "Laptop", "rating": 4.5}]);
+```
 
 ## Find
 - db.collectionname.find()
