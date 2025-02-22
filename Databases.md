@@ -26,21 +26,42 @@
 ```
 
 ## Find
-- db.collectionname.find()
-- db.collectionname.find({rating:{4.5})
-- db.collectionname.find({rating:{$gt:4.5}})
-- db.collectionname.find({category: 'Accessories'})
-- db.collectionname.find({rating:{$gt:4.5}, category: 'Electronics'})
-- db.collectionname.find().limit(3)
+```sh
+    db.collectionname.find()
+```
+```sh
+    db.collectionname.find({rating:{4.5})
+```
+```sh
+    db.collectionname.find({rating:{$gt:4.5}})
+```
+```sh
+    db.collectionname.find({category: 'Accessories'})
+```
+```sh
+    db.collectionname.find({rating:{$gt:4.5}, category: 'Electronics'})
+```
+```sh
+    db.collectionname.find().limit(3)
+```
 
 ## Update
-- db.collectionname.updateOne({name: "Name1"}, {$set: {rating: 5.0}});
-- db.collectionname.updateMany({category: "Electronics"}, {$set: {category: 'Devices'}});
-- db.collectionname.updateMany({},{$set: {rating: 3.7}});
+```sh
+    db.collectionname.updateOne({name: "Name1"}, {$set: {rating: 5.0}});
+```
+```sh
+    db.collectionname.updateMany({category: "Electronics"}, {$set: {category: 'Devices'}});
+```
+```sh
+    db.collectionname.updateMany({},{$set: {rating: 3.7}});
+```
 
 ## Delete
-- db.collectionname.deleteOne({price: 249.99})
-- db.collectionname.deleteMany({price: {$lt: 650}})
-
+```sh
+    db.collectionname.deleteOne({price: 249.99})
+```
+```sh
+    db.collectionname.deleteMany({price: {$lt: 650}})
+```
 
 
