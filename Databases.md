@@ -1,4 +1,8 @@
-# MongoDB 
+# SQL Queries
+
+---
+
+# NoSQL Queries (MongoDB)
 
 ## Basic Commands
 ```sh
