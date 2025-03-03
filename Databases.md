@@ -1,6 +1,6 @@
 # MongoDB 
 
-## Commands
+## Basic Commands
 ```sh
     show dbs;
 ```
@@ -17,7 +17,8 @@
    show collections;
 ```
 
-## Create
+## CRUD Commands
+### Create
 ```sh
     db.collectionname.insertOne({"name": "Laptop", "rating": 4.5})
 ```
@@ -25,7 +26,7 @@
     db.collectionname.insertMany([{"name": "Laptop", "rating": 4.5},{"name": "Laptop", "rating": 4.5}]);
 ```
 
-## Find
+### Find
 ```sh
     db.collectionname.find()
 ```
@@ -45,7 +46,7 @@
     db.collectionname.find().limit(3)
 ```
 
-## Update
+### Update
 ```sh
     db.collectionname.updateOne({name: "Name1"}, {$set: {rating: 5.0}});
 ```
@@ -56,7 +57,7 @@
     db.collectionname.updateMany({},{$set: {rating: 3.7}});
 ```
 
-## Delete
+### Delete
 ```sh
     db.collectionname.deleteOne({price: 249.99})
 ```
