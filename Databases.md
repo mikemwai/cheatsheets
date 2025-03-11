@@ -1,5 +1,9 @@
 # SQL Queries
 
+## Basic Commands
+
+## CRUD Commands
+
 ---
 
 # NoSQL Queries (MongoDB)
