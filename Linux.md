@@ -38,6 +38,18 @@
   df -h
 ```
 
+- View the disk usage in order:
+
+```sh
+  df -kh
+```
+
+- List the disks in the system:
+
+```sh
+  lsblk
+```
+
 - Lists files and directories in the current directory in an organized manner based on modification time:
   
 ```sh
