@@ -114,3 +114,8 @@
 ```sh
   wmic qfe list
 ```
+
+- Check descriptions of error codes associated with Windows Updates (Update `0x*******` to the correct error code):
+```sh
+  certutil -error 0x*******
+```
