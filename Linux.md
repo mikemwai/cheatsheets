@@ -87,3 +87,41 @@
 ```sh
   sudo apt install package
 ```
+
+- Switch to the root user:
+  
+```sh
+  sudo su -
+```
+
+- Check where the cluster services are running from:
+  
+```sh
+  crm status
+```
+
+--- 
+
+```sh
+  sudo -i
+```
+
+```sh
+  su - oracle
+```
+
+```sh
+  g
+```
+
+```sh
+  info all
+```
+
+```sh
+  lsnrctl status
+```
+
+```sh
+  iostat
+```
