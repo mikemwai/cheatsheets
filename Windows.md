@@ -104,3 +104,13 @@
 ```sh
   winget upgrade --all
 ```
+
+- Check system boot time:
+```sh
+  systeminfo | find "System Boot Time"
+```
+
+- Check updates installed in the system:
+```sh
+  wmic qfe list
+```
