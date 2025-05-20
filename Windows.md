@@ -83,23 +83,7 @@
   code -r projectname
 ```
 
----
-
-- View the PC serial number:
-```sh
-  wmic bios get serialnumber
-```
-
-- View the battery life of your Windows laptop:
-```sh
-  powercfg /batteryreport
-```
-
-- Ever wanted to activate your Windows but don't have an activation code, open powershell and type:
-```sh
-  irm https://get.activated.win | iex
-```
-
+## Updates
 - Upgrade all programs that have updates:
 ```sh
   winget upgrade --all
@@ -115,7 +99,28 @@
   wmic qfe list
 ```
 
+```sh
+  get-wmiobject -class win32_quickfixengineering
+```
+
 - Check descriptions of error codes associated with Windows Updates (Update `0x*******` to the correct error code):
 ```sh
   certutil -error 0x*******
+```
+
+---
+
+- View the PC serial number:
+```sh
+  wmic bios get serialnumber
+```
+
+- View the battery life of your Windows laptop:
+```sh
+  powercfg /batteryreport
+```
+
+- Ever wanted to activate your Windows but don't have an activation code, open powershell and type:
+```sh
+  irm https://get.activated.win | iex
 ```
