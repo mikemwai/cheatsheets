@@ -62,7 +62,9 @@
   ls -lrt
 ```
 
-## Database (Oracle)
+## Database 
+
+### Oracle
 
 - Check listener status:
 
@@ -92,6 +94,34 @@
 
 ```sh
   info all
+```
+
+- View OGG lag info in detail:
+
+```sh
+  view report
+```
+
+- View more information about a specific process based on the group name:
+
+```sh
+  info group_name
+```
+
+### SQL
+
+- Connect to SQL:
+
+```sh
+  sqlplus / as sysdba
+```
+
+## Networking
+
+- Connect to a server:
+
+```sh
+  curl -v telnet://ip_address
 ```
 
 ## Common commands
@@ -134,4 +164,14 @@
 
 ```sh
   sudo -i
+```
+
+---
+
+```sh
+  ls -lh
+```
+
+```sh
+  rm -rf
 ```
