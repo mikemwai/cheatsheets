@@ -32,6 +32,12 @@
   rm -rf directoryname
 ```
 
+- Check disk I/O capability:
+
+```sh
+  iostat
+```
+
 - Displays disk space usage and availability:
 
 ```sh
@@ -54,6 +60,38 @@
   
 ```sh
   ls -lrt
+```
+
+## Database (Oracle)
+
+- Check listener status:
+
+```sh
+  lsnrctl status
+```
+
+- Check where the cluster services are running from:
+  
+```sh
+  crm status
+```
+
+- Switch to oracle:
+
+```sh
+  su - oracle
+```
+
+- Enter OGG command interpreter:
+
+```sh
+  g
+```
+
+- Check for OGG lag:
+
+```sh
+  info all
 ```
 
 ## Common commands
@@ -94,34 +132,6 @@
   sudo su -
 ```
 
-- Check where the cluster services are running from:
-  
-```sh
-  crm status
-```
-
---- 
-
 ```sh
   sudo -i
-```
-
-```sh
-  su - oracle
-```
-
-```sh
-  g
-```
-
-```sh
-  info all
-```
-
-```sh
-  lsnrctl status
-```
-
-```sh
-  iostat
 ```
