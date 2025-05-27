@@ -1,6 +1,6 @@
 # Linux Cheatsheet
 
-## Files and Folders
+## Files, Folders and Disk Usage
 
 - Creating a new file:
 
@@ -60,6 +60,18 @@
   
 ```sh
   ls -lrt
+```
+
+- View contents of a file:
+
+```sh
+  cat file_name
+```
+
+- Check for CPU usage:
+
+```sh
+  top
 ```
 
 ## Database 
@@ -168,6 +180,12 @@
 
 ---
 
+- Check if keytool is installed:
+
+```sh
+  ke
+```
+
 ```sh
   ls -lh
 ```
@@ -178,4 +196,12 @@
 
 ```sh
   su -
+```
+
+```sh
+  chage
+```
+
+```sh
+  chage -l
 ```
