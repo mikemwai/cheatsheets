@@ -70,6 +70,11 @@
   wmic product get name,version,installdate
 ```
 
+- Upgrade all programs that have updates:
+```sh
+  winget upgrade --all
+```
+
 ## VS Code
 - Opening a project in a new window:
 
@@ -84,11 +89,6 @@
 ```
 
 ## Updates
-- Upgrade all programs that have updates:
-```sh
-  winget upgrade --all
-```
-
 - Check system boot time:
 ```sh
   systeminfo | find "System Boot Time"
