@@ -74,7 +74,7 @@
   ls -lrt
 ```
 
-- List files with the permissions and the sizes:
+- List files with the permissions and the sizes together with the hour `h - hour`:
 
 ```sh
   ls -ltrh
