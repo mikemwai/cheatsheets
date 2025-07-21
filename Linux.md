@@ -50,16 +50,34 @@
   df -kh
 ```
 
+- List the files while showing their sizes `du - disk usage`:
+
+```sh
+  du -sh *
+```
+
+- List the files while showing their sizes `du - disk usage` and if you want those starting with G `grep G`:
+
+```sh
+  du -sh * | grep G
+```
+
 - List the disks in the system:
 
 ```sh
   lsblk
 ```
 
-- Lists files and directories in the current directory in an organized manner based on modification time:
+- List files and directories in the current directory in an organized manner based on modification time:
   
 ```sh
   ls -lrt
+```
+
+- List files with the permissions and the sizes:
+
+```sh
+  ls -ltrh
 ```
 
 - View contents of a file:
