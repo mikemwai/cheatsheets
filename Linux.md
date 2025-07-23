@@ -206,8 +206,16 @@
 
 ---
 
+- Displays the last 10 lines:
+
 ```sh
-  tail
+  tail filename.txt
+```
+
+- Displays the specific number of lines (i.e. 1000 last lines):
+
+```sh
+  tail -n 1000 filename.txt
 ```
 
 ```sh
