@@ -92,6 +92,30 @@
   top
 ```
 
+- Display the last 10 lines:
+
+```sh
+  tail filename.txt
+```
+
+- Display the specific number of lines (i.e. 1000 last lines):
+
+```sh
+  tail -n 1000 filename.txt
+```
+
+- Display the specific number of bytes:
+
+```sh
+  tail -c 500 filename.txt
+```
+
+- Handling multiple files:
+
+```sh
+  tail filename.txt filename2.log
+```
+
 ## Database 
 
 ### Oracle
@@ -196,27 +220,19 @@
   sudo -i
 ```
 
----
-
 - Check if keytool is installed:
 
 ```sh
   ke
 ```
 
+- Display list of commands ran in the terminal (audit purposes):
+
+```sh
+  history
+```
+
 ---
-
-- Displays the last 10 lines:
-
-```sh
-  tail filename.txt
-```
-
-- Displays the specific number of lines (i.e. 1000 last lines):
-
-```sh
-  tail -n 1000 filename.txt
-```
 
 ```sh
   ls -lh
