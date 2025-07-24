@@ -20,10 +20,34 @@
   ls
 ```
 
-- Viewing files and folders in a directory with detailed information:
+- Viewing files and folders in a directory with detailed information (`l - long format`):
 
 ```sh
   ls -l
+```
+
+- List files in long format with human-readable sizes (`h - human readbale sizes`):
+
+```sh
+  ls -lh
+```
+
+- List files and directories in the current directory in an organized manner based on modification time (`r - reverse order (starts with older files, t - sort by time)`):
+  
+```sh
+  ls -lrt
+```
+
+- List files with the permissions and the sizes together with the hour:
+
+```sh
+  ls -ltrh
+```
+
+- List the disks in the system:
+
+```sh
+  lsblk
 ```
 
 - Deleting directories with files in it:
@@ -60,24 +84,6 @@
 
 ```sh
   du -sh * | grep G
-```
-
-- List the disks in the system:
-
-```sh
-  lsblk
-```
-
-- List files and directories in the current directory in an organized manner based on modification time:
-  
-```sh
-  ls -lrt
-```
-
-- List files with the permissions and the sizes together with the hour `h - hour`:
-
-```sh
-  ls -ltrh
 ```
 
 - View contents of a file:
@@ -233,10 +239,6 @@
 ```
 
 ---
-
-```sh
-  ls -lh
-```
 
 ```sh
   rm -rf
