@@ -1,5 +1,10 @@
 # Linux Cheatsheet
 
+- `N\B:` When using these commands and you notice they don't run use `sudo` infront of the command.
+- This is because:
+    - Some distros such as `Ubuntu` have disabled root login.
+    - It's simpler and safer for multi-user systems which prevents sharing of the root password.
+
 ## Files, Folders and Disk Usage
 
 - Creating a new file:
@@ -32,7 +37,7 @@
   ls -lh
 ```
 
-- List files and directories in the current directory in an organized manner based on modification time (`r - reverse order (starts with older files, t - sort by time)`):
+- List files and directories in the current directory in an organized manner based on modification time (`r - reverse order (starts with older files), t - sort by time`):
   
 ```sh
   ls -lrt
@@ -216,14 +221,28 @@
   sudo apt install package
 ```
 
-- Switch to the root user:
+- Switch to the root user (`su - switch user`):
   
 ```sh
   sudo su -
 ```
 
 ```sh
-  sudo -i
+  sudo -i // Cleaner version of entering to root
+```
+
+```sh
+  su -
+```
+
+- Switch to another non-root user:
+
+```sh
+  sudo su - username
+```
+
+```sh
+  sudo -u username -i // Cleaner version
 ```
 
 - Check if keytool is installed:
@@ -238,20 +257,14 @@
   history
 ```
 
----
+- List the current password aging info for a user account:
 
 ```sh
-  rm -rf
+  chage -l username
 ```
 
-```sh
-  su -
-```
+- Manually update password aging settings for a user account:
 
 ```sh
-  chage
-```
-
-```sh
-  chage -l
+  chage username
 ```
