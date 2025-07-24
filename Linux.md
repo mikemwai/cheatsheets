@@ -5,7 +5,7 @@
     - Some distros such as `Ubuntu` have disabled root login.
     - It's simpler and safer for multi-user systems which prevents sharing of the root password.
 
-## Files, Folders and Disk Usage
+## Files and Folders Management
 
 - Creating a new file:
 
@@ -49,34 +49,10 @@
   ls -ltrh
 ```
 
-- List the disks in the system:
-
-```sh
-  lsblk
-```
-
 - Deleting directories with files in it:
 
 ```sh
   rm -rf directoryname
-```
-
-- Check disk I/O capability:
-
-```sh
-  iostat
-```
-
-- Displays disk space usage and availability:
-
-```sh
-  df -h
-```
-
-- View the disk usage in order:
-
-```sh
-  df -kh
 ```
 
 - List the files while showing their sizes `du - disk usage`:
@@ -95,12 +71,6 @@
 
 ```sh
   cat file_name
-```
-
-- Check for CPU usage:
-
-```sh
-  top
 ```
 
 - Display the last 10 lines:
@@ -125,6 +95,88 @@
 
 ```sh
   tail filename.txt filename2.log
+```
+
+## Disk Usage
+
+- List the disks in the system:
+
+```sh
+  lsblk
+```
+
+- Check for CPU usage:
+
+```sh
+  top
+```
+
+- Check disk I/O capability:
+
+```sh
+  iostat
+```
+
+- Displays disk space usage and availability:
+
+```sh
+  df -h
+```
+
+- View the disk usage in order:
+
+```sh
+  df -kh
+```
+
+## Users Management
+
+- Switch to a specific sudo user `user1`:
+
+```sh
+  sudo su - user1
+```
+
+- Verify the logged in user:
+
+```sh
+  whoami
+```
+
+- Switch to the root user (`su - switch user`):
+  
+```sh
+  sudo su -
+```
+
+```sh
+  sudo -i // Cleaner version of entering to root
+```
+
+```sh
+  su -
+```
+
+- Switch to another non-root user:
+
+```sh
+  sudo su - username
+```
+
+```sh
+  sudo -u username -i // Cleaner version
+```
+
+- List the current password aging info for a user account:
+
+```sh
+  chage -l username
+```
+
+- Manually update password aging settings for a user account:
+
+```sh
+  chage username
 ```
 
 ## Database 
@@ -203,46 +255,10 @@
   sudo apt upgrade
 ```
 
-- Switch to a specific sudo user `user1`:
-
-```sh
-  sudo su - user1
-```
-
-- Verify the logged in user:
-
-```sh
-  whoami
-```
-
 - Install a package for a `Debian based distro`:
 
 ```sh
   sudo apt install package
-```
-
-- Switch to the root user (`su - switch user`):
-  
-```sh
-  sudo su -
-```
-
-```sh
-  sudo -i // Cleaner version of entering to root
-```
-
-```sh
-  su -
-```
-
-- Switch to another non-root user:
-
-```sh
-  sudo su - username
-```
-
-```sh
-  sudo -u username -i // Cleaner version
 ```
 
 - Check if keytool is installed:
@@ -255,16 +271,4 @@
 
 ```sh
   history
-```
-
-- List the current password aging info for a user account:
-
-```sh
-  chage -l username
-```
-
-- Manually update password aging settings for a user account:
-
-```sh
-  chage username
 ```
