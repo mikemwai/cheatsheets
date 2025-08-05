@@ -247,6 +247,18 @@
   curl -v telnet://ip_address
 ```
 
+- Check if specific server is reachable/ Continuous ping:
+
+```sh
+    ping ip_address
+```
+
+- Ping with specific number of requests:
+
+```sh
+    ping -c no_of_requests ip_address
+```
+
 ## Common commands
 
 - Run updates for a `Debian based distro`:
