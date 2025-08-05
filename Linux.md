@@ -290,3 +290,15 @@
 ```sh
   history
 ```
+
+- Check for system uptime:
+
+```sh
+    uptime
+```
+
+- Restart the system:
+
+```sh
+    reboot
+```
