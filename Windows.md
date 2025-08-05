@@ -49,6 +49,24 @@
 ```
 
 ## Networking
+- Check if specific server is reachable:
+
+```sh
+    ping ip_address
+```
+
+- Ping with specific number of requests:
+
+```sh
+    ping -n no_of_requests ip_address
+```
+
+- Continuous ping:
+
+```sh
+  ping -t ip_adddress
+```
+
 - View the Wi-Fi network profiles you previously connected to:
 ```sh
   netsh wlan show profile 
