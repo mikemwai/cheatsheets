@@ -5,7 +5,7 @@
     - Some distros such as `Ubuntu` have disabled root login.
     - It's simpler and safer for multi-user systems which prevents sharing of the root password.
 
-## Files and Folders Management
+## Files, Folders and Directory Management
 
 - Creating a new file:
 
@@ -17,6 +17,12 @@
 
 ```sh
   mkdir directoryname
+```
+
+- View the current file path:
+
+```sh
+    pwd // Print Working Directory
 ```
 
 - Viewing files and folders in a directory:
