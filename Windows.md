@@ -49,6 +49,12 @@
 ```
 
 ## Networking
+- Check ip address of the system:
+
+```sh
+  ipconfig
+```
+
 - Check if specific server is reachable:
 
 ```sh
