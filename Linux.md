@@ -185,6 +185,10 @@
   chage username
 ```
 
+- Add new user
+
+- Modify existing user privileges
+
 ## Database 
 
 ### Oracle
@@ -301,4 +305,16 @@
 
 ```sh
     reboot
+```
+
+- List for current user's cronjobs that are running:
+
+```sh
+    crontab -l
+```
+
+- Open the crontab editor:
+
+```sh
+    crontab -e
 ```
