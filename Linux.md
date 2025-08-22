@@ -187,7 +187,21 @@
 
 - Add new user
 
-- Modify existing user privileges
+```sh
+    sudo useradd -m newusername
+```
+
+- Set password for the new user:
+
+```sh
+    sudo passwd newusername
+```
+
+- Modify existing user privileges:
+
+```sh
+    sudo usermod -aG groupname username
+```
 
 ## Database 
 
@@ -313,7 +327,7 @@
     crontab -l
 ```
 
-- Open the crontab editor:
+- Open the crontab editor for the current user `Create/ modify scheduled tasks (cronjobs)`:
 
 ```sh
     crontab -e
