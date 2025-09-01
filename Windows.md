@@ -112,6 +112,22 @@
   code -r projectname
 ```
 
+## WSL (Windows Subsystem for Linux)
+- Login into your wsl distribution as `root`:
+```sh
+  wsl -u root
+```
+
+- Login into a specific distribution as `root`:
+```sh
+  wsl -d <DistributionName> -u root
+```
+
+- Not sure which distributions you have? Liist them:
+```sh
+  wsl --list --verbose
+```
+
 ## Updates
 - Check system boot time:
 ```sh
