@@ -61,18 +61,6 @@
   rm -rf directoryname
 ```
 
-- List the files while showing their sizes `du - disk usage`:
-
-```sh
-  du -sh *
-```
-
-- List the files while showing their sizes `du - disk usage` and if you want those starting with G `grep G`:
-
-```sh
-  du -sh * | grep G
-```
-
 - View contents of a file:
 
 ```sh
@@ -103,6 +91,42 @@
   tail filename.txt filename2.log
 ```
 
+- Copy a file from one location to another:
+
+```sh
+    cp source destination
+```
+
+- Copy a file to another directory:
+
+```sh
+    cp filename directoryname
+```
+
+- Copy a directory and its contents:
+
+```sh
+    cp -r old_directoryname new_directoryname
+```
+
+- Move a file from one location to another:
+
+```sh
+    mv source destination
+```
+
+- Rename a file:
+
+```sh
+    mv old_filename new_filename
+```
+
+- Move a directory:
+
+```sh
+    mv directoryname new_directory_filepath
+```
+
 ## Disk Usage
 
 - List the disks in the system:
@@ -127,6 +151,18 @@
 
 ```sh
   iostat
+```
+
+- List the files while showing their sizes `du - disk usage`:
+
+```sh
+  du -sh *
+```
+
+- List the files while showing their sizes `du - disk usage` and if you want those starting with G `grep G`:
+
+```sh
+  du -sh * | grep G
 ```
 
 - Displays disk space usage and availability:
