@@ -321,6 +321,38 @@
     sudo apt clean
 ```
 
+## Services Management
+
+- Start a service:
+
+```sh
+    sudo systemctl start service
+```
+
+- Stop a service
+
+```sh
+    sudo systemctl stop service
+```
+
+- Enable a service:
+
+```sh
+    sudo systemctl enable service
+```
+
+- Check status of a service:
+
+```sh
+    sudo systemctl status service
+```
+
+- Restart a service:
+
+```sh
+    sudo systemctl restart service
+```
+
 ## Common commands
 
 - Check if keytool is installed:
