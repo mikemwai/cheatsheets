@@ -117,6 +117,12 @@
   top
 ```
 
+- Before using `iostat`, you have to install:
+
+```sh
+    sudo apt install sysstat
+```
+
 - Check disk I/O capability:
 
 ```sh
