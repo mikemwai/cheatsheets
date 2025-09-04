@@ -277,7 +277,13 @@
     ping -c no_of_requests ip_address
 ```
 
-## Common commands
+- Check ip address for the device:
+
+```sh
+    ip addr show 
+```
+
+## Updates Management
 
 - Run updates for a `Debian based distro`:
 
@@ -296,6 +302,26 @@
 ```sh
   sudo apt install package
 ```
+
+- Upgrading the Linux distribution to the next version:
+
+```sh
+    sudo apt dist-upgrade -y
+```
+
+- Remove packages that are not being used:
+
+```sh
+    sudo apt autoremove -y
+```
+
+- Delete stored `.deb` cached package files:
+
+```sh
+    sudo apt clean
+```
+
+## Common commands
 
 - Check if keytool is installed:
 
