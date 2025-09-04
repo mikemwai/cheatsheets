@@ -19,6 +19,12 @@
   mkdir directoryname
 ```
 
+- Create the directory with the full path (just incase one does not exist):
+
+```sh
+    mkdir -p directorypath
+```
+
 - View the current file path:
 
 ```sh
@@ -339,6 +345,12 @@
   sudo apt upgrade
 ```
 
+- List the packages that can be upgraded:
+
+```sh
+    sudo apt list --upgradable
+```
+
 - Install a package for a `Debian based distro`:
 
 ```sh
@@ -419,6 +431,12 @@
 
 ```sh
     reboot
+```
+
+- Shutting down the system:
+
+```sh
+    shutdown
 ```
 
 - List for current user's cronjobs that are running:
