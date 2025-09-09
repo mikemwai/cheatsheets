@@ -251,6 +251,16 @@
     sudo usermod -aG groupname username
 ```
 
+- List the sudo users:
+
+```sh
+    su - // Then double press the tab key
+```
+
+```sh
+    cut -d: -f1 /etc/passwd
+```
+
 ## Database 
 
 ### Oracle
