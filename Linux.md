@@ -183,6 +183,12 @@
   df -kh
 ```
 
+- List the disk space:
+
+```sh
+    fdisk -l
+```
+
 ## Users Management
 
 - Switch to a specific sudo user `user1`:
