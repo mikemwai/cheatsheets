@@ -245,6 +245,10 @@
     sudo useradd -m newusername
 ```
 
+```sh
+    sudo adduser newusername 
+```
+
 - Set password for the new user:
 
 ```sh
@@ -257,6 +261,10 @@
     sudo usermod -aG groupname username
 ```
 
+```sh
+    sudo visudo // Edit the user privileges
+```
+
 - List the sudo users:
 
 ```sh
@@ -265,6 +273,18 @@
 
 ```sh
     cut -d: -f1 /etc/passwd
+```
+
+- List the `human` users:
+
+```sh
+    ls /home
+```
+
+- List the currently logged in users:
+
+```sh
+    who
 ```
 
 ## Database 
