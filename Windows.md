@@ -7,7 +7,21 @@
   net user
 ```
 
-## Directories
+## Files, Folders and Directories Management
+- Create a new file:
+```sh
+   echo. > filename.txt
+```
+
+```sh
+   type nul > filename.txt
+```
+
+- Delete a file:
+```sh
+  del filename.txt
+```
+
 - Create a new directory:
 ```sh
   mkdir directory_name
@@ -33,19 +47,23 @@
   dir
 ```
 
-## Files
-- Create a new file:
-```sh
-   echo. > filename.txt
-```
+## Disk Management
+- View contents taking up space in your disk:
 
 ```sh
-   type nul > filename.txt
-```
-
-- Delete a file:
-```sh
-  del filename.txt
+  Get-ChildItem -Path $path -Directory |
+     ForEach-Object {
+         $folder = $_.FullName
+         $size = (Get-ChildItem -Path $folder -Recurse -ErrorAction SilentlyContinue |
+                  Measure-Object -Property Length -Sum).Sum
+         [PSCustomObject]@{
+             Folder = $folder
+             SizeGB = "{0:N2}" -f ($size / 1GB)
+         }
+     } |
+     Sort-Object SizeGB -Descending |
+     Select-Object -First 10 |
+     Format-Table -AutoSize
 ```
 
 ## Networking
