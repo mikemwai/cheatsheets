@@ -1,11 +1,11 @@
-# Linux Cheatsheet
+# 🐧 Linux Cheatsheet
 
 - `N\B:` When using these commands and you notice they don't run use `sudo` infront of the command.
 - This is because:
     - Some distros such as `Ubuntu` have disabled root login.
     - It's simpler and safer for multi-user systems which prevents sharing of the root password.
 
-## Files, Folders and Directory Management
+## 📂 Files, Folders and Directory Management
 
 - Creating a new file:
 
@@ -133,7 +133,7 @@
     mv directoryname new_directory_filepath
 ```
 
-## Disk Usage
+## 💽 Disk Usage
 
 - List the disks in the system:
 
@@ -189,7 +189,7 @@
     fdisk -l
 ```
 
-## Users Management
+## 👥 Users Management
 
 - Switch to a specific sudo user `user1`:
 
@@ -287,9 +287,9 @@
     who
 ```
 
-## Database 
+## 🗄️ Database 
 
-### Oracle
+### 🦉 Oracle
 
 - Check listener status:
 
@@ -333,7 +333,7 @@
   info group_name
 ```
 
-### SQL
+### 🐬 SQL
 
 - Connect to SQL:
 
@@ -341,7 +341,7 @@
   sqlplus / as sysdba
 ```
 
-## Networking
+## 🌐 Networking
 
 - Connect to a server:
 
@@ -367,7 +367,7 @@
     ip addr show 
 ```
 
-## Updates Management
+## 🔄 Updates Management
 
 - Run updates for a `Debian based distro`:
 
@@ -411,7 +411,7 @@
     sudo apt clean
 ```
 
-## Services Management
+## ⚙️ Services Management
 
 - Start a service:
 
@@ -443,7 +443,7 @@
     sudo systemctl restart service
 ```
 
-## Common commands
+## 🛠️ Common commands
 
 - Check if keytool is installed:
 
