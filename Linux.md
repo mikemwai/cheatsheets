@@ -189,6 +189,21 @@
     fdisk -l
 ```
 
+- Partition a disk:
+
+```sh
+    fdisk /dev/disk
+    n - p - enter- enter - w
+    mkfs.xfs /dev/disk
+```
+
+- Mount a disk:
+
+```sh
+    mkdir new_directory
+    fdisk /dev/disk new_directory
+```
+
 ## 👥 Users Management
 
 - Switch to a specific sudo user `user1`:
