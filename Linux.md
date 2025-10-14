@@ -85,7 +85,7 @@
   tail -n 1000 filename.txt
 ```
 
-- Display the specific number of bytes:
+- Display the specific number of bytes (i.e. 500 last bytes):
 
 ```sh
   tail -c 500 filename.txt
@@ -95,6 +95,12 @@
 
 ```sh
   tail filename.txt filename2.log
+```
+
+- Display new lines added to the file in real time (i.e. 200 last new lines):
+
+```sh
+    tail -200f filename.txt
 ```
 
 - Copy a file from one location to another:
