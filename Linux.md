@@ -276,6 +276,18 @@
     sudo passwd newusername
 ```
 
+- Change password:
+
+```sh
+    passwd // N/B: It doesn't work if you have forgotten your current password
+```
+
+- Change password for another user (Done by `root`):
+
+```sh
+    passwd username // N/B: It doesn't work if you have forgotten the user's current password
+```
+
 - Modify existing user privileges:
 
 ```sh
