@@ -387,7 +387,6 @@
 ```sh
     ip addr show
     ip addr
-    ip a
 ```
 
 ```sh
