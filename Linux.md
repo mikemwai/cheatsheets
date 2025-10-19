@@ -43,6 +43,26 @@
   ls -l
 ```
 
+- Linux Filesystem:
+    
+```sh
+    /boot - Contains the file used by the boot loader (grub.cfg)
+    /root - Root user home directory (Different from /)
+    /dev - System devices e.g. disk etc
+    /etc - Configuration files
+    /usr/bin - Everyday user commands
+    /usr/sbin - System/ filesystem commands
+    /opt - Optional add-on apps (Not part of OS apps)
+    /proc - Running processes
+    /usr/lib - C programming librayr files needed by commands and apps
+    /tmp - Contains temporary files
+    /home - User directory
+    /var - System logs
+    /run - System daemons that start very early (systemd & udev) storing temporary runtime files like PID files.
+    /mnt - Mount external filesystem (e.g. NFS)
+    /media - cdrom mounts
+```
+
 - List files in long format with human-readable sizes (`h - human readbale sizes`):
 
 ```sh
