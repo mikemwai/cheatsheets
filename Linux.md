@@ -385,7 +385,13 @@
 - Check ip address for the device:
 
 ```sh
-    ip addr show 
+    ip addr show
+    ip addr
+    ip a
+```
+
+```sh
+    ifconfig // Works if you have installed net-tools
 ```
 
 ## 🔄 Updates Management
