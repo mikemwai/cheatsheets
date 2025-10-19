@@ -50,11 +50,11 @@
     /root - Root user home directory (Different from /)
     /dev - System devices e.g. disk etc
     /etc - Configuration files
-    /usr/bin - Everyday user commands
-    /usr/sbin - System/ filesystem commands
+    /bin -> /usr/bin - Everyday user commands
+    /sbin -> /usr/sbin - System/ filesystem commands
     /opt - Optional add-on apps (Not part of OS apps)
     /proc - Running processes
-    /usr/lib - C programming librayr files needed by commands and apps
+    /lib -> /usr/lib - C programming librayr files needed by commands and apps
     /tmp - Contains temporary files
     /home - User directory
     /var - System logs
