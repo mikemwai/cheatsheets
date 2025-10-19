@@ -58,7 +58,7 @@
     /tmp - Contains temporary files
     /home - User directory
     /var - System logs
-    /run - System daemons that start very early (systemd & udev) storing temporary runtime files like PID files.
+    /run - System daemons that start very early (systemd, udev) storing temporary runtime files like PID files.
     /mnt - Mount external filesystem (e.g. NFS)
     /media - cdrom mounts
 ```
