@@ -10,13 +10,17 @@
 - Creating a new file:
 
 ```sh
-  touch filename
+    touch filename
+    touch filename_1 filename_2 filename_3 // Create new files simultaneously
+    cp old_filename new_filename
+    vi filename // Be careful with this if you do not know how to use the vim editor.
 ```
 
 - Creating a new directory:
 
 ```sh
-  mkdir directoryname
+    mkdir directoryname
+    mkdir directoryname_1 directoryname_2 directoryname_3 // Create new directories simultaneously
 ```
 
 - Create the directory with the full path (just incase one does not exist):
@@ -69,10 +73,10 @@
   ls -lh
 ```
 
-- List files and directories in the current directory in an organized manner based on modification time (`r - reverse order (starts with older files), t - sort by time`):
+- List files and directories in the current directory in descending form based on modification time (`r - reverse order (starts with older files), t - sort by time`):
   
 ```sh
-  ls -lrt
+  ls -ltr
 ```
 
 - List files with the permissions and the sizes together with the hour:
@@ -157,6 +161,14 @@
 
 ```sh
     mv directoryname new_directory_filepath
+```
+
+- Find a file that you forgot where it is:
+
+```sh
+    find . -name "filename" // . shows the current directory
+    find / -name "filename" // Starts from the root directory hence needs root privilege to run it
+    locate filename // Ensure you have installed mlocate package
 ```
 
 ## 💽 Disk Usage
