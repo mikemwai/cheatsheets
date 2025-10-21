@@ -203,10 +203,16 @@
   df -h
 ```
 
-- View the disk usage in order:
+- View the disk file system usage in order:
 
 ```sh
   df -kh
+```
+
+- View the disk file system usage including filesystem type:
+
+```sh
+    df -hT
 ```
 
 - List the disk space:
@@ -425,6 +431,12 @@
     ifconfig // Works if you have installed net-tools
 ```
 
+- Perform a traceroute:
+
+```sh
+  traceroute ip_address/ hostname
+```
+
 ## 🔄 Updates Management
 
 - Run updates for a `Debian based distro`:
@@ -531,6 +543,12 @@
 
 ```sh
     shutdown
+```
+
+- Show the system date and time:
+
+```sh
+    date
 ```
 
 - List current user's cronjobs that are running:
