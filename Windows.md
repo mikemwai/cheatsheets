@@ -101,6 +101,11 @@
   netsh wlan show profile wifi_name key=clear
 ```
 
+- Perform a traceroute:
+```sh
+  tracert ip_address/ hostname
+```
+
 ## Programs
 - Open an app from the command prompt:
 ```sh
