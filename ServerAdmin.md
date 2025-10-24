@@ -375,15 +375,92 @@
 
 ### Debian-based Distros
 1. Firewalls
+
+- Makes use of `Uncomplicated Firewall (UFW)` instead of `firewalld`.
+
+```sh
+  sudo apt update
+  sudo apt install ufw -y # Install UFW
+```
+
+```sh
+  sudo ufw enable # Enable UFW
+  sudo ufw status verbose # Check status of UFW
+```
+
+```sh
+  sudo ufw allow 443/tcp # Allow tcp rule on UFW
+  sudo ufw allow ssh # Allow ssh rule on UFW
+  sudo ufw allow http # Allow http rule on UFW
+  sudo ufw allow https # Allow https rule on UFW
+```
+
+```sh
+  sudo ufw delete allow 443/tcp # Delete tcp rule on UFW
+  sudo ufw delete allow ssh # Delete ssh rule on UFW
+```
+
+```sh
+  sudo ufw reload # Reload UFW
+```
+
 2. SSL Certificates
-3. SSH Keys & Configuration
-4. Intrusion Prevention
-5. AppArmor
-6. Patch Management
-7. Log review
+
+- Makes use of `Apache2` instead of `https`.
+
+```sh
+  sudo apt install apache2 openssl -y # Install apache2, openssl
+  sudo a2enmod ssl # Install mod_ssl
+```
+
+```sh
+  sudo mkdir -p /etc/ssl/private # Create directory for storing the ssl certs
+  sudo chmod 700 /etc/ssl/private # Set the permissions for the directory
+```
+
+```sh
+  # Generate a self-signed certificate
+  sudo openssl req -x509 -nodes -days 365 -newley rsa:2048 \
+  -keyout /etc/ssl/private/apache-selfsigned.key \
+  -out /etc/ssl/certs/apache-selfsigned.crt
+```
+
+```sh
+  sudo nano /etc/apache2/sites-available/your_domain_or_ip.conf # Create a new Apache SSL config file
+
+  In the file:
+  <VirtualHost *:443>
+    ServerName your_domain_or_ip
+    DocumentRoot /var/www/html
+    SSLEngine on
+    SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
+    SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
+  </VirtualHost>
+```
+
+```sh
+  # Enable SSL site and redirect HTTP to HTTPS
+  sudo a2ensite your_domain_or_ip.conf
+  sudo a2enmod rewrite
+  sudo a2enmod ssl
+  sudo systemctl reload apache2
+```
+
+4. SSH Keys & Configuration
+
+5. Intrusion Prevention
+
+6. AppArmor
+
+7. Patch Management
+
+8. Log review
+
 
 ### RHEL-based Distros
 1. Firewalls
+
+- Makes use of `firewalld`.
 
 ```sh
   sudo yum install firewalld # Installs the firewall
