@@ -446,16 +446,112 @@
   sudo systemctl reload apache2
 ```
 
-4. SSH Keys & Configuration
+3. SSH Keys & Configuration
 
-5. Intrusion Prevention
+```sh
+  ssh-keygen -b 4096 # Generate SSH keys
+```
 
-6. AppArmor
+```sh
+  scp ~/.ssh/id_rsa.pub username@ipaddress:~/.ssh/authorized_keys # Copy public key to remote server
+```
 
-7. Patch Management
+```sh
+  # Set correct permissions
+  sudo chmod 700 ~/.ssh
+  sudo chmod 600 ~/.ssh/authorized_keys
+  sudo chown username:username ~/.ssh/authorized_keys
+```
 
-8. Log review
+```sh
+  sudo nano /etc/ssh/sshd_config # Update SSH config
 
+  # Change:
+  #  Port 717
+  #  PermitRootLogin no
+  # PasswordAuthentication no
+```
+
+```sh
+  sudo systemctl restart ssh # Restart SSH service
+```
+
+```sh
+  ssh username@ipaddress -p 717 # Connect using the new port
+```
+
+4. Intrusion Prevention
+
+- Mostly uses `fail2ban` to protect servers from brute-force attacks & other suspicious activities by monitoring log files and implementing automatic IP blocking.
+
+```sh
+  sudo apt install fail2ban -y # Install fail2ban
+```
+
+```sh
+  sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local # Copy the configurarion file
+  sudo nano /etc/fail2ban/jail.local # Edit the configuration file
+```
+
+```sh
+  # Enable and start the fail2ban service
+  sudo systemctl enable fail2ban 
+  sudo systemctl start fail2ban
+  sudo systemctl restart fail2ban 
+```
+
+5. AppArmor
+
+- Debian mostly `AppArmor` as the native solution for SELinux, but you can still use SELinux by manually installing it.
+
+```sh
+  sudo aa-status # Check AppArmor status
+```
+
+```sh
+  sudo aa-enforce /etc/apparmor.d/* # Enforce all profiles
+```
+
+```sh
+  sudo journalctl -xe | grep apparmor # View the logs
+```
+
+6. Patch Management
+
+```sh
+  sudo apt update # Check for updates
+```
+
+```sh
+  sudo apt upgrade -y # Upgrade all packages
+```
+
+```sh
+  sudo apt dist-upgrade -y # Upgrade distribution
+```
+
+```sh
+  sudo apt autoremove -y # Remove unused packages
+  sudo apt clean # Clean the cache
+```
+
+7. Log review
+
+```sh
+  sudo journalctl # View all logs
+```
+
+```sh
+  sudo journalctl -f # Follow logs in real time
+```
+
+```sh
+  sudo journalctl --since "yyyy-mm-dd 00:00:00" --until "yyyy-mm-dd 00:00:00"
+```
+
+```sh
+  sudo journalctl -p err # Filter logs by priority
+```
 
 ### RHEL-based Distros
 1. Firewalls
@@ -568,7 +664,7 @@
   https://your_domain_or_ip # Confirm the status of your website
 ```
 
-4. SSH Keys & Configuration
+3. SSH Keys & Configuration
 
 ```sh
   ssh-keygen -b 4096 # Generate ssh keys
@@ -613,7 +709,7 @@
   sudo chmod 600 /home/user/.ssh/authorized_keys
 ```
 
-6. Intrusion Prevention
+4. Intrusion Prevention
 
 - Mostly uses `fail2ban` to protect servers from brute-force attacks & other suspicious activities by monitoring log files and implementing automatic IP blocking.
 
@@ -636,7 +732,7 @@
   sudo systemctl restart fail2ban
 ```
 
-8. SELinux (Security Enhanced Linux)
+5. SELinux (Security Enhanced Linux)
 
 - Security feature integrated into the Linux kernel that provides mandatory access controls for processes and services.
 
@@ -657,7 +753,7 @@
   sudo cat /var/log/audit/audit.log # Review SELinux logs
 ```
 
-10. Patch Management
+6. Patch Management
 
 ```sh
   sudo yum check-update # Check for available updates
@@ -679,7 +775,7 @@
   sudo yum clean all # Find and remove temporary files
 ```
 
-12. Log review
+7. Log review
 
 - Makes use of `journalctl` which is a utility enabling users to query and display logs from the systemd journal.
 
