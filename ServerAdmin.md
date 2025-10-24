@@ -21,11 +21,11 @@
 - Domain
    - Register and buy a new domain for the Laravel application through [Namecheap](https://www.namecheap.com/).
      
-## What is a LEMP Stack?
+### What is a LEMP Stack?
 - It's a combination of four technologies which include Linux, Enginx, MySql and Php. This stack can be used to host web apps built using php frameworks such as Laravel.
 
-## Steps to host the Laravel app
-## Login to the Ubuntu Server
+### Steps to host the Laravel app
+### Login to the Ubuntu Server
 - Open the terminal and login as the root in the server:
   ```
    ssh root@ipaddress
@@ -55,14 +55,14 @@
   ```
   `NOTE:` `newuser` is the new user you created and `ipaddress` is the ipaddress of your server. `Avoid running commands using root` for the next steps.
   
-## Update the package manager
+### Update the package manager
 - Ensure the server is upto date before installing any packages.
 
    ```
    sudo apt-get update
    ```
 
-## Install Nginx (Enginx)
+### Install Nginx (Enginx)
 - Install nginx in your server:
   
   ```
@@ -71,7 +71,7 @@
 
 - Confirm if it has installed by checking `http://server-ipaddress` on the browser. The nginx welcome page will be displayed.
 
-## Install MySql
+### Install MySql
 - Install the MySql server where the laravel app database will be stored.
 
   ```
@@ -96,7 +96,7 @@
   Reload the privileges table: Y
   ```
 
-## Install PHP
+### Install PHP
 - Plugins to install:
   - `php-fpm`: Stands for FastCGI Process Manager. Used for processing.
     
@@ -118,7 +118,7 @@
      php -v
   ```
 
-## Install Composer
+### Install Composer
 - Composer: PHP dependency manager that will keep track of libraries and dependencies that PHP applications need. Install it:
 
   ```
@@ -137,7 +137,7 @@
     composer --version
   ```
 
-## Configure PHP
+### Configure PHP
 - Install the `nano` editor:
 
   ```
@@ -161,7 +161,7 @@
     sudo systemctl restart php8.2-fpm
   ```
 
-## Configure Nginx
+### Configure Nginx
 - Open the nginx configuration file:
 
   ```
@@ -209,7 +209,7 @@
     sudo systemctl reload nginx
   ```
 
-## Configure MySql
+### Configure MySql
 - Login to the MySql server:
 
   ```
@@ -242,7 +242,7 @@
     SHOW DATABASES;
   ```
 
-## Install Laravel
+### Install Laravel
 - Create the directory that will host the Laravel application:
 
   ```
@@ -261,7 +261,7 @@
     composer install --no-dev
   ```
 
-## Permissions
+### Permissions
 - Change the ownership of the project to the web group:
 
   ```
@@ -274,7 +274,7 @@
      sudo chmod -R 775 /var/www/laravel/project/storage
    ```
 
-## Configure Laravel
+### Configure Laravel
 - Change directory to the cloned project folder using `cd /var/www/laravel/project`
 
 - Generate the encryption key for the app:
@@ -346,7 +346,7 @@
 
 - Acces the Laravel application on your browser using `http://server-ipaddress` or `http://www.project.com`.
 
-## Configure a Secure SSL Certificate
+### Configure a Secure SSL Certificate
 - Install Certbot client:
 
   ```
@@ -361,16 +361,38 @@
 
 - Access the app using `https://www.project.com`. 
 
-## Resources
+### Resources
 - [How-to-deploy-a-laravel-app-on-lemp-stack](https://www.iankumu.com/blog/how-to-deploy-a-laravel-app-on-lemp-stack/#1-log-in-via-ssh)
-  
+
 - - - - -
 
 ## 2. LAMP Stack
+  
+- - - - -
+
+## 3. Server Hardening
+
+### Debian-based Distros
+1. Firewalls
+2. SSL Certificates
+3. SSH Keys & Configuration
+4. Intrusion Prevention
+5. AppArmor
+6. Patch Management
+7. Log review
+
+### RHEL-based Distros
+1. Firewalls
+2. SSL Certificates
+3. SSH Keys & Configuration
+4. Intrusion Prevention
+5. SELinux
+6. Patch Management
+7. Log review
 
 ---
 
-## 3. Flask
+## 4. Flask
 
-## Resources
+### Resources
 - [How-to-depploy-a-flask-app-using-nginx](https://www.rosehosting.com/blog/how-to-deploy-flask-application-with-nginx-and-gunicorn-on-ubuntu-20-04/)
