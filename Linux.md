@@ -11,16 +11,16 @@
 
 ```sh
     touch filename
-    touch filename_1 filename_2 filename_3 // Create new files simultaneously
+    touch filename_1 filename_2 filename_3 # Create new files simultaneously
     cp old_filename new_filename
-    vi filename // Be careful with this if you do not know how to use the vim editor.
+    vi filename # Be careful with this if you do not know how to use the vim editor.
 ```
 
 - Creating a new directory:
 
 ```sh
     mkdir directoryname
-    mkdir directoryname_1 directoryname_2 directoryname_3 // Create new directories simultaneously
+    mkdir directoryname_1 directoryname_2 directoryname_3 # Create new directories simultaneously
 ```
 
 - Create the directory with the full path (just incase one does not exist):
@@ -32,7 +32,7 @@
 - View the current file path:
 
 ```sh
-    pwd // Print Working Directory
+    pwd # Print Working Directory
 ```
 
 - Viewing files and folders in a directory:
@@ -166,9 +166,9 @@
 - Find a file that you forgot where it is:
 
 ```sh
-    find . -name "filename" // . shows the current directory
-    find / -name "filename" // Starts from the root directory hence needs root privilege to run it
-    locate filename // Ensure you have installed mlocate package
+    find . -name "filename" # . shows the current directory
+    find / -name "filename" # Starts from the root directory hence needs root privilege to run it
+    locate filename # Ensure you have installed mlocate package
 ```
 
 ## 💽 Disk Usage
@@ -269,7 +269,7 @@
 ```
 
 ```sh
-  sudo -i // Cleaner version of entering to root
+  sudo -i # Cleaner version of entering to root
 ```
 
 ```sh
@@ -283,7 +283,7 @@
 ```
 
 ```sh
-  sudo -u username -i // Cleaner version
+  sudo -u username -i # Cleaner version
 ```
 
 - List the current password aging info for a user account:
@@ -317,13 +317,13 @@
 - Change password:
 
 ```sh
-    passwd // N/B: It doesn't work if you have forgotten your current password
+    passwd # N/B: It doesn't work if you have forgotten your current password
 ```
 
 - Change password for another user (Done by `root`):
 
 ```sh
-    passwd username // N/B: It doesn't work if you have forgotten the user's current password
+    passwd username # N/B: It doesn't work if you have forgotten the user's current password
 ```
 
 - Modify existing user privileges:
@@ -333,13 +333,13 @@
 ```
 
 ```sh
-    sudo visudo // Edit the user privileges
+    sudo visudo # Edit the user privileges
 ```
 
 - List the sudo users:
 
 ```sh
-    su - // Then double press the tab key
+    su - # Then double press the tab key
 ```
 
 ```sh
@@ -440,7 +440,7 @@
 ```
 
 ```sh
-    ifconfig // Works if you have installed net-tools
+    ifconfig # Works if you have installed net-tools
 ```
 
 - Perform a traceroute:
@@ -611,7 +611,7 @@
     #!/bin/bash
     # This script writes the current date and time into a log file
     
-    echo "Script ran at: $(date)" >> /home/yourname/mylog.txt // Edit the command
+    echo "Script ran at: $(date)" >> /home/yourname/mylog.txt # Edit the command
 ```
 
 ```sh
