@@ -527,6 +527,12 @@
 
 ## 🛠️ Common commands
 
+- Ever wondered how to check what Linux distro a server is running? Try running:
+
+```sh
+    cat /etc/os-release
+```
+
 - Check if keytool is installed:
 
 ```sh
