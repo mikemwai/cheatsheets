@@ -3,7 +3,8 @@
 
 1. [Hosting a Laravel app using the LEMP Stack](#1-lemp-stack)
 2. [Hosting a Laravel app using the LAMP Stack](#2-lamp-stack)
-3. [Hosting a Flask app](#3-flask)
+3. [Server Hardening Techniques](#3-server-hardening)
+4. [Hosting a Flask app](#4-flask)
 
 &nbsp;
 &nbsp;
