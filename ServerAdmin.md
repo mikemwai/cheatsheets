@@ -428,14 +428,14 @@
 ```sh
   sudo nano /etc/apache2/sites-available/your_domain_or_ip.conf # Create a new Apache SSL config file
 
-  In the file:
-  <VirtualHost *:443>
-    ServerName your_domain_or_ip
-    DocumentRoot /var/www/html
-    SSLEngine on
-    SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
-    SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
-  </VirtualHost>
+  # In the file:
+  # <VirtualHost *:443>
+  #  ServerName your_domain_or_ip
+  #  DocumentRoot /var/www/html
+  #  SSLEngine on
+  #  SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
+  #  SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
+  # </VirtualHost>
 ```
 
 ```sh
@@ -466,10 +466,10 @@
 ```sh
   sudo nano /etc/ssh/sshd_config # Update SSH config
 
-  # Change:
+  #  Change:
   #  Port 717
   #  PermitRootLogin no
-  # PasswordAuthentication no
+  #  PasswordAuthentication no
 ```
 
 ```sh
@@ -631,25 +631,25 @@
 ```sh
   sudo vi etc/httpd/conf.d/(your_domain_or_ip).conf # Specifies the server settings
 
-  In the file:
-  <VirtualHost *:443>
-  ServerName your_domain_or_ip
-  DocumentRoot /var/www/html
-  SSLEngine on
-  SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
-  SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
-  </VirtualHost>
+  # In the file:
+  # <VirtualHost *:443>
+  #  ServerName your_domain_or_ip
+  #  DocumentRoot /var/www/html
+  #  SSLEngine on
+  #  SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
+  #  SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
+  # </VirtualHost>
 
 ```
 
 ```sh
   sudo vi /etc/httpd/conf.d/non-ssl.conf # Specifies the non-SSL settings
 
-  In the file:
-  <VirtualHost *:80>
-  ServerName your_domain_or_ip
-  Redirect "/" "https://your_domain_or_ip/"
-  </VirtualHost>
+  # In the file:
+  # <VirtualHost *:80>
+  #  ServerName your_domain_or_ip
+  #  Redirect "/" "https://your_domain_or_ip/"
+  # </VirtualHost>
 ```
 
 ```sh
@@ -685,10 +685,10 @@
 ```sh
   sudo nano etc/ssh/sshd_config # Update the ssh configuration file
 
-  In the file:
-  Port - 717
-  PermitRootLogin - no
-  PasswordAuthentication - no
+  # In the file:
+  # Port - 717
+  # PermitRootLogin - no
+  # PasswordAuthentication - no
 ```
 
 ```sh
