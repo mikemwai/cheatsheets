@@ -39,7 +39,8 @@
 
 - Delete a directory with contents:
 ```sh
-  rmdir /s /q directory_name
+  rmdir /s /q directory_name # Works best in Command Prompt
+  Remove-Item -Path "directory_name" -Recurse -Force # Works best in Powershell
 ```
 
 - List contents in a directory:
