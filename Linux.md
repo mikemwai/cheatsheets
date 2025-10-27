@@ -171,6 +171,48 @@
     locate filename # Ensure you have installed mlocate package
 ```
 
+- Changing permissions of a file:
+
+```sh
+   # Using letters
+   chmod o-w filename # Removes the write permission from others
+   chmod g+r filename # Adds the read permission to group
+   chmod u+rwx filename # Adds the read, write & execute permissions to user 
+
+   # Levels: 
+   # u g o 
+   # | | |
+   # | | └── Others
+   # | └──── Group
+   # └────── User
+
+   # Permissions: 
+   # r w x 
+   # | | |
+   # | | └── Execute
+   # | └──── Write
+   # └────── Read
+```
+
+```sh
+    # Using numeric mode
+    chmod 005 filename # Removes the write permission from others
+    chmod 040 filename # Adds the read permission to group
+    chmod 700 filename # Adds the read, write & execute permissions to user 
+
+    # Key:
+    # 0 - No permission
+    # 1 - Execute
+    # 2 - Write
+    # 3 - Execute + Write
+    # 4 - Read
+    # 5 - Read + Execute
+    # 6 - Read + Write
+    # 7 - Read + Write + Execute
+
+    # N\B: Overwites permissions hence good practice to remember the existing permissions of the other levels before changing
+```
+
 ## 💽 Disk Usage
 
 - List the disks in the system:
