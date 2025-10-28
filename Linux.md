@@ -213,6 +213,19 @@
     # N\B: Overwites permissions hence good practice to remember the existing permissions of the other levels before changing
 ```
 
+- Changing ownership of a file:
+
+```sh
+    chown owner filename
+    chgrp groupname filename
+
+    # Owners:
+    # * User * Group
+
+    # Format:
+    # owner group
+```
+
 ## 💽 Disk Usage
 
 - List the disks in the system:
@@ -568,6 +581,12 @@
 ```
 
 ## 🛠️ Common commands
+
+- Check for the manual for a command:
+
+```sh
+    man commandname
+```
 
 - Ever wondered how to check what Linux distro a server is running? Try running:
 
