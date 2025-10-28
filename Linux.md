@@ -413,6 +413,26 @@
     who
 ```
 
+### Access Control List (ACL)
+
+- View existing permissions of a file:
+
+```sh
+    getfacl filename
+```
+
+- Edit the permissions of a file:
+
+```sh
+    setfacl -m u:user:rwx /path/to/file # Add permission for user
+    setfacl -m g:group:rw /path/to/file # Add permissions for a group
+
+    setfacl -rm "entry" /path/to/dir # Allow all files/ directories to inherit ACL entries from its directory
+
+    setfacl -x u:user /path/to/file # Remove a specific entry for a specific user
+    setfacl -b path/to/file # Remove all entries for all users
+```
+
 ## 🗄️ Database 
 
 ### 🦉 Oracle
