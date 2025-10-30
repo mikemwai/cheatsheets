@@ -97,6 +97,13 @@
   cat file_name
 ```
 
+- Adding content to files:
+
+```sh
+    echo "content" > filename # Overwrites content in the file with the new content
+    echo "content" >> filename # Adds content on the next line
+```
+
 - Display the last 10 lines:
 
 ```sh
