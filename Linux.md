@@ -233,6 +233,45 @@
     # owner group
 ```
 
+### Access Control List (ACL)
+
+- View existing permissions of a file:
+
+```sh
+    getfacl filename
+```
+
+- Edit the permissions of a file:
+
+```sh
+    setfacl -m u:user:rwx /path/to/file # Add permission for user
+    setfacl -m g:group:rw /path/to/file # Add permissions for a group
+
+    setfacl -rm "entry" /path/to/dir # Allow all files/ directories to inherit ACL entries from its directory
+
+    setfacl -x u:user /path/to/file # Remove a specific entry for a specific user
+    setfacl -b path/to/file # Remove all entries for all users
+```
+
+### Input & Output Redirects
+
+- Redirects include:
+    - `stdin` - (Standard input) Has file descriptor number as 0.
+      ```sh
+          cat < filename
+      ```
+      
+    - `stdout` - (Standard output) Has file descriptor number as 1.
+      ```sh
+          ls -l > filename # Overwrites the file output.
+          ls -la >> filename # Appends another output to the file.
+      ```
+      
+    - `stderr` - (Standard error) Has file descriptor number as 2.
+      ```sh
+          telnet hostname 2> errorfile
+      ```
+
 ## 💽 Disk Usage
 
 - List the disks in the system:
@@ -418,26 +457,6 @@
 
 ```sh
     who
-```
-
-### Access Control List (ACL)
-
-- View existing permissions of a file:
-
-```sh
-    getfacl filename
-```
-
-- Edit the permissions of a file:
-
-```sh
-    setfacl -m u:user:rwx /path/to/file # Add permission for user
-    setfacl -m g:group:rw /path/to/file # Add permissions for a group
-
-    setfacl -rm "entry" /path/to/dir # Allow all files/ directories to inherit ACL entries from its directory
-
-    setfacl -x u:user /path/to/file # Remove a specific entry for a specific user
-    setfacl -b path/to/file # Remove all entries for all users
 ```
 
 ## 🗄️ Database 
