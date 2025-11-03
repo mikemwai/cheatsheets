@@ -272,6 +272,16 @@
           telnet hostname 2> errorfile
       ```
 
+- Standard output to a file:
+
+```sh
+    echo "content" | tee filename # Concurrently displays and stores the command's output
+    echo "content" | tee -a filename # Concurrently displays, stores and appends the command's output to the file
+    ls -l | tee file1 file2 file3 # Store in several files
+    tee --help # Display manual for the command
+    tee --version # Check the version number for the tee package
+```
+
 ## 💽 Disk Usage
 
 - List the disks in the system:
@@ -626,12 +636,32 @@
     sudo systemctl restart service
 ```
 
-## 🛠️ Common commands
+## Help commands
+
+- Show a shorter info version of a command:
+
+```sh
+    whatis command
+```
+
+- Show a longer info version of a command:
+
+```sh
+    command --help
+```
 
 - Check for the manual for a command:
 
 ```sh
-    man commandname
+    man command
+```
+
+## 🛠️ Common commands
+
+- Check how many characters are in a file:
+
+```sh
+    wc -c filename
 ```
 
 - Ever wondered how to check what Linux distro a server is running? Try running:
