@@ -45,6 +45,7 @@
 
 ```sh
   ls -l
+  ll
 ```
 
 - Linux Filesystem:
@@ -85,6 +86,12 @@
   ls -ltrh
 ```
 
+- View output of a command one page at a time:
+
+```sh
+    ls -ltr | more # Press space bar to move to the next page.
+```
+
 - Deleting directories with files in it:
 
 ```sh
@@ -108,6 +115,7 @@
 
 ```sh
   tail filename.txt
+  tail -1 # Displays the last line
 ```
 
 - Display the specific number of lines (i.e. 1000 last lines):
