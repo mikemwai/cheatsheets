@@ -113,6 +113,8 @@
     echo "content" >> filename # Adds content on the next line
 ```
 
+- File display commands include `cat`, `more`, `less`, `head`, `tail`.
+
 - Display the last 10 lines:
 
 ```sh
