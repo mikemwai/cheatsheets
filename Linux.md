@@ -7,6 +7,8 @@
 
 ## 📂 Files, Folders and Directory Management
 
+- File maintenance commands include `cp`, `rm`, `mv`, `mkdir`, `rmdir/ rm -r`, `chgrp`, `chown`.
+
 - Creating a new file:
 
 ```sh
@@ -92,7 +94,7 @@
     ls -ltr | more # Press space bar to move to the next page.
 ```
 
-- Deleting directories with files in it:
+- Deleting directories, sub-directories and its contents:
 
 ```sh
   rm -rf directoryname
@@ -713,6 +715,19 @@
 ```sh
     date
 ```
+
+- Command chaining:
+    - Executing multiple commands with ;
+      ```sh
+        ls ; pwd ; whoami
+      ```
+
+      - Executing multiple commands with | `(Pipe)`
+      ```sh
+        ls -ltr | more
+      ```
+
+`N/B:` Mostly important for scripting, automation and daily tasks.
 
 - List current user's cronjobs that are running:
 
