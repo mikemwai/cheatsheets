@@ -223,23 +223,23 @@
     
     - Linux Filesystem:
         
-    ```sh
-        /boot - Contains the file used by the boot loader (grub.cfg)
-        /root - Root user home directory (Different from /)
-        /dev - System devices e.g. disk etc
-        /etc - Configuration files
-        /bin -> /usr/bin - Everyday user commands
-        /sbin -> /usr/sbin - System/ filesystem commands
-        /opt - Optional add-on apps (Not part of OS apps)
-        /proc - Running processes
-        /lib -> /usr/lib - C programming librayr files needed by commands and apps
-        /tmp - Contains temporary files
-        /home - User directory
-        /var - System logs
-        /run - System daemons that start very early (systemd, udev) storing temporary runtime files like PID files.
-        /mnt - Mount external filesystem (e.g. NFS)
-        /media - cdrom mounts
-    ```
+        ```sh
+            /boot - Contains the file used by the boot loader (grub.cfg)
+            /root - Root user home directory (Different from /)
+            /dev - System devices e.g. disk etc
+            /etc - Configuration files
+            /bin -> /usr/bin - Everyday user commands
+            /sbin -> /usr/sbin - System/ filesystem commands
+            /opt - Optional add-on apps (Not part of OS apps)
+            /proc - Running processes
+            /lib -> /usr/lib - C programming librayr files needed by commands and apps
+            /tmp - Contains temporary files
+            /home - User directory
+            /var - System logs
+            /run - System daemons that start very early (systemd, udev) storing temporary runtime files like PID files.
+            /mnt - Mount external filesystem (e.g. NFS)
+            /media - cdrom mounts
+        ```
     
     - List files in long format with human-readable sizes (`h - human readbale sizes`):
     
@@ -280,13 +280,33 @@
     
     - Standard output to a file:
     
-    ```sh
-        echo "content" | tee filename # Concurrently displays and stores the command's output
-        echo "content" | tee -a filename # Concurrently displays, stores and appends the command's output to the file
-        ls -l | tee file1 file2 file3 # Store in several files
-        tee --help # Display manual for the command
-        tee --version # Check the version number for the tee package
-    ```
+        ```sh
+            echo "content" | tee filename # Concurrently displays and stores the command's output
+            echo "content" | tee -a filename # Concurrently displays, stores and appends the command's output to the file
+            ls -l | tee file1 file2 file3 # Store in several files
+            tee --help # Display manual for the command
+            tee --version # Check the version number for the tee package
+        ```
+
+    ### Text Processors
+
+    - Commands include `cut`, `awk`.
+
+        - `cut` allows one to cut parts of lines from specified files & print the result to standard output:
+        
+        ```sh
+            cut --version # Check version
+            cut -c1 filename # List first letter/ character of the file content in each line
+            cut -c1,2,4 filename # Pick & choose letter/ character 1,2, & 4
+            cut -c1-5 filename # List range of letters/ characters 1 till 5
+            cut -c1-3, 6-8 filename # Lists first 3 characters and the 6th to 8th character
+            cut -b1-3 filename # List by byte size (Same as characters)
+            cut -d: -f 6 /etc/passwd # List first 6th column right after the :, separated by :
+            cut -d, -f 6 filename # List first 6th column right after the ,, separated by ,
+            cut -d? -f 6 filename # List first 6th column right after the ?, separated by ?
+            cut -d: -f 6-7 /etc/passwd # List first 6th & 7th column right after the :, separated by :
+            ls -l | cut -c2-4 # Only print user permissions of files/dir
+        ```
 
 - View the current file path:
     
