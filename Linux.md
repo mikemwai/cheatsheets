@@ -9,103 +9,151 @@
 
 - File maintenance commands include `cp`, `rm`, `mv`, `mkdir`, `rmdir/ rm -r`, `chgrp`, `chown`.
 
-- Creating a new file:
-
-```sh
-    touch filename
-    touch filename_1 filename_2 filename_3 # Create new files simultaneously
-    cp old_filename new_filename
-    vi filename # Be careful with this if you do not know how to use the vim editor.
-```
-
-- Creating a new directory:
-
-```sh
-    mkdir directoryname
-    mkdir directoryname_1 directoryname_2 directoryname_3 # Create new directories simultaneously
-```
-
-- Create the directory with the full path (just incase one does not exist):
-
-```sh
-    mkdir -p directorypath
-```
-
-- View the current file path:
-
-```sh
-    pwd # Print Working Directory
-```
-
-- Viewing files and folders in a directory:
-
-```sh
-  ls
-```
-
-- Viewing files and folders in a directory with detailed information (`l - long format`):
-
-```sh
-  ls -l
-  ll
-```
-
-- Linux Filesystem:
+    - Creating a new file:
     
-```sh
-    /boot - Contains the file used by the boot loader (grub.cfg)
-    /root - Root user home directory (Different from /)
-    /dev - System devices e.g. disk etc
-    /etc - Configuration files
-    /bin -> /usr/bin - Everyday user commands
-    /sbin -> /usr/sbin - System/ filesystem commands
-    /opt - Optional add-on apps (Not part of OS apps)
-    /proc - Running processes
-    /lib -> /usr/lib - C programming librayr files needed by commands and apps
-    /tmp - Contains temporary files
-    /home - User directory
-    /var - System logs
-    /run - System daemons that start very early (systemd, udev) storing temporary runtime files like PID files.
-    /mnt - Mount external filesystem (e.g. NFS)
-    /media - cdrom mounts
-```
+    ```sh
+        touch filename
+        touch filename_1 filename_2 filename_3 # Create new files simultaneously
+        cp old_filename new_filename
+        vi filename # Be careful with this if you do not know how to use the vim editor.
+    ```
+    
+    - Creating a new directory:
+    
+    ```sh
+        mkdir directoryname
+        mkdir directoryname_1 directoryname_2 directoryname_3 # Create new directories simultaneously
+    ```
+    
+    - Create the directory with the full path (just incase one does not exist):
+    
+    ```sh
+        mkdir -p directorypath
+    ```
+    
+    - Deleting directories, sub-directories and its contents:
+    
+    ```sh
+      rm -rf directoryname
+    ```
 
-- List files in long format with human-readable sizes (`h - human readbale sizes`):
+    - Adding content to files:
 
-```sh
-  ls -lh
-```
+    ```sh
+        echo "content" > filename # Overwrites content in the file with the new content
+        echo "content" >> filename # Adds content on the next line
+    ```
 
-- List files and directories in the current directory in descending form based on modification time (`r - reverse order (starts with older files), t - sort by time`):
-  
-```sh
-  ls -ltr
-```
+    - Copy a file from one location to another:
 
-- List files with the permissions and the sizes together with the hour:
+    ```sh
+        cp source destination
+    ```
+    
+    - Copy a file to another directory:
+    
+    ```sh
+        cp filename directoryname
+    ```
+    
+    - Copy a directory and its contents:
+    
+    ```sh
+        cp -r old_directoryname new_directoryname
+    ```
+    
+    - Move a file from one location to another:
+    
+    ```sh
+        mv source destination
+    ```
+    
+    - Rename a file:
+    
+    ```sh
+        mv old_filename new_filename
+    ```
+    
+    - Move a directory:
+    
+    ```sh
+        mv directoryname new_directory_filepath
+    ```
 
-```sh
-  ls -ltrh
-```
+    - Changing permissions of a file:
 
-- Deleting directories, sub-directories and its contents:
-
-```sh
-  rm -rf directoryname
-```
-
-- View contents of a file:
-
-```sh
-  cat file_name
-```
-
-- Adding content to files:
-
-```sh
-    echo "content" > filename # Overwrites content in the file with the new content
-    echo "content" >> filename # Adds content on the next line
-```
+    ```sh
+       # Using letters
+       chmod o-w filename # Removes the write permission from others
+       chmod g+r filename # Adds the read permission to group
+       chmod u+rwx filename # Adds the read, write & execute permissions to user 
+    
+       # Levels: 
+       # u g o 
+       # | | |
+       # | | └── Others
+       # | └──── Group
+       # └────── User
+    
+       # Permissions: 
+       # r w x 
+       # | | |
+       # | | └── Execute
+       # | └──── Write
+       # └────── Read
+    ```
+    
+    ```sh
+        # Using numeric mode
+        chmod 005 filename # Removes the write permission from others
+        chmod 040 filename # Adds the read permission to group
+        chmod 700 filename # Adds the read, write & execute permissions to user 
+    
+        # Key:
+        # 0 - No permission
+        # 1 - Execute
+        # 2 - Write
+        # 3 - Execute + Write
+        # 4 - Read
+        # 5 - Read + Execute
+        # 6 - Read + Write
+        # 7 - Read + Write + Execute
+    
+        # N\B: Overwites permissions hence good practice to remember the existing permissions of the other levels before changing
+    ```
+    
+    - Changing ownership of a file:
+    
+    ```sh
+        chown owner filename
+        chgrp groupname filename
+    
+        # Owners:
+        # * User * Group
+    
+        # Format:
+        # owner group
+    ```
+    
+    ### Access Control List (ACL)
+    
+    - View existing permissions of a file:
+    
+    ```sh
+        getfacl filename
+    ```
+    
+    - Edit the permissions of a file:
+    
+    ```sh
+        setfacl -m u:user:rwx /path/to/file # Add permission for user
+        setfacl -m g:group:rw /path/to/file # Add permissions for a group
+    
+        setfacl -rm "entry" /path/to/dir # Allow all files/ directories to inherit ACL entries from its directory
+    
+        setfacl -x u:user /path/to/file # Remove a specific entry for a specific user
+        setfacl -b path/to/file # Remove all entries for all users
+    ```
 
 - File display commands include `cat`, `more`, `less`, `head`, `tail`.
 
@@ -154,40 +202,96 @@
         tail -200f filename.txt
     ```
 
-- Copy a file from one location to another:
+    - View contents of a file:
+    
+    ```sh
+      cat file_name
+    ```
 
+    - Viewing files and folders in a directory:
+    
+    ```sh
+      ls
+    ```
+    
+    - Viewing files and folders in a directory with detailed information (`l - long format`):
+    
+    ```sh
+      ls -l
+      ll
+    ```
+    
+    - Linux Filesystem:
+        
+    ```sh
+        /boot - Contains the file used by the boot loader (grub.cfg)
+        /root - Root user home directory (Different from /)
+        /dev - System devices e.g. disk etc
+        /etc - Configuration files
+        /bin -> /usr/bin - Everyday user commands
+        /sbin -> /usr/sbin - System/ filesystem commands
+        /opt - Optional add-on apps (Not part of OS apps)
+        /proc - Running processes
+        /lib -> /usr/lib - C programming librayr files needed by commands and apps
+        /tmp - Contains temporary files
+        /home - User directory
+        /var - System logs
+        /run - System daemons that start very early (systemd, udev) storing temporary runtime files like PID files.
+        /mnt - Mount external filesystem (e.g. NFS)
+        /media - cdrom mounts
+    ```
+    
+    - List files in long format with human-readable sizes (`h - human readbale sizes`):
+    
+    ```sh
+      ls -lh
+    ```
+    
+    - List files and directories in the current directory in descending form based on modification time (`r - reverse order (starts with older files), t - sort by time`):
+      
+    ```sh
+      ls -ltr
+    ```
+    
+    - List files with the permissions and the sizes together with the hour:
+    
+    ```sh
+      ls -ltrh
+    ```
+
+    ### Input & Output Redirects
+
+    - Redirects include:
+        - `stdin` - (Standard input) Has file descriptor number as 0.
+          ```sh
+              cat < filename
+          ```
+          
+        - `stdout` - (Standard output) Has file descriptor number as 1.
+          ```sh
+              ls -l > filename # Overwrites the file output.
+              ls -la >> filename # Appends another output to the file.
+          ```
+          
+        - `stderr` - (Standard error) Has file descriptor number as 2.
+          ```sh
+              telnet hostname 2> errorfile
+          ```
+    
+    - Standard output to a file:
+    
+    ```sh
+        echo "content" | tee filename # Concurrently displays and stores the command's output
+        echo "content" | tee -a filename # Concurrently displays, stores and appends the command's output to the file
+        ls -l | tee file1 file2 file3 # Store in several files
+        tee --help # Display manual for the command
+        tee --version # Check the version number for the tee package
+    ```
+
+- View the current file path:
+    
 ```sh
-    cp source destination
-```
-
-- Copy a file to another directory:
-
-```sh
-    cp filename directoryname
-```
-
-- Copy a directory and its contents:
-
-```sh
-    cp -r old_directoryname new_directoryname
-```
-
-- Move a file from one location to another:
-
-```sh
-    mv source destination
-```
-
-- Rename a file:
-
-```sh
-    mv old_filename new_filename
-```
-
-- Move a directory:
-
-```sh
-    mv directoryname new_directory_filepath
+    pwd # Print Working Directory
 ```
 
 - Find a file that you forgot where it is:
@@ -196,110 +300,6 @@
     find . -name "filename" # . shows the current directory
     find / -name "filename" # Starts from the root directory hence needs root privilege to run it
     locate filename # Ensure you have installed mlocate package
-```
-
-- Changing permissions of a file:
-
-```sh
-   # Using letters
-   chmod o-w filename # Removes the write permission from others
-   chmod g+r filename # Adds the read permission to group
-   chmod u+rwx filename # Adds the read, write & execute permissions to user 
-
-   # Levels: 
-   # u g o 
-   # | | |
-   # | | └── Others
-   # | └──── Group
-   # └────── User
-
-   # Permissions: 
-   # r w x 
-   # | | |
-   # | | └── Execute
-   # | └──── Write
-   # └────── Read
-```
-
-```sh
-    # Using numeric mode
-    chmod 005 filename # Removes the write permission from others
-    chmod 040 filename # Adds the read permission to group
-    chmod 700 filename # Adds the read, write & execute permissions to user 
-
-    # Key:
-    # 0 - No permission
-    # 1 - Execute
-    # 2 - Write
-    # 3 - Execute + Write
-    # 4 - Read
-    # 5 - Read + Execute
-    # 6 - Read + Write
-    # 7 - Read + Write + Execute
-
-    # N\B: Overwites permissions hence good practice to remember the existing permissions of the other levels before changing
-```
-
-- Changing ownership of a file:
-
-```sh
-    chown owner filename
-    chgrp groupname filename
-
-    # Owners:
-    # * User * Group
-
-    # Format:
-    # owner group
-```
-
-### Access Control List (ACL)
-
-- View existing permissions of a file:
-
-```sh
-    getfacl filename
-```
-
-- Edit the permissions of a file:
-
-```sh
-    setfacl -m u:user:rwx /path/to/file # Add permission for user
-    setfacl -m g:group:rw /path/to/file # Add permissions for a group
-
-    setfacl -rm "entry" /path/to/dir # Allow all files/ directories to inherit ACL entries from its directory
-
-    setfacl -x u:user /path/to/file # Remove a specific entry for a specific user
-    setfacl -b path/to/file # Remove all entries for all users
-```
-
-### Input & Output Redirects
-
-- Redirects include:
-    - `stdin` - (Standard input) Has file descriptor number as 0.
-      ```sh
-          cat < filename
-      ```
-      
-    - `stdout` - (Standard output) Has file descriptor number as 1.
-      ```sh
-          ls -l > filename # Overwrites the file output.
-          ls -la >> filename # Appends another output to the file.
-      ```
-      
-    - `stderr` - (Standard error) Has file descriptor number as 2.
-      ```sh
-          telnet hostname 2> errorfile
-      ```
-
-- Standard output to a file:
-
-```sh
-    echo "content" | tee filename # Concurrently displays and stores the command's output
-    echo "content" | tee -a filename # Concurrently displays, stores and appends the command's output to the file
-    ls -l | tee file1 file2 file3 # Store in several files
-    tee --help # Display manual for the command
-    tee --version # Check the version number for the tee package
 ```
 
 ## 💽 Disk Usage
