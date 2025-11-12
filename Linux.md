@@ -88,12 +88,6 @@
   ls -ltrh
 ```
 
-- View output of a command one page at a time:
-
-```sh
-    ls -ltr | more # Press space bar to move to the next page.
-```
-
 - Deleting directories, sub-directories and its contents:
 
 ```sh
@@ -115,36 +109,50 @@
 
 - File display commands include `cat`, `more`, `less`, `head`, `tail`.
 
-- Display the last 10 lines:
-
-```sh
-  tail filename.txt
-  tail -1 # Displays the last line
-```
-
-- Display the specific number of lines (i.e. 1000 last lines):
-
-```sh
-  tail -n 1000 filename.txt
-```
-
-- Display the specific number of bytes (i.e. 500 last bytes):
-
-```sh
-  tail -c 500 filename.txt
-```
-
-- Handling multiple files:
-
-```sh
-  tail filename.txt filename2.log
-```
-
-- Display new lines added to the file in real time (i.e. 200 last new lines):
-
-```sh
-    tail -200f filename.txt
-```
+    - View output of a command one page at a time:
+    
+    ```sh
+        ls -ltr | more # Press space bar to move to the next page & q to exit.
+        more filename
+        less filename # Press space bar to move to the next page, j to move one line at a time down, k to go back up
+    ```
+    
+    - Display the first 2 lines:
+    
+    ```sh
+        head -2 filename
+    ```
+    
+    - Display the last 10 lines:
+    
+    ```sh
+      tail filename.txt
+      tail -1 # Displays the last line
+    ```
+    
+    - Display the specific number of lines (i.e. 1000 last lines):
+    
+    ```sh
+      tail -n 1000 filename.txt
+    ```
+    
+    - Display the specific number of bytes (i.e. 500 last bytes):
+    
+    ```sh
+      tail -c 500 filename.txt
+    ```
+    
+    - Handling multiple files:
+    
+    ```sh
+      tail filename.txt filename2.log
+    ```
+    
+    - Display new lines added to the file in real time (i.e. 200 last new lines):
+    
+    ```sh
+        tail -200f filename.txt
+    ```
 
 - Copy a file from one location to another:
 
