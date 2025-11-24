@@ -308,6 +308,23 @@
             ls -l | cut -c2-4 # Only print user permissions of files/dir
         ```
 
+        - `awk` allows one to extract fields from a file/ output:
+        
+        ```sh
+            awk --version # Check version
+            awk '{print $1}' filename # Prints the first column of the file
+            awk '{print $2}' filename # Prints the second column of the file
+            ls -l | awk '{print $1,$3}' # List 1st & 3rd fields of ls -l output
+            ls -l | awk '{print $NF}' # Last field of the output
+            awk '/Jerry/ {print}' filename # Search for a specific word (Jerry)
+            awk -F: '{print $1}' /etc/passwd # Output only 1st field of /etc/passwd
+            echo "Hello Tom" | awk '{$2="Adam"/ print $0}' # Replace field words
+            cat file | awk '{$2="Imran"; print $0}' # Replace field words
+            awk 'length($0) > 15' file # Get lines that have more than 15 byte size
+            ls -l | awk '{if($9 == "seinfeld") print $0;}' # Get the field matching seinfeld in /home/user
+            ls -l | awk '{print NF}' # Get the number of fields per line
+        ```
+
 - View the current file path:
     
 ```sh
