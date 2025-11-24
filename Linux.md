@@ -288,9 +288,9 @@
             tee --version # Check the version number for the tee package
         ```
 
-    ### Text Processors
+    ### Filters/ Text Processors
 
-    - Commands include `cut`, `awk`.
+    - Commands include `cut`, `awk`, `grep & egrep`, `sort`, `uniq`, `wc`.
 
         - `cut` allows one to cut parts of lines from specified files & print the result to standard output:
         
