@@ -295,7 +295,7 @@
         - `cut` allows one to cut parts of lines from specified files & print the result to standard output:
         
         ```sh
-            cut --version # Check version
+            cut --version # Check cut version
             cut -c1 filename # List first letter/ character of the file content in each line
             cut -c1,2,4 filename # Pick & choose letter/ character 1,2, & 4
             cut -c1-5 filename # List range of letters/ characters 1 till 5
@@ -311,7 +311,7 @@
         - `awk` allows one to extract fields from a file/ output:
         
         ```sh
-            awk --version # Check version
+            awk --version # Check awk version
             awk '{print $1}' filename # Prints the first column of the file
             awk '{print $2}' filename # Prints the second column of the file
             ls -l | awk '{print $1,$3}' # List 1st & 3rd fields of ls -l output
@@ -324,6 +324,12 @@
             ls -l | awk '{if($9 == "seinfeld") print $0;}' # Get the field matching seinfeld in /home/user
             ls -l | awk '{print NF}' # Get the number of fields per line
         ```
+
+        - `grep/egrep (global regular expression print)` processes text line by line & prints any lines which match a specified pattern:
+
+         ```sh
+             grep --version # Check grep version
+         ```
 
 - View the current file path:
     
@@ -775,6 +781,20 @@
       ```
 
 `N/B:` Mostly important for scripting, automation and daily tasks.
+
+- Show the current hostname:
+
+```sh
+    hostname
+    hostname -f # Display the fully qualified domain name (FQDN)
+    hostname -s # Without the domain name
+```
+
+- Change the hostname:
+
+```sh
+    sudo hostnamectl set-hostname new-hostname
+```
 
 - List current user's cronjobs that are running:
 
