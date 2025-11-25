@@ -329,6 +329,7 @@
 
          ```sh
              grep --version # Check grep version
+             grep keyword file # Search for a keyword from a file
          ```
 
 - View the current file path:
