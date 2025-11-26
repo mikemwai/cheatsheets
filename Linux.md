@@ -330,7 +330,20 @@
          ```sh
              grep --version # Check grep version
              grep keyword file # Search for a keyword from a file
+             grep -c keyword file # Search for a keyword and count
+             grep -i keyword file # Search for a keyword ignore case-sensitive
+             grep -n keyword file # Display the matched lines and their line numbers
+             grep -v keyword file # Display everything but the keyword
+             grep keyword file | awk '{print $1}' # Search for a keyword and then only give the 1st field
+             ls -l | grep keyword # Search for a keyword & then only give the 1st field
+             egrep -i "keyword|keyword2" file # Search for 2 keywords
          ```
+
+        - Complex command chain example:
+
+          ```sh
+              grep vi keyword filename | awk '{print $1}' | cut -c1-3 # Displays everything apart from the keyword ignoring case sensitivty, prints the first column outputs and selects the first 3 characters of the output.
+          ```
 
 - View the current file path:
     
