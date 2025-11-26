@@ -339,11 +339,29 @@
              egrep -i "keyword|keyword2" file # Search for 2 keywords
          ```
 
-        - Complex command chain example:
+            - Complex command chain example:
 
-          ```sh
-              grep vi keyword filename | awk '{print $1}' | cut -c1-3 # Displays everything apart from the keyword ignoring case sensitivty, prints the first column outputs and selects the first 3 characters of the output.
-          ```
+              ```sh
+                  grep vi keyword filename | awk '{print $1}' | cut -c1-3 # Displays everything apart from the keyword ignoring case sensitivty, prints the first column outputs and selects the first 3 characters of the output.
+              ```
+
+       - `sort` arranges in alphabetical order.
+         
+       ```sh
+           sort --version or sort --help # Check version/ help
+           sort file #  Sorts file in alphabetical order
+           sort -r file # Sort in reverse alphabetical order
+           sort -k2 file # Sort by field number i.e. 2nd column
+       ```
+       
+       - `uniq` filters out the repeated/ duplicate lines.
+
+       ```sh
+           uniq file # Removes duplicates
+           sort file | uniq # Sorts first before using uniq
+           sort file | uniq -c # Sort first then uniq and list count (Shows how many times the duplicate word appeared)
+           sort file | uniq -d # Only show repeated lines
+       ```
 
 - View the current file path:
     
