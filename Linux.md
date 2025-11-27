@@ -415,6 +415,13 @@
       tar xvf zipped_folder_name # Unzip the folder
   ```
 
+  - `gzip`
+
+  ```sh
+      gzip tar_file # Compresses the tar file
+      gzip -d compressed_tar_file or gunzip compressed_tar_file  # Uncompress the compressed tar_file
+  ```
+
 - View the current file path:
     
 ```sh
