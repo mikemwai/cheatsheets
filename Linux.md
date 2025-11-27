@@ -363,6 +363,24 @@
            sort file | uniq -d # Only show repeated lines
        ```
 
+    ### Compare Files
+
+    - Commands include `diff`, and `cmp`:
+ 
+        - `diff` compares line by line.
+
+        ```sh
+            diff file1 file2
+            man diff # Displays the different diff options
+        ```
+        
+        - `cmp` compares byte by byte.
+     
+        ```sh
+            cmp file1 file2
+            man cmp # Displays the different cmp options 
+        ```
+
 - View the current file path:
     
 ```sh
