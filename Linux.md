@@ -7,7 +7,9 @@
 
 ## 📂 Files, Folders and Directory Management
 
-- File maintenance commands include `cp`, `rm`, `mv`, `mkdir`, `rmdir/ rm -r`, `chgrp`, `chown`.
+### File Maintenance
+
+- The commands include `cp`, `rm`, `mv`, `mkdir`, `rmdir/ rm -r`, `chgrp`, `chown`.
 
     - Creating a new file:
     
@@ -154,8 +156,10 @@
         setfacl -x u:user /path/to/file # Remove a specific entry for a specific user
         setfacl -b path/to/file # Remove all entries for all users
     ```
+    
+### File Display
 
-- File display commands include `cat`, `more`, `less`, `head`, `tail`.
+- The commands include `cat`, `more`, `less`, `head`, `tail`.
 
     - View output of a command one page at a time:
     
@@ -399,6 +403,17 @@
             cmp file1 file2
             man cmp # Displays the different cmp options 
         ```
+
+### File compression and unzipping
+
+- The commands include `tar`, `gzip`, `gunzip`:
+
+  - `tar`
+ 
+  ```sh
+      tar cvf zipped_folder_name folder_name # Zip the folder
+      tar xvf zipped_folder_name # Unzip the folder
+  ```
 
 - View the current file path:
     
