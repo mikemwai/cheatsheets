@@ -339,11 +339,11 @@
              egrep -i "keyword|keyword2" file # Search for 2 keywords
          ```
 
-            - Complex command chain example:
+        - Complex command chain example:
 
-              ```sh
-                  grep vi keyword filename | awk '{print $1}' | cut -c1-3 # Displays everything apart from the keyword ignoring case sensitivty, prints the first column outputs and selects the first 3 characters of the output.
-              ```
+        ```sh
+            grep vi keyword filename | awk '{print $1}' | cut -c1-3 # Displays everything apart from the keyword ignoring case sensitivty, prints the first column outputs and selects the first 3 characters of the output.
+        ```
 
        - `sort` arranges in alphabetical order.
          
