@@ -348,7 +348,7 @@
        - `sort` arranges in alphabetical order.
          
        ```sh
-           sort --version or sort --help # Check version/ help
+           sort --version or sort --help # Check version/ help for sort
            sort file #  Sorts file in alphabetical order
            sort -r file # Sort in reverse alphabetical order
            sort -k2 file # Sort by field number i.e. 2nd column
@@ -361,6 +361,25 @@
            sort file | uniq # Sorts first before using uniq
            sort file | uniq -c # Sort first then uniq and list count (Shows how many times the duplicate word appeared)
            sort file | uniq -d # Only show repeated lines
+       ```
+
+       - `wc` reads standard input/ list of files & generates newline count, word count, and byte count.
+
+       ```sh
+            wc --version or wc --help # Check version/help for wc
+            man wc # Manual for wc
+            wc file # Check file line, word and byte count
+            wc -c filename # Check how many characters/ bytes are in a file
+            wc -l file # Get the number of lines in a file
+            wc -w file # Get the number of words in a file
+            ls -l | wc -l # Number of files
+            grep keyword | wc -l # Number of keyword lines
+       ```
+
+       - Command chain:
+
+       ```sh
+           ls -l | grep drw | wc -l
        ```
 
     ### Compare Files
@@ -770,12 +789,6 @@
 ```
 
 ## 🛠️ Common commands
-
-- Check how many characters are in a file:
-
-```sh
-    wc -c filename
-```
 
 - Ever wondered how to check what Linux distro a server is running? Try running:
 
