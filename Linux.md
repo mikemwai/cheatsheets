@@ -422,6 +422,15 @@
       gzip -d compressed_tar_file or gunzip compressed_tar_file  # Uncompress the compressed tar_file
   ```
 
+### File truncate
+
+- Command used is `truncate` which shrinks/ extends the file size to the specified size.
+- `N\B:` Be careful it removes contents in the file i.e. it delete contents.
+
+  ```sh
+      truncate -s 10 filename # Reduces the file size to 10 bytes
+  ```
+
 - View the current file path:
     
 ```sh
