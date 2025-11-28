@@ -431,6 +431,14 @@
       truncate -s 10 filename # Reduces the file size to 10 bytes
   ```
 
+### Combining & splitting files
+
+- Command used is `split` which divides a file into multiple files.
+
+```sh
+    split -l 2 original_file new_seperated_file # Divides the original file into new files each containing 2 output lines of the original file
+```
+
 - View the current file path:
     
 ```sh
