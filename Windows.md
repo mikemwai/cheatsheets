@@ -22,6 +22,36 @@
   del filename.txt
 ```
 
+- Rename a file:
+
+```sh
+  ren filename
+```
+
+- Copy a file:
+
+```sh
+  copy filename
+```
+
+- Move a file:
+
+```sh
+  move filename
+```
+
+- Compare file contents:
+
+```sh
+  fc
+```
+
+- Search for a word/ string in a file:
+
+```sh
+  find
+```
+
 - Create a new directory:
 ```sh
   mkdir directory_name
@@ -159,6 +189,12 @@
   systeminfo | find "System Boot Time"
 ```
 
+- Displays the time:
+
+```sh
+  time # Works in command pronmpt not powershell
+```
+
 - Check updates installed in the system:
 ```sh
   wmic qfe list
@@ -188,4 +224,22 @@
 - Ever wanted to activate your Windows but don't have an activation code, open powershell and type:
 ```sh
   irm https://get.activated.win | iex
+```
+
+- Clear screen:
+
+```sh
+  cls
+```
+
+- Display current location in the file system:
+
+```sh
+  chdir
+```
+
+- Display command help:
+
+```sh
+  command /? # Works in command prompt and not powershell
 ```
