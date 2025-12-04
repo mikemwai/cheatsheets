@@ -439,18 +439,32 @@
     split -l 2 original_file new_seperated_file # Divides the original file into new files each containing 2 output lines of the original file
 ```
 
-### Linux File Editor
+### Linux File Editor 
 
-- Common keys:
+- Command used is `vi`:
 
     ```sh
-        i # Insert
-        Esc # Escape out of any mode
-        r # Replace
-        d # Delete
-        :q! # Quit without saving
-        :wq! # Quit and save
+        vi filename # Create a new file
+        man vi # Manual for vim
     ```
+    
+    - Common keys:
+    
+        ```sh
+            i # Insert
+            Esc # Escape out of any mode
+            r # Replace
+            d # Deletes the entire line
+            dd # Deletes and puts the cursor on the next line
+            u # Undo an action i.e. deleting
+            x # Removes a character
+            o # Creates a new line below and automatically puts you into insert mode
+            a # Automatically advance to the next space
+            :q! # Quit without saving
+            :wq! # Quit and save
+            Shift + zz # Save a file
+            /keyword # Searches for the keyword in the file in vi mode
+        ```
 
 - View the current file path:
     
