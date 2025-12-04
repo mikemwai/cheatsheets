@@ -466,6 +466,15 @@
             /keyword # Searches for the keyword in the file in vi mode
         ```
 
+### File Manipulation
+
+- Command used is `sed`:
+
+  ```sh
+      sed 's/Keyword/New_keyword/g' filename # Replace a string with a new one on the screen (Doesn't change the actual file)
+      sed -i 's/Keyword/New_keyword/g' filename # Insert & Replace a string with a new one in the file
+  ```
+
 - View the current file path:
     
 ```sh
