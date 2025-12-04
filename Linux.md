@@ -439,6 +439,19 @@
     split -l 2 original_file new_seperated_file # Divides the original file into new files each containing 2 output lines of the original file
 ```
 
+### Linux File Editor
+
+- Common keys:
+
+    ```sh
+        i # Insert
+        Esc # Escape out of any mode
+        r # Replace
+        d # Delete
+        :q! # Quit without saving
+        :wq! # Quit and save
+    ```
+
 - View the current file path:
     
 ```sh
