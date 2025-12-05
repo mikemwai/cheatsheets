@@ -464,6 +464,7 @@
             :wq! # Quit and save
             Shift + zz # Save a file
             /keyword # Searches for the keyword in the file in vi mode
+            :%s/keyword/new_keyword/ # Replace every keyword in a file
         ```
 
 ### File Manipulation
@@ -472,15 +473,21 @@
 
   ```sh
       sed 's/Keyword/New_keyword/g' filename # Replace a string with a new one on the screen (Doesn't change the actual file)
-      sed -i 's/Keyword/New_keyword/g' filename # Insert & Replace a string with a new one in the file
+      sed -i 's/Keyword/New_keyword/g' filename # Insert & Replace a string with a new one in the file (Changes the actual file)
       sed 's/Keyword//g' filename # Remove a string (Doesn't change the actual file)
       sed '/Keyword/d' filename # Delete every line that has the keyword
       sed '/^$/d' filename # Remove empty lines in the file (Doesn't change the actual file)
       sed -i '/^$/d' filename # Remove empty lines in the file (Changes the actual file)
       sed '1d' filename # Remove the first line in a file
       sed '1,2d' filename # Remove the first two lines in a file
-      sed 's/\t/ /g' # Remove all the tabs with a space in the file
-      sed -i 's/\t/ /g' # Remove all the tabs with a space in the file
+      sed 's/\t/ /g' filename # Remove all the tabs with a space in the file
+      sed -i 's/\t/ /g' filename # Replaces every tab with a space in the file (Changes the actual file)
+      sed -i 's/ /\t/g' filename # Replaces every space in the file with a tab (Changes the actual file)
+      sed -n 12,18p filename # Show only lines 12 to 18
+      sed 12,18d filename # Show all lines except from line 12 to 18
+      sed G filename # Insert an empty line after every line
+      sed 's/keyword/new_keyword/' filename # Replaces the keyword with another one for all the lines
+      sed '8!s/keyword/new_keyword/g' filename # Replaces the keyword with another one for the rest of the lines except for the keyword in line 8
   ```
 
 - View the current file path:
