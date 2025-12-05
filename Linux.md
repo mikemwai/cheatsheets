@@ -473,6 +473,14 @@
   ```sh
       sed 's/Keyword/New_keyword/g' filename # Replace a string with a new one on the screen (Doesn't change the actual file)
       sed -i 's/Keyword/New_keyword/g' filename # Insert & Replace a string with a new one in the file
+      sed 's/Keyword//g' filename # Remove a string (Doesn't change the actual file)
+      sed '/Keyword/d' filename # Delete every line that has the keyword
+      sed '/^$/d' filename # Remove empty lines in the file (Doesn't change the actual file)
+      sed -i '/^$/d' filename # Remove empty lines in the file (Changes the actual file)
+      sed '1d' filename # Remove the first line in a file
+      sed '1,2d' filename # Remove the first two lines in a file
+      sed 's/\t/ /g' # Remove all the tabs with a space in the file
+      sed -i 's/\t/ /g' # Remove all the tabs with a space in the file
   ```
 
 - View the current file path:
