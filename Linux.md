@@ -583,6 +583,51 @@
 
 ## 👥 Users Management
 
+- Commands used are `useradd`, `groupadd`, `userdel`, `groupdel`, `usermod`:
+
+  - `useradd`:
+    
+    ```sh
+        sudo useradd -m newusername
+        sudo useradd -m newusername
+        useradd username # Creates the user using the root user
+        useradd -g groupname -s /bin/ash -c "user description" -m -d /home/username username # Includes all the parameters that need to be defined
+        man useradd # Manual for useradd
+    ```
+    
+  - `groupadd`:
+    
+    ```sh
+        groupadd groupname # Creates the group using the root user
+        man groupadd # Manual for groupadd
+    ```
+
+  - `userdel`:
+
+    ```sh
+        userdel -r username # Deletes the user using the root user
+        man userdel # Manual for userdel
+    ```
+
+  - `groupdel`:
+
+    ```sh
+        groupdel groupname # Deletes the group using the root user
+        man groupdel # Manual for grouodel
+    ```
+
+- Files where the user info is stored `/etc/passwd`, `/etc/group`, `/etc/shadow`:
+
+  ```sh
+      cat /etc/group # View the created groups
+  ```
+
+- Check user details for a certain user:
+
+```sh
+    id username
+```
+
 - Switch to a specific sudo user `user1`:
 
 ```sh
@@ -629,16 +674,6 @@
 
 ```sh
   chage username
-```
-
-- Add new user
-
-```sh
-    sudo useradd -m newusername
-```
-
-```sh
-    sudo adduser newusername 
 ```
 
 - Set password for the new user:
