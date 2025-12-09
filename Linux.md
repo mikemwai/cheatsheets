@@ -7,7 +7,7 @@
 
 ## 📂 Files, Folders and Directory Management
 
-### File Maintenance
+### 1) File Maintenance
 
 - The commands include `cp`, `rm`, `mv`, `mkdir`, `rmdir/ rm -r`, `chgrp`, `chown`.
 
@@ -137,7 +137,7 @@
         # owner group
     ```
     
-    ### Access Control List (ACL)
+    ### 2) Access Control List (ACL)
     
     - View existing permissions of a file:
     
@@ -157,7 +157,7 @@
         setfacl -b path/to/file # Remove all entries for all users
     ```
     
-### File Display
+### 3) File Display
 
 - The commands include `cat`, `more`, `less`, `head`, `tail`.
 
@@ -263,7 +263,7 @@
       ls -ltrh
     ```
 
-    ### Input & Output Redirects
+    ### 4) Input & Output Redirects
 
     - Redirects include:
         - `stdin` - (Standard input) Has file descriptor number as 0.
@@ -292,7 +292,7 @@
             tee --version # Check the version number for the tee package
         ```
 
-    ### Filters/ Text Processors
+    ### 5) Filters/ Text Processors
 
     - Commands include `cut`, `awk`, `grep & egrep`, `sort`, `uniq`, `wc`.
 
@@ -386,7 +386,7 @@
            ls -l | grep drw | wc -l
        ```
 
-    ### Compare Files
+    ### 6) Compare Files
 
     - Commands include `diff`, and `cmp`:
  
@@ -404,7 +404,7 @@
             man cmp # Displays the different cmp options 
         ```
 
-### File compression and unzipping
+### 7) File compression and unzipping
 
 - The commands include `tar`, `gzip`, `gunzip`:
 
@@ -422,7 +422,7 @@
       gzip -d compressed_tar_file or gunzip compressed_tar_file  # Uncompress the compressed tar_file
   ```
 
-### File truncate
+### 8) File truncate
 
 - Command used is `truncate` which shrinks/ extends the file size to the specified size.
 - `N\B:` Be careful it removes contents in the file i.e. it delete contents.
@@ -431,7 +431,7 @@
       truncate -s 10 filename # Reduces the file size to 10 bytes
   ```
 
-### Combining & splitting files
+### 9) Combining & splitting files
 
 - Command used is `split` which divides a file into multiple files.
 
@@ -439,7 +439,7 @@
     split -l 2 original_file new_seperated_file # Divides the original file into new files each containing 2 output lines of the original file
 ```
 
-### Linux File Editor 
+### 10) Linux File Editor 
 
 - Command used is `vi`:
 
@@ -467,7 +467,7 @@
             :%s/keyword/new_keyword/ # Replace every keyword in a file
         ```
 
-### File Manipulation
+### 11) File Manipulation
 
 - Command used is `sed`:
 
