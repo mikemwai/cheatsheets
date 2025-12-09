@@ -583,7 +583,7 @@
 
 ## 👥 Users' Management
 
-### Users' Creation
+### 1) Users' Creation
 
 - Commands used are `useradd`, `groupadd`, `userdel`, `groupdel`, `usermod`:
 
@@ -698,7 +698,7 @@
     who
 ```
 
-### Password Creation
+### 2) Password Creation
 
 - Set password for the new user:
 
@@ -718,7 +718,7 @@
     passwd username # N/B: It doesn't work if you have forgotten the user's current password
 ```
 
-### Password Aging
+### 3) Password Aging
 
 - View the user password paramaters:
 
