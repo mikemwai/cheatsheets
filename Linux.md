@@ -240,7 +240,7 @@
             /tmp - Contains temporary files
             /home - User directory
             /var - System logs
-            /run - System daemons that start very early (systemd, udev) storing temporary runtime files like PID files.
+            /run - System daemons that start very early (systemd, udev) storing temporary runtime files like P files.
             /mnt - Mount external filesystem (e.g. NFS)
             /media - cdrom mounts
         ```
@@ -625,7 +625,7 @@
 - Check user details for a certain user:
 
 ```sh
-    id username
+     username
 ```
 
 - Switch to a specific sudo user `user1`:
@@ -664,36 +664,6 @@
   sudo -u username -i # Cleaner version
 ```
 
-- List the current password aging info for a user account:
-
-```sh
-  chage -l username
-```
-
-- Manually update password aging settings for a user account:
-
-```sh
-  chage username
-```
-
-- Set password for the new user:
-
-```sh
-    sudo passwd newusername
-```
-
-- Change password:
-
-```sh
-    passwd # N/B: It doesn't work if you have forgotten your current password
-```
-
-- Change password for another user (Done by `root`):
-
-```sh
-    passwd username # N/B: It doesn't work if you have forgotten the user's current password
-```
-
 - Modify existing user privileges:
 
 ```sh
@@ -724,6 +694,79 @@
 
 ```sh
     who
+```
+
+### Password Aging
+
+- View the user password paramaters:
+
+    ```sh
+        grep username /etc/shadow
+    ```
+    
+    Output:
+
+    ```sh
+       username:password:last password change:min days:max days:warn days:inactive days
+    ```
+
+- Command used is `chage` and the file is `/etc/login.def`.
+
+    - Combined command if changing for multiple users:
+
+    ```sh
+      chage [-m mindays] [-M maxdays] [-d lastday] [-I inactive] [-E expiredate] [-W warndays] user1 user2
+      [-m mindays] # Min no. of days required btwn password changes
+      [-M maxdays] # Max no. of days password is val
+      [-d lastday] # Last password change
+      [-I inactive] # No. of days after password expires that account is disabled
+      [-E expiredate] # Absolute date when the login will no longer be used
+      [-W warndays] # No. of days before password is to expire that user is warned that their password must be changed
+    ```
+
+    - View the contents of the `/etc/login.def`:
+ 
+    ```sh
+        more /etc/login.def
+    ```
+
+    - Password controls in `/etc/login.def`:
+
+    ```sh
+       PASS_MAX_DAYS 999999 # Max no. of days a password may be used
+       PASS_MIN_DAYS 0 # Min no. of days allowed btwn password changes
+       PASS_MIN_LEN 5 # Min acceptable password length
+       PASS_WARN_AGE 7 # No. of days warning given before a password expires
+    ```
+
+    - List the current password aging info for a user account:
+    
+    ```sh
+      chage -l username
+    ```
+    
+    - Manually update password aging settings for a user account:
+    
+    ```sh
+      chage username
+    ```
+
+- Set password for the new user:
+
+```sh
+    sudo passwd newusername
+```
+
+- Change password:
+
+```sh
+    passwd # N/B: It doesn't work if you have forgotten your current password
+```
+
+- Change password for another user (Done by `root`):
+
+```sh
+    passwd username # N/B: It doesn't work if you have forgotten the user's current password
 ```
 
 ## 🗄️ Database 
