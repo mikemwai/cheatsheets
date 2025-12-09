@@ -581,7 +581,9 @@
     fdisk /dev/disk new_directory
 ```
 
-## 👥 Users Management
+## 👥 Users' Management
+
+### Users' Creation
 
 - Commands used are `useradd`, `groupadd`, `userdel`, `groupdel`, `usermod`:
 
@@ -696,6 +698,26 @@
     who
 ```
 
+### Password Creation
+
+- Set password for the new user:
+
+```sh
+    sudo passwd newusername
+```
+
+- Change password:
+
+```sh
+    passwd # N/B: It doesn't work if you have forgotten your current password
+```
+
+- Change password for another user (Done by `root`):
+
+```sh
+    passwd username # N/B: It doesn't work if you have forgotten the user's current password
+```
+
 ### Password Aging
 
 - View the user password paramaters:
@@ -750,24 +772,6 @@
     ```sh
       chage username
     ```
-
-- Set password for the new user:
-
-```sh
-    sudo passwd newusername
-```
-
-- Change password:
-
-```sh
-    passwd # N/B: It doesn't work if you have forgotten your current password
-```
-
-- Change password for another user (Done by `root`):
-
-```sh
-    passwd username # N/B: It doesn't work if you have forgotten the user's current password
-```
 
 ## 🗄️ Database 
 
