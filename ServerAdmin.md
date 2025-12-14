@@ -5,7 +5,7 @@
 2. [Hosting a Laravel app using the LAMP Stack](#2-lamp-stack)
 3. [Server Hardening Techniques](#3-server-hardening)
 4. [Hosting a Flask app](#4-flask)
-5. [Renewing a SSL/TLS Certificate]
+5. [Renewing a SSL/TLS Certificate](#5-certificate-renewal)
 
 &nbsp;
 &nbsp;
