@@ -5,6 +5,7 @@
 2. [Hosting a Laravel app using the LAMP Stack](#2-lamp-stack)
 3. [Server Hardening Techniques](#3-server-hardening)
 4. [Hosting a Flask app](#4-flask)
+5. [Renewing a SSL/TLS Certificate]
 
 &nbsp;
 &nbsp;
@@ -799,5 +800,9 @@
 
 ## 4. Flask
 
+## 5. Certificate Renewal
+
+
 ### Resources
 - [How-to-depploy-a-flask-app-using-nginx](https://www.rosehosting.com/blog/how-to-deploy-flask-application-with-nginx-and-gunicorn-on-ubuntu-20-04/)
+- [Renewing a SSL/TLS Certificate](https://www.linkedin.com/posts/chiranjeevi-chimbili-a89386146_devops-sysadmin-itsecurity-activity-7323645407815700480-NEKG/)
