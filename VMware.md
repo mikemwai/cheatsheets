@@ -1,5 +1,5 @@
 # VMware Cheatsheet
-## A) vCenter 
+## A) vCenter Console
 ### Services
 - Check if services are running:
 
