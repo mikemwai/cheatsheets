@@ -521,7 +521,9 @@
 - Before using `iostat`, you have to install:
 
 ```sh
-    sudo apt install sysstat
+    sudo apt install sysstat # Debian based
+    sudo zypper install sysstat # Open Suse based
+    sudo yum/dnf install sysstat # RPM based 
 ```
 
 - Check disk I/O capability:
