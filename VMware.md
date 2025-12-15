@@ -29,3 +29,11 @@
 ```sh
   shell
 ```
+
+## B) ESXi Console
+### Other Commands
+- Check the ip address:
+
+```sh
+  esxcli network ip interface ipv4 get
+```
