@@ -20,3 +20,12 @@
   service-control --start all # Starts all the running services
   service-control --start service_name # Starts a specific service name
 ```
+
+---
+
+### Other Commands
+- Enter into bash:
+
+```sh
+  shell
+```
