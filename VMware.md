@@ -21,6 +21,12 @@
   service-control --start service_name # Starts a specific service name
 ```
 
+- List all the services:
+
+```sh
+  service-control --list-services 
+```
+
 ---
 
 ### Other Commands
