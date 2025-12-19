@@ -27,6 +27,24 @@
   service-control --list-services 
 ```
 
+- Ever encountered this error:
+
+```sh
+  Service vcha startup type is not automatic. Skip
+```
+
+Solution:
+
+```sh
+  shell
+  cd /usr/lib/vmware-vmon
+  ./vmon-cli -s vcha
+  ./vmon-cli -S AUTOMATIC -U vcha
+  ./vmon-cli -s vcha
+  exit
+  service-control --start vmware-vcha
+```
+
 ---
 
 ### Other Commands
