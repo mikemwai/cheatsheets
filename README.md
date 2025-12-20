@@ -12,4 +12,4 @@ This a repository that contains various commands used frequently by programmers.
 8. 🐧 [Linux cheatsheet](./Linux.md)
 9. 📊 [R Cheatsheet](./R.md)
 10. 🗄️ [Databases cheatsheet](./Databases.md)
-11. [VMware cheatsheet](./VMware.md)
+11. 📦 [VMware cheatsheet](./VMware.md)
