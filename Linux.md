@@ -866,6 +866,18 @@
   traceroute ip_address/ hostname
 ```
 
+- Hostname/ IP lookup makes use of:
+
+    - `nslookup`:
+    ```sh
+        nslookup www.google.com # Update this part
+    ```
+
+    - `dig`:
+    ```sh
+        dig www.google.com # This one gives a more detailed output
+    ```
+
 ## 🔄 Updates Management
 
 - Run updates for a `Debian based distro`:
