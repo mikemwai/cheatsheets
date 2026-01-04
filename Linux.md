@@ -870,11 +870,13 @@
 - Makes use of `nslookup` and `dig`:
   
     - `nslookup`:
+      
     ```sh
         nslookup www.google.com # Update this part
     ```
 
     - `dig`:
+  
     ```sh
         dig www.google.com # This one gives a more detailed output
     ```
