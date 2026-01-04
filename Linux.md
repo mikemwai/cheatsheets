@@ -866,8 +866,9 @@
   traceroute ip_address/ hostname
 ```
 
-- Hostname/ IP lookup makes use of:
-
+### Hostname/ IP lookup 
+- Makes use of `nslookup` and `dig`:
+  
     - `nslookup`:
     ```sh
         nslookup www.google.com # Update this part
@@ -878,7 +879,8 @@
         dig www.google.com # This one gives a more detailed output
     ```
 
-- Network Time Protocol (NTP) - for time synchronization, runs on `port no. 123`:
+### Network Time Protocol (NTP) 
+- For time synchronization, runs on `port no. 123`:
 
     ```sh
         - rpm -qa | grep ntp # Check if ntp has been installed
