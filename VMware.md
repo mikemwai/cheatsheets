@@ -61,3 +61,12 @@ Solution:
 ```sh
   esxcli network ip interface ipv4 get
 ```
+
+## C) VM Player
+- Ever found yourself in situation where you can't run another VM inside your ESXi VM? try running this in powershell as administrator:
+
+  ```sh
+    bcdedit /set hypervisorlaunchtype off # Disables Hyper-V completely
+  ```
+
+  - Turn off Core isolation/ Memory Integrity in Windows Security
