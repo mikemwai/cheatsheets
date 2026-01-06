@@ -872,7 +872,7 @@
   ```sh
     openssl req -in myserver.csr -noout -text # View the decoded version
     openssl req -in myserver.csr -text # View the encoded version (PEM version)
-    cat myserver.csr # View the encoded version (PEM version) - Simpleer way
+    cat myserver.csr # View the encoded version (PEM version) - Simpler way
   ```
 
 ### E. Signing the certificate
