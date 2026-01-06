@@ -800,9 +800,41 @@
 
 ## 4. Flask
 
-## 5. Certificate Renewal
+### Resources
+- [How-to-deploy-a-flask-app-using-nginx](https://www.rosehosting.com/blog/how-to-deploy-flask-application-with-nginx-and-gunicorn-on-ubuntu-20-04/)
 
+---
+
+## 5. Certificate Renewal
+### Steps to renew a certificate
+### A. Check if the SSL tool has been installed
+- In this case, it will depend with the type of files you work with. Tools available:
+  
+  `1. OpenSSL/ Certbot`
+  - Works with raw `.key` and `.crt` files on Apache/Nginx based servers.
+  - Check the version:
+    ```sh
+      openssl version
+    ```
+  
+  - Install OpenSSL:
+    ```sh
+      sudo apt-get install openssl # Debian based distros
+      sudo yum install openssl # RHEL based distros
+    ```
+  
+  `2. Keytool`
+  - Works with keystores `.jks` and `.p12`, which bundle keys and certificates together on Java based servers.
+  - Check the version:
+    ```sh
+      keytool -version
+    ```
+  
+  - Install OpenSSL:
+    ```sh
+      sudo apt-get install default-jdk # Debian based distros
+      sudo yum install java-11-openjdk # RHEL based distros
+    ```
 
 ### Resources
-- [How-to-depploy-a-flask-app-using-nginx](https://www.rosehosting.com/blog/how-to-deploy-flask-application-with-nginx-and-gunicorn-on-ubuntu-20-04/)
 - [Renewing a SSL/TLS Certificate](https://www.linkedin.com/posts/chiranjeevi-chimbili-a89386146_devops-sysadmin-itsecurity-activity-7323645407815700480-NEKG/)
