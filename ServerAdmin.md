@@ -806,35 +806,76 @@
 ---
 
 ## 5. Certificate Renewal
-### Steps to renew a certificate
-### A. Check if the SSL tool has been installed
-- In this case, it will depend with the type of files you work with. Tools available:
-  
-  `1. OpenSSL/ Certbot`
-  - Works with raw `.key` and `.crt` files on Apache/Nginx based servers.
-  - Check the version:
-    ```sh
-      openssl version
-    ```
-  
-  - Install OpenSSL:
-    ```sh
-      sudo apt-get install openssl # Debian based distros
-      sudo yum install openssl # RHEL based distros
-    ```
-  
-  `2. Keytool`
-  - Works with keystores `.jks` and `.p12`, which bundle keys and certificates together on Java based servers.
-  - Check the version:
-    ```sh
-      keytool -version
-    ```
-  
-  - Install OpenSSL:
-    ```sh
-      sudo apt-get install default-jdk # Debian based distros
-      sudo yum install java-11-openjdk # RHEL based distros
-    ```
+> ## Steps to renew a certificate
+> - In this case, it will depend with the type of files you work with. Tools available: OpenSSL/ Certbot and Keytool.
+> - Certificates are often placed in `/etc/ssl/certs/` and keys in `/etc/ssl/private/`. However, you can run the certificate generation commands in your desired folders i.e. /home/user_folder
+
+### A. Check if the SSL tool has been installed  
+`1. OpenSSL/ Certbot`
+- Works with raw `.key` and `.crt` files on Apache/Nginx based servers.
+- Check the version:
+  ```sh
+    openssl version
+  ```
+
+- Install OpenSSL:
+  ```sh
+    sudo apt-get install openssl # Debian based distros
+    sudo yum install openssl # RHEL based distros
+  ```
+
+`2. Keytool`
+- Works with keystores `.jks` and `.p12`, which bundle keys and certificates together on Java based servers.
+- Check the version:
+  ```sh
+    keytool -version
+  ```
+
+- Install OpenSSL:
+  ```sh
+    sudo apt-get install default-jdk # Debian based distros
+    sudo yum install java-11-openjdk # RHEL based distros
+  ```
+
+### B. Generate a Private Key
+`1. OpenSSL/ Certbot`
+  ```sh
+    openssl genrsa -out myserver.key 2048
+  ```
+
+`2. Keytool`
+  ```sh
+    keytool -genkey -alias myserver -keyalg RSA -keysize 2048 -keystore myserver.jks
+  ```
+
+### C. Create a Certificate Signing Request (CSR)
+- Answer the questions asked:
+  - Common Name (CN)
+  - Organization Unit (OU)
+  - Organization Name (ON)
+  - Locality/ City (L)
+  - State/ Province (ST)
+  - Country Code (C)
+     
+`1. OpenSSL/ Certbot`
+  ```sh
+    openssl req -new -key myserver.key -out myserver.csr 
+  ```
+
+`2. Keytool`
+  ```sh
+    keytool -certreq -alias myserver -file myserver.csr -keystore myserver,jks
+  ```
+
+`N\B:` `myserver.key` is the private key, `myserver.csr` is the certificate signing request sent to `CA (Certificate Authority)`, and `myserver.crt` is the self-signed/ CA issued certificate.
+
+### D. Verify the Certificate Contents
+- Both OpenSSL and Keytool generates csr file contents can be viewed using:
+  ```sh
+    openssl req -in myserver.csr -noout -text # View the decoded version
+    openssl req -in myserver.csr -text # View the encoded version (PEM version)
+    cat myserver.csr # View the encoded version (PEM version) - Simpleer way
+  ```
 
 ### Resources
 - [Renewing a SSL/TLS Certificate](https://www.linkedin.com/posts/chiranjeevi-chimbili-a89386146_devops-sysadmin-itsecurity-activity-7323645407815700480-NEKG/)
