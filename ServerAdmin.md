@@ -15,13 +15,11 @@
 
 ## 1. LEMP Stack
 >  ## Prerequisites
-- Ubuntu Server
-  - It can be obtained from any hosting provider such as [Digital Ocean](https://www.digitalocean.com/), [AWS](https://aws.amazon.com/), [Azure](https://azure.microsoft.com/en-us/), [Google Cloud](https://cloud.google.com/), [Vultr](https://www.vultr.com/), [Linode](https://www.linode.com/), [Interserver](https://www.interserver.net/vps/?id=517869), [Contabo](https://contabo.com/en/vps/?source=affiliate&AID=15022370&PID=100657332&SID=&CJEVENT=0ec48e81839511ee815d212d0a18ba72).
-    
-- Git repository of a Laravel application
-  
-- Domain
-   - Register and buy a new domain for the Laravel application through [Namecheap](https://www.namecheap.com/).
+> - Ubuntu Server
+>    - It can be obtained from any hosting provider such as [Digital Ocean](https://www.digitalocean.com/), [AWS](https://aws.amazon.com/), [Azure](https://azure.microsoft.com/en-us/), [Google Cloud](https://cloud.google.com/), [Vultr](https://www.vultr.com/), [Linode](https://www.linode.com/), [Interserver](https://www.interserver.net/vps/?id=517869), [Contabo](https://contabo.com/en/vps/?source=affiliate&AID=15022370&PID=100657332&SID=&CJEVENT=0ec48e81839511ee815d212d0a18ba72).    
+> - Git repository of a Laravel application
+> - Domain
+>   - Register and buy a new domain for the Laravel application through [Namecheap](https://www.namecheap.com/).
      
 ### What is a LEMP Stack?
 - It's a combination of four technologies which include Linux, Enginx, MySql and Php. This stack can be used to host web apps built using php frameworks such as Laravel.
@@ -870,11 +868,50 @@
 `N\B:` `myserver.key` is the private key, `myserver.csr` is the certificate signing request sent to `CA (Certificate Authority)`, and `myserver.crt` is the self-signed/ CA issued certificate.
 
 ### D. Verify the Certificate Contents
-- Both OpenSSL and Keytool generates csr file contents can be viewed using:
+- Both OpenSSL and Keytool csr file contents can be viewed using:
   ```sh
     openssl req -in myserver.csr -noout -text # View the decoded version
     openssl req -in myserver.csr -text # View the encoded version (PEM version)
     cat myserver.csr # View the encoded version (PEM version) - Simpleer way
+  ```
+
+### E. Signing the certificate
+> Can be done in two ways: self-signing the certificate or sending the CSR to CA.
+
+### i) Self-Signing the Certificate
+`1. OpenSSL/ Certbot`
+  ```sh
+    openssl x509 -req -days 365 -in myserver.csr -signkey myserver.key -out myserver.crt
+    openssl x509 -in myserver.crt -text -noout # View the validity dates
+  ```
+
+`2. Keytool`
+  ```sh
+    keytool -selfcert -alias myserver -keystore myserver.jks -file myserver.crt -validity 365
+  ```
+
+`N\B:` Keytool does not have a command to sign a CSR hence it's just better to use OpenSSL if you plan on self-signing the certificate.
+
+### ii) Signing the Certificate with a CA
+> Types of CAs:
+> - Public Certificate Authorities
+>   - Trusted by browsers & OS automatically. Best for websites and APIs.
+>   - Example: DigiCert, Let's Encrypt
+>     
+> - Private Certificate Authorities
+>   - Trusted only if you distribute the root certificate internally. Best for internal systems.
+>   - Examples: Microsoft Active Directory Certificate Services, personal PKI i.e. Easy-RSA
+
+- Submit the generated unsigned CSR to CA.
+- CA returns the signed certificate (.crt file) & the root certificate.
+- Import the signed certificate into your keystore:
+  ```sh
+    keytool -importcert -alias myserver -file server.crt -keystore myserver.jks
+  ```
+  
+- Verify the signed certificate validity dates:
+  ```sh
+    keytool -list -v -keystore myserver.jks
   ```
 
 ### Resources
