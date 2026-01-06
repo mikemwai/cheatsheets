@@ -919,12 +919,12 @@
 
 - Import the signed server certificate into your keystore:
 ```sh
-keytool -importcert -alias myserver -file server.crt -keystore myserver.jks
+     keytool -importcert -alias myserver -file server.crt -keystore myserver.jks
 ```
   
 - Verify the signed server certificate validity dates/ the command chain:
 ```sh
-keytool -list -v -keystore myserver.jks
+     keytool -list -v -keystore myserver.jks
 ```
 
 ### Resources
