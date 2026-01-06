@@ -903,16 +903,29 @@
 >   - Examples: Microsoft Active Directory Certificate Services, personal PKI i.e. Easy-RSA
 
 - Submit the generated unsigned CSR to CA.
-- CA returns the signed certificate (.crt file) & the root certificate.
-- Import the signed certificate into your keystore:
-  ```sh
-    keytool -importcert -alias myserver -file server.crt -keystore myserver.jks
-  ```
+- CA returns the signed server certificate (.crt file), the intermediate & the root certificate.
+> ### Certificate Command Chain
+> - Refers to the sequence of certificates acting as the backbone of digital trust ensuring that each certificate can be traced back to a trusted root authority.
+> 
+> ### Hierachy of the certificate command chain (Descending)
+> 1. `Root Certificate` Self-signed and trusted by operating systems & browsers
+> 2. `Intermediate/ Issuing Certificate` - Issued by intermediate CAs, bridging trust between root and server.
+> 3. `Server Certificate` - Proves the identity of the site/ server.
+   
+- First, import the intermediate certificate into your keystore using:
+```sh
+     keytool -importcert -trustcacerts -alias intermediateCA -file DigiCertIntermediateCA.crt -keystore myserver.jks
+```
+
+- Import the signed server certificate into your keystore:
+```sh
+keytool -importcert -alias myserver -file server.crt -keystore myserver.jks
+```
   
-- Verify the signed certificate validity dates:
-  ```sh
-    keytool -list -v -keystore myserver.jks
-  ```
+- Verify the signed server certificate validity dates/ the command chain:
+```sh
+keytool -list -v -keystore myserver.jks
+```
 
 ### Resources
 - [Renewing a SSL/TLS Certificate](https://www.linkedin.com/posts/chiranjeevi-chimbili-a89386146_devops-sysadmin-itsecurity-activity-7323645407815700480-NEKG/)
