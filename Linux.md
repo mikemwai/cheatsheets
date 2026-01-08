@@ -81,61 +81,6 @@
     ```sh
         mv directoryname new_directory_filepath
     ```
-
-    - Changing permissions of a file:
-
-    ```sh
-       # Using letters
-       chmod o-w filename # Removes the write permission from others
-       chmod g+r filename # Adds the read permission to group
-       chmod u+rwx filename # Adds the read, write & execute permissions to user 
-    
-       # Levels: 
-       # u g o 
-       # | | |
-       # | | └── Others
-       # | └──── Group
-       # └────── User
-    
-       # Permissions: 
-       # r w x 
-       # | | |
-       # | | └── Execute
-       # | └──── Write
-       # └────── Read
-    ```
-    
-    ```sh
-        # Using numeric mode
-        chmod 005 filename # Removes the write permission from others
-        chmod 040 filename # Adds the read permission to group
-        chmod 700 filename # Adds the read, write & execute permissions to user 
-    
-        # Key:
-        # 0 - No permission
-        # 1 - Execute
-        # 2 - Write
-        # 3 - Execute + Write
-        # 4 - Read
-        # 5 - Read + Execute
-        # 6 - Read + Write
-        # 7 - Read + Write + Execute
-    
-        # N\B: Overwites permissions hence good practice to remember the existing permissions of the other levels before changing
-    ```
-    
-    - Changing ownership of a file:
-    
-    ```sh
-        chown owner filename
-        chgrp groupname filename
-    
-        # Owners:
-        # * User * Group
-    
-        # Format:
-        # owner group
-    ```
     
     ### 2) Access Control List (ACL)
     
@@ -386,23 +331,23 @@
            ls -l | grep drw | wc -l
        ```
 
-    ### 6) Compare Files
+### 6) Compare Files
 
-    - Commands include `diff`, and `cmp`:
+- Commands include `diff`, and `cmp`:
+
+    - `diff` compares line by line.
+
+    ```sh
+        diff file1 file2
+        man diff # Displays the different diff options
+    ```
+    
+    - `cmp` compares byte by byte.
  
-        - `diff` compares line by line.
-
-        ```sh
-            diff file1 file2
-            man diff # Displays the different diff options
-        ```
-        
-        - `cmp` compares byte by byte.
-     
-        ```sh
-            cmp file1 file2
-            man cmp # Displays the different cmp options 
-        ```
+    ```sh
+        cmp file1 file2
+        man cmp # Displays the different cmp options 
+    ```
 
 ### 7) File compression and unzipping
 
@@ -502,6 +447,63 @@
     find . -name "filename" # . shows the current directory
     find / -name "filename" # Starts from the root directory hence needs root privilege to run it
     locate filename # Ensure you have installed mlocate package
+```
+
+### 12) File Permissions & Ownership
+
+- Changing permissions of a file:
+
+```sh
+   # Using letters
+   chmod o-w filename # Removes the write permission from others
+   chmod g+r filename # Adds the read permission to group
+   chmod u+rwx filename # Adds the read, write & execute permissions to user 
+
+   # Levels: 
+   # u g o 
+   # | | |
+   # | | └── Others
+   # | └──── Group
+   # └────── User
+
+   # Permissions: 
+   # r w x 
+   # | | |
+   # | | └── Execute
+   # | └──── Write
+   # └────── Read
+```
+
+```sh
+    # Using numeric mode
+    chmod 005 filename # Removes the write permission from others
+    chmod 040 filename # Adds the read permission to group
+    chmod 700 filename # Adds the read, write & execute permissions to user 
+
+    # Key:
+    # 0 - No permission
+    # 1 - Execute
+    # 2 - Write
+    # 3 - Execute + Write
+    # 4 - Read
+    # 5 - Read + Execute
+    # 6 - Read + Write
+    # 7 - Read + Write + Execute
+
+    # N\B: Overwites permissions hence good practice to remember the existing permissions of the other levels before changing
+```
+    
+- Changing ownership of a file:
+
+```sh
+    chown owner filename
+    chgrp groupname filename
+
+    # Owners:
+    # * User * Group
+
+    # Format:
+    # owner group
 ```
 
 ## 💽 Disk Usage
