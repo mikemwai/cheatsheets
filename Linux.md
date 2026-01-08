@@ -449,6 +449,12 @@
     locate filename # Ensure you have installed mlocate package
 ```
 
+- Find/ Locate the executable file associated with a given command:
+
+```sh
+    which command_name
+```
+
 ### 12) File Permissions & Ownership
 
 - Changing permissions of a file:
@@ -492,6 +498,11 @@
 
     # N\B: Overwites permissions hence good practice to remember the existing permissions of the other levels before changing
 ```
+
+> - Addtional/ Special Linux permissions include:
+>   - `setuid bit` - Tells Linux to run a program with effective user id of the owner instead of the executor i.e. `passwd` command -> `/etc/shadow`.
+>   - `setgid bit` - Tells Linux to run a program/ file with executable permissions with effective group id of the owner instead of the executor i.e. `locate` or `wall` command.
+>   - `sticky bit` - Bit set on files/ directories allowing only the owner/ root to delete those files.
     
 - Changing ownership of a file:
 
@@ -1207,3 +1218,11 @@
 ```sh
     dmidecode
 ```
+
+- View a static snapshot of active processes at the moment of execution:
+
+```sh
+    ps -ef
+```
+
+`N\B:` `ps` stands for process status
