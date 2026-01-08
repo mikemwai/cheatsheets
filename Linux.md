@@ -1,7 +1,7 @@
 # 🐧 Linux Cheatsheet
 
 > [!IMPORTANT]
-> - `N\B:` When using these commands and you notice they don't run use `sudo` infront of the command.
+> - When using these commands and you notice they don't run use `sudo` infront of the command.
 > - This is because:
 >    - Some distros such as `Ubuntu` have disabled root login.
 >    - It's simpler and safer for multi-user systems which prevents sharing of the root password.
@@ -558,12 +558,6 @@
   lsblk
 ```
 
-- Check for CPU usage:
-
-```sh
-  top
-```
-
 - Before using `iostat`, you have to install:
 
 ```sh
@@ -945,6 +939,95 @@
   sqlplus / as sysdba
 ```
 
+## ⚙️ Processes & Jobs
+
+> - Terms used:
+>   1) Application/ Service -  Program running on your computer i.e. NTP, NFS, rsyslog, Apache.
+>   2) Script - Instructions written in a file and then packaged in a way that is executable.
+>   3) Process - Instance of an application/ service being executed.
+>   4) Daemon - Background process running continuously without direct user interaction.
+>   5) Threads - Several smallest sequence of instructions that can be managed indepently by a scheduler.
+>   6) Job/ Workorder -  Task that runs a service/ process at a schedule time.
+
+`1) systemctl`
+
+- Control systemd system and service manager:
+
+```sh
+    systemctl # RHEL 7 & 8
+    service # earlier versions of RHEL
+```
+
+- Start a service:
+
+```sh
+    sudo systemctl start service
+```
+
+- Stop a service
+
+```sh
+    sudo systemctl stop service
+```
+
+- Enable a service:
+
+```sh
+    sudo systemctl enable service
+```
+
+- Check status of a service:
+
+```sh
+    sudo systemctl status service
+```
+
+- Restart a service:
+
+```sh
+    sudo systemctl restart service
+```
+
+`2) ps`
+
+- View the running processes:
+
+```sh
+    ps
+```
+
+`3) kill`
+
+- Terminate a process:
+
+```sh
+    kill
+```
+
+`4) crontab`
+
+- Schedule processes/services:
+
+```sh
+    crontab
+```
+
+`5) at`
+
+- Schedule processes/services on a one time basis:
+
+```sh
+    at
+```
+
+`6) top`
+
+- Check for CPU usage:
+
+```sh
+  top
+```
+
 ## 🌐 Networking
 ### 1) Miscellaneous
 - Connect to a server:
@@ -1071,38 +1154,6 @@
 
 ```sh
     sudo apt clean
-```
-
-## ⚙️ Services Management
-
-- Start a service:
-
-```sh
-    sudo systemctl start service
-```
-
-- Stop a service
-
-```sh
-    sudo systemctl stop service
-```
-
-- Enable a service:
-
-```sh
-    sudo systemctl enable service
-```
-
-- Check status of a service:
-
-```sh
-    sudo systemctl status service
-```
-
-- Restart a service:
-
-```sh
-    sudo systemctl restart service
 ```
 
 ## Help commands
