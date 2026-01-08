@@ -1125,6 +1125,47 @@
     man command
 ```
 
+## 🛠️ System Utility Commands
+
+- Show the time/ date:
+
+```sh
+    date
+```
+
+- Show how long the system has been up, no. of logged in users, and average CPU load:
+
+```sh
+    uptime
+```
+
+- Show the system's network name logged in:
+
+```sh
+    hostname
+```
+
+- Show the operating system name being used:
+
+```sh
+    uname
+    uname -a # Gives more details i.e. OS, hostname, kernel version, build date
+```
+
+- Show the calendar:
+
+```sh
+    cal
+    cal month_no year # Display the calendar for a specific month for a specific year
+    cal year # Display the calendar for a specific year
+```
+
+- `bc - binary calculator` - Perform mathematical calculations:
+  
+```sh
+    bc
+```
+
 ## 🛠️ Common commands
 
 - Ever wondered how to check what Linux distro a server is running? Try running:
