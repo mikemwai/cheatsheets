@@ -830,7 +830,7 @@
 ```
 
 ## 🌐 Networking
-
+### 1. Miscellaneous
 - Connect to a server:
 
 ```sh
@@ -866,7 +866,7 @@
   traceroute ip_address/ hostname
 ```
 
-### Hostname/ IP lookup 
+### 2. Hostname/ IP lookup 
 - Makes use of `nslookup` and `dig`:
   
     - `nslookup`:
@@ -881,7 +881,7 @@
         dig www.google.com # This one gives a more detailed output
     ```
 
-### Network Time Protocol (NTP) 
+### 3. Network Time Protocol (NTP) 
 - For time synchronization, runs on `port no. 123`:
 
     ```sh
