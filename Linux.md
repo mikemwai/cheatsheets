@@ -741,7 +741,7 @@
     ```sh
       chage [-m mindays] [-M maxdays] [-d lastday] [-I inactive] [-E expiredate] [-W warndays] user1 user2
       [-m mindays] # Min no. of days required btwn password changes
-      [-M maxdays] # Max no. of days password is val
+      [-M maxdays] # Max no. of days password is valid
       [-d lastday] # Last password change
       [-I inactive] # No. of days after password expires that account is disabled
       [-E expiredate] # Absolute date when the login will no longer be used
