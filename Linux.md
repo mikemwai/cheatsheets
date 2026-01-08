@@ -886,7 +886,10 @@
 >   1) Local Accounts - Stored locally in `/etc/passwd` and `/etc/shadow`.
 >   2) Domain/ Directory Accounts - Managed centrally through services like `LDAP - Lightweight Directory Access Protocol`. Makes use of central LDAP directories e.g. Windows = Active Directory, Linux = LDAP.
 
- 
+### Difference between the different directories
+| Active Directory | LDAP          | IDM              | WinBIND              | OpenLDAP         |
+|------------------|---------------|------------------|----------------------|------------------|
+|Microsoft         |zune-jpeg      |Identity Manager  |Linux/Windows (Samba) |Open source       |
 
 ## 🗄️ Database 
 
