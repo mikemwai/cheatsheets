@@ -879,6 +879,12 @@
  - Then write the message that you want i.e. "Please logoff, This system is coming down for maintenance."
  - Save the message by clicking `Ctrl+d`.
 
+## Linux Directory Service - Account Authentication
+
+> - Types of Accounts:
+>   1) Local Accounts - Stored locally in `/etc/passwd` and `/etc/shadow`.
+>   2) Domain/ Directory Accounts - Managed centrally through services like `LDAP - Lightweight Directory Access Protocol`. Makes use of central LDAP directories e.g. Windows = Active Directory, Linux = OpenLDAP server.
+
 ## 🗄️ Database 
 
 ### 🦉 Oracle
