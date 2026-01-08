@@ -1,9 +1,10 @@
 # 🐧 Linux Cheatsheet
 
-- `N\B:` When using these commands and you notice they don't run use `sudo` infront of the command.
-- This is because:
-    - Some distros such as `Ubuntu` have disabled root login.
-    - It's simpler and safer for multi-user systems which prevents sharing of the root password.
+> [!IMPORTANT]
+> - `N\B:` When using these commands and you notice they don't run use `sudo` infront of the command.
+> - This is because:
+>    - Some distros such as `Ubuntu` have disabled root login.
+>    - It's simpler and safer for multi-user systems which prevents sharing of the root password.
 
 ## 📂 Files, Folders and Directory Management
 
@@ -883,7 +884,9 @@
 
 > - Types of Accounts:
 >   1) Local Accounts - Stored locally in `/etc/passwd` and `/etc/shadow`.
->   2) Domain/ Directory Accounts - Managed centrally through services like `LDAP - Lightweight Directory Access Protocol`. Makes use of central LDAP directories e.g. Windows = Active Directory, Linux = OpenLDAP server.
+>   2) Domain/ Directory Accounts - Managed centrally through services like `LDAP - Lightweight Directory Access Protocol`. Makes use of central LDAP directories e.g. Windows = Active Directory, Linux = LDAP.
+
+ 
 
 ## 🗄️ Database 
 
