@@ -779,6 +779,10 @@
     who
 ```
 
+```sh
+    users
+```
+
 - Show all the details of the users since they were logged in:
 
 `1. last`:
@@ -809,6 +813,26 @@
     id # For your own logged in user
     id username # For another user
 ```
+
+### 6) Talking to Users
+
+`1. wall - write all` - Broadcast a message to the terminals of all logged in users:
+
+```sh
+    wall
+```
+
+ - Then write the message that you want i.e. "Please logoff, This system is coming down for maintenance."
+ - Save the message by clicking `Ctrl+d`.
+
+`2. write` - Broadcast a message to the terminal of a specific user:
+
+```sh
+    write user_name
+```
+
+ - Then write the message that you want i.e. "Please logoff, This system is coming down for maintenance."
+ - Save the message by clicking `Ctrl+d`.
 
 ## 🗄️ Database 
 
