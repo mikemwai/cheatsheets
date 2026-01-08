@@ -503,6 +503,38 @@
 >   - `setuid bit` - Tells Linux to run a program with effective user id of the owner instead of the executor i.e. `passwd` command -> `/etc/shadow`.
 >   - `setgid bit` - Tells Linux to run a program/ file with executable permissions with effective group id of the owner instead of the executor i.e. `locate` or `wall` command.
 >   - `sticky bit` - Bit set on files/ directories allowing only the owner/ root to delete those files.
+> - `N\B:` These bits work on c programming executables not on bash shell scripts. Assigned to the last bit of permissions. Helps in preventing users from deleting a directory i.e. `/tmp directory`.
+
+- Find all executables in Linux with setuid and setgid permissions:
+
+```sh
+  find / -perm /6000 -type f
+```
+
+- Assign special permissions at user level:
+
+```sh
+    chmod u+s xyz.sh
+```
+
+- Assign special permissions at the group level:
+
+```sh
+    chmod g+s xyz.sh
+```
+
+- Assign special permissions at the user or group level:
+
+```sh
+    chmod u-s xyz.sh
+    chmod g-s xyz.sh
+```
+
+- Assign a sticky bit permission to a directory:
+
+```sh
+    chmod +t /directory
+```
     
 - Changing ownership of a file:
 
