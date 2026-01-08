@@ -632,72 +632,10 @@
      username
 ```
 
-- Switch to a specific sudo user `user1`:
-
-```sh
-  sudo su - user1
-```
-
-- Verify the logged in user:
-
-```sh
-  whoami
-```
-
-- Switch to the root user (`su - switch user`):
-  
-```sh
-  sudo su -
-```
-
-```sh
-  sudo -i # Cleaner version of entering to root
-```
-
-```sh
-  su -
-```
-
-- Switch to another non-root user:
-
-```sh
-  sudo su - username
-```
-
-```sh
-  sudo -u username -i # Cleaner version
-```
-
-- Modify existing user privileges:
-
-```sh
-    sudo usermod -aG groupname username
-```
-
-```sh
-    sudo visudo # Edit the user privileges
-```
-
-- List the sudo users:
-
-```sh
-    su - # Then double press the tab key
-```
-
-```sh
-    cut -d: -f1 /etc/passwd
-```
-
 - List the `human` users:
 
 ```sh
     ls /home
-```
-
-- List the currently logged in users:
-
-```sh
-    who
 ```
 
 ### 2) Password Creation
@@ -774,6 +712,70 @@
     ```sh
       chage username
     ```
+
+### 4) Switching users and sudo access
+
+- Verify the logged in user:
+
+```sh
+  whoami
+```
+
+- List the currently logged in users:
+
+```sh
+    who
+```
+
+- Switch to the root user (`su - switch user`):
+  
+```sh
+  sudo su -
+```
+
+```sh
+  sudo -i # Cleaner version of entering to root
+```
+
+```sh
+  su -
+```
+
+- Switch to another non-root user:
+
+```sh
+  sudo su - username
+```
+
+```sh
+  sudo -u username -i # Cleaner version
+```
+
+- Modify existing user privileges:
+
+```sh
+    sudo usermod -aG groupname username
+```
+
+```sh
+    sudo visudo # Edit the user privileges
+```
+
+- List the sudo users:
+
+```sh
+    su - # Then double press the tab key
+```
+
+```sh
+    cut -d: -f1 /etc/passwd
+```
+
+- Switch to a specific sudo user `user1`:
+
+```sh
+  sudo su - user1
+```
 
 ## 🗄️ Database 
 
@@ -1139,4 +1141,10 @@
 
 ```sh
     * * * * * /home/yourname/myscript.sh
+```
+
+- Read information about a computer's hardware:
+
+```sh
+    dmidecode
 ```
