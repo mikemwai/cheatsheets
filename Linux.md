@@ -721,12 +721,6 @@
   whoami
 ```
 
-- List the currently logged in users:
-
-```sh
-    who
-```
-
 - Switch to the root user (`su - switch user`):
   
 ```sh
@@ -775,6 +769,45 @@
 
 ```sh
   sudo su - user1
+```
+
+### 5) Monitoring Users
+
+- List the currently logged in users:
+
+```sh
+    who
+```
+
+- Show all the details of the users since they were logged in:
+
+`1. last`:
+
+```sh
+    last | more
+    last | awk '{print $1}' | sort | uniq # Lists the all the details of the logged in users, arranged alphabetically while filtering out the repeating values
+```
+
+`2. w` - More detailed than `last`:
+
+```sh
+    w
+```
+
+`3. finger`:
+
+- `N\B:` Finger is not pre-installed hence you need to install it first, then run the command `finger`:
+
+```sh
+    yum install finger -y # For CentOS 7
+    yum install pinky # For CentOS 8 and above
+```
+
+- View the details of a user i.e. group etc:
+
+```sh
+    id # For your own logged in user
+    id username # For another user
 ```
 
 ## 🗄️ Database 
