@@ -1045,12 +1045,42 @@
     systemctl reboot
 ```
 
-`2) ps`
+`2) ps - process status`
 
-- View the running processes:
+- View the currently running processes:
+
+    ```sh
+        ps
+    ```
+
+    > - The output has the following columns:
+    >    - `PID` - The unique process ID.
+    >    - `TTY` - Terminal type that the user logged-in to.
+    >    - `TIME` - CPU duration that the process has been running.
+    >    - `CMD` - Name of the command.
+
+- Show all running processes:
 
 ```sh
-    ps
+    ps -e
+```
+
+- Show all running processes in full format listing:
+
+```sh
+    ps -ef
+```
+
+- Show all running processes in BSD format:
+
+```sh
+    ps aux
+```
+
+- Show all processes by username:
+
+```sh
+    ps -u username
 ```
 
 `3) kill`
@@ -1411,11 +1441,3 @@
 ```sh
     dmidecode
 ```
-
-- View a static snapshot of active processes at the moment of execution:
-
-```sh
-    ps -ef
-```
-
-`N\B:` `ps` stands for process status
