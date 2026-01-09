@@ -949,7 +949,7 @@
 >   5) Threads - Several smallest sequence of instructions that can be managed indepently by a scheduler.
 >   6) Job/ Workorder -  Task that runs a service/ process at a schedule time.
 
-`1) systemctl`
+### 1) systemctl
 
 - Control system services i.e. start an application/ service:
 
@@ -1045,7 +1045,9 @@
     systemctl reboot
 ```
 
-`2) ps - process status`
+### 2) ps - process status
+
+- Shows the processes in static view at the time of execution.
 
 - View the currently running processes:
 
@@ -1083,7 +1085,7 @@
     ps -u username
 ```
 
-`3) kill`
+### 3) kill
 
 - Terminate a process:
 
@@ -1091,7 +1093,7 @@
     kill
 ```
 
-`4) crontab`
+### 4) crontab
 
 - Schedule processes/services:
 
@@ -1099,7 +1101,7 @@
     crontab
 ```
 
-`5) at`
+### 5) at
 
 - Schedule processes/services on a one time basis:
 
@@ -1107,13 +1109,30 @@
     at
 ```
 
-`6) top`
+### 6) top 
+
+- Shows the running processes in real-time view.
 
 - Check for CPU usage:
 
 ```sh
   top
 ```
+
+> - The output has the following columns:
+>    - `PID` - The service name.
+>    - `USER` - Whether the unit's configuration has been parsed by `systemd`. The configuration of loaded units is kept in memory.
+>    - `PR` - Summary state about whether the unit is active.
+>    - `NI` - Lower-level state indicating more detailed info about the unit. Often varies by unit type, state, and actual method in which unit runs.
+>    - `VIRT` - Short textual description of what the unit is/ does.
+>    - `RES` -
+>    - `SHR` -
+>    - `S` -
+>    - `%CPU` -
+>    - `%MEM` -
+>    - `TIME+` - 
+
+`N\B:` To exit out of the interactive mode, click `q`.
 
 ## 🌐 Networking
 ### 1) Miscellaneous
