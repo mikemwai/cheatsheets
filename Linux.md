@@ -1120,19 +1120,50 @@
 ```
 
 > - The output has the following columns:
->    - `PID` - The service name.
->    - `USER` - Whether the unit's configuration has been parsed by `systemd`. The configuration of loaded units is kept in memory.
->    - `PR` - Summary state about whether the unit is active.
->    - `NI` - Lower-level state indicating more detailed info about the unit. Often varies by unit type, state, and actual method in which unit runs.
->    - `VIRT` - Short textual description of what the unit is/ does.
->    - `RES` -
->    - `SHR` -
->    - `S` -
->    - `%CPU` -
->    - `%MEM` -
->    - `TIME+` - 
+>    - `PID` - Shows task's unique process id.
+>    - `USER` - Username of task owner.
+>    - `PR` - Shows the scheduling priority of the process from the kernel perspective.
+>    - `NI` - Represents a Nice Value of a task. A Negative nice value implies higher priority & positive means lower priority.
+>    - `VIRT` - Total virtual memory used by the task.
+>    - `RES` - Memory consumed by the process in RAM.
+>    - `SHR` - Represents the shared memory amount used by a task.
+>    - `S` - Shows the process state in the single-letter form.
+>    - `%CPU` - Represents the CPU usage.
+>    - `%MEM` - Shows the memory usage of task.
+>    - `TIME+` - CPU Time, but reflects more granulariy through hundredths of a second.
+>    - `COMMAND` - Actual process.
 
-`N\B:` To exit out of the interactive mode, click `q`.
+`N\B:` To exit out of the interactive mode, click `q`. Moreover, the info displayed is refreshed every 3 secs.
+
+- Show tasks/ processes owned by a user:
+
+```sh
+    top -u username
+```
+
+- Show commands absolute path:
+
+    ```sh
+        top 
+    ```
+
+    - Then press `c`.
+ 
+- Kill a process by PID within top session:
+
+    ```sh
+        top 
+    ```
+
+    - Then press `k`.
+ 
+- Sort all running processes by memory usage:
+
+    ```sh
+        top 
+    ```
+
+    - Then press `Shift` + `M` and `Shift` + `P`.
 
 ## 🌐 Networking
 ### 1) Miscellaneous
