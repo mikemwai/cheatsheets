@@ -951,7 +951,7 @@
 
 `1) systemctl`
 
-- Control systemd system and service manager:
+- Control system services i.e. start an application/ service:
 
 ```sh
     systemctl # RHEL 7 & 8
@@ -970,22 +970,79 @@
     sudo systemctl stop service
 ```
 
-- Enable a service:
-
-```sh
-    sudo systemctl enable service
-```
-
 - Check status of a service:
 
 ```sh
     sudo systemctl status service
 ```
 
+- Enable a service:
+
+```sh
+    sudo systemctl enable service
+```
+
 - Restart a service:
 
 ```sh
     sudo systemctl restart service
+```
+
+- List all the services/ units available:
+
+    ```sh
+        sudo systemctl list-units --all
+    ```
+
+    > - The output has the following columns:
+    >    - `UNIT` - The service name.
+    >    - `LOAD` - Whether the unit's configuration has been parsed by `systemd`. The configuration of loaded units is kept in memory.
+    >    - `ACTIVE` - Summary state about whether the unit is active.
+    >    - `SUB` - Lower-level state indicating more detailed info about the unit. Often varies by unit type, state, and actual method in which unit runs.
+    >    - `DESCRIPTION` - Short textual description of what the unit is/ does.
+
+`N\B:` `units` refer to services in systemctl.
+
+- Add a service under systemctl management (Create a unit file in `/etc/systemd/system/servicename.service`):
+
+```sh
+    sudo nano /etc/systemd/system/servicename.service
+
+    # Basic File Structure
+    [Unit]
+    Description=My Custom Service
+    After=network.target
+    
+    [Service]
+    ExecStart=/usr/bin/python3 /path/to/myapp.py
+    Restart=always
+    User=myuser
+    WorkingDirectory=/path/to
+    Environment="VAR1=value1" "VAR2=value2"
+    
+    [Install]
+    WantedBy=multi-user.target
+```
+
+```sh
+    sudo systemctl daemon-reload # Reload systemd to recognize the new unit
+```
+
+```sh
+    sudo systemctl enable servicename.service # Enable the service
+```
+
+```sh
+    sudo systemctl start servicename.service # Start the service
+    sudo systemctl status servicename # Check the service status
+```
+ 
+- Control system with systemctl:
+
+```sh
+    systemctl poweroff 
+    systemctl halt
+    systemctl reboot
 ```
 
 `2) ps`
