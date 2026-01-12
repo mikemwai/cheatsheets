@@ -1503,3 +1503,13 @@
 ```sh
     dmidecode
 ```
+
+- Ever found yourself in a situation where your keyboard inputs a different key as shown?, try these:
+
+```sh
+    sudo localectl status # Check the current layout especially X11 Layout
+    sudo localectl set-keymap layout # Switch to the correct layout of your keyboard i.e. us, gb etc
+    sudo localectl set-x11-keymap layout # Switch to the correct layout of your keyboard i.e. us, gb etc
+    reboot # For the changes to be saved
+    sudo localectl status # Verify the changes have happened
+```
