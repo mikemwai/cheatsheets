@@ -638,6 +638,12 @@
         useradd -g groupname -s /bin/ash -c "user description" -m -d /home/username username # Includes all the parameters that need to be defined
         man useradd # Manual for useradd
     ```
+
+  `N\B:` After creating the user, set the password for the new user using:
+
+   ```sh
+      sudo passwd username
+   ```
     
   - `groupadd`:
     
@@ -669,7 +675,7 @@
 - Check user details for a certain user:
 
 ```sh
-     username
+     id username
 ```
 
 - List the `human` users:
@@ -872,6 +878,12 @@
 ```
 
  - Then write the message that you want i.e. "Please logoff, This system is coming down for maintenance."
+ -  To reply to the written message if you're the other user, press `Enter` and run:
+
+```sh
+    sudo write user_name
+```
+
  - Save the message by clicking `Ctrl+d`.
 
 ## Linux Directory Service - Account Authentication
