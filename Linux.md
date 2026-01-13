@@ -1099,10 +1099,34 @@
 
 ### 3) kill
 
-- Terminate a process:
+- Terminate processes manuallly by sending a signal that terminates a praticular process/ group of processes.
+
+- Terminate a process with default signal:
 
 ```sh
-    kill
+    kill pid # pid refers to the process ID.
+```
+
+- List all signal names/ numbers:
+
+```sh
+    kill -l
+```
+
+- Most used signals are:
+
+```sh
+    kill -1 pid # Restart a process
+    kill -2 pid # Interrupt from the keyboard just like Ctrl C
+    kill -9 pid # Forecefully kill the process
+    kill -15 pid # Kill a process gracefully
+```
+
+- Other similar kill commands:
+
+```sh
+    killall # Terminate all parents processes with their children processes
+    pkill # Terminate by the process name
 ```
 
 ### 4) crontab
@@ -1512,4 +1536,10 @@
     sudo localectl set-x11-keymap layout # Switch to the correct layout of your keyboard i.e. us, gb etc
     reboot # For the changes to be saved
     sudo localectl status # Verify the changes have happened
+```
+
+- Pause the execution of a script/ process for a specified time period:
+
+```sh
+    sleep no_of_seconds
 ```
