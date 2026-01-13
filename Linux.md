@@ -951,7 +951,7 @@
   sqlplus / as sysdba
 ```
 
-## ⚙️ Processes & Jobs
+## ⚙️ Processes, Signals & Jobs
 
 > - Terms used:
 >   1) Application/ Service -  Program running on your computer i.e. NTP, NFS, rsyslog, Apache.
@@ -960,6 +960,7 @@
 >   4) Daemon - Background process running continuously without direct user interaction.
 >   5) Threads - Several smallest sequence of instructions that can be managed indepently by a scheduler.
 >   6) Job/ Workorder -  Task that runs a service/ process at a schedule time.
+>   7) Signal - Short message sent to a process to interrupt, control or communicate with the process without modifying the code of the program.
 
 ### 1) systemctl
 
@@ -1200,6 +1201,72 @@
     ```
 
     - Then press `Shift` + `M` and `Shift` + `P`.
+
+### Process Signals
+
+> - Used to send signals to running processes to control their behaviour.
+> - Purpose:
+>    - Enable communication between the user and the operating system allowing them to manage processes in real time.
+> - `Types of process signals:`
+>    1) `Standard Signals`
+>       - Predefined signals that the OS send to processes to control their behaviour.
+>       - These signals have meaning: stop, pause, or terminate.
+>       - `Types of standard signals`: i) `SIGINT (Signal Interrupt)`
+>                                      ii) `SIGTERM (Signal Terminate)`
+>                                      iii) `SIGKILL (Signal Kill)`
+>                                      iv) `SIGSTOP (Signal Stop)`
+>                                      v) `SIGCONT (Signal Continue)`
+>                                      vi) `SIGSEGV (Signal Segmentation Fault)`
+>    2) `Real time Signals`
+
+`1) SIGINT (Signal Interrupt)`
+
+- Used to interrupt a process when the user wants to stop it (Like using Ctrl + C to close a program i.e. word):
+
+```sh
+  kill -sigint pid
+  Ctrl + C
+```
+
+`2) SIGTERM (Signal Terminate)`
+
+- Process to terminate gracefully which saves the data, and cleans up before closing (Like using the menu to close a program i.e. word):
+
+```sh
+  kill -sigterm pid
+```
+
+`3) SIGKILL (Signal Kill)`
+
+- Forecfully kills a process immediately (Like using the task manager to close a program i.e. word):
+
+```sh
+  kill -sigkill pid
+```
+
+`4) SIGSTOP (Signal Stop)`
+
+- Pause running process (Like using a pause editor to stop a program i.e. word):
+
+```sh
+  kill -sigstop pid
+```
+
+`5) SIGCONT (Signal Continue)`
+
+- Resume stopped process:
+
+```sh
+  kill -sigcont pid
+```
+
+`6) SIGSEGV (Signal Segmentation Fault)`
+
+- Sent to a process when it tries to access an invalid memory location which causes a crash `Segmentation Fault`:
+
+```sh
+  kill -sigsegv pid
+```
 
 ## 🌐 Networking
 ### 1) Miscellaneous
