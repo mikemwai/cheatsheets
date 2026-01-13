@@ -412,6 +412,12 @@
             /keyword # Searches for the keyword in the file in vi mode
             :%s/keyword/new_keyword/ # Replace every keyword in a file
         ```
+        
+- Recover a terminated file from its swap file:
+
+  ```sh
+      vi -r filename
+  ```
 
 ### 11) File Manipulation
 
@@ -1217,11 +1223,19 @@
 >                                      iv) `SIGSTOP (Signal Stop)`
 >                                      v) `SIGCONT (Signal Continue)`
 >                                      vi) `SIGSEGV (Signal Segmentation Fault)`
+>       `N\B:` They are sent one by one without any order.
+>
 >    2) `Real time Signals`
+>       - Allows processes to send extra information along with a signal such as numbers or messages making them useful for advacned tasks.
+>       - They are queued i.e. sent one by one in an order.
+>       - `Types of real time signals`: i) `SIGRTMIN (Signal Real Time Minimum)`
+>                                      ii) `SIGRTMAX (Signal Real Time Maximum)`
+>                                      iii) `Intermediate Signals`
 
+### A) Standard Signals
 `1) SIGINT (Signal Interrupt)`
 
-- Used to interrupt a process when the user wants to stop it (Like using Ctrl + C to close a program i.e. word):
+- Used to interrupt a process when the user wants to stop it gracefully (Like using Ctrl + C to close a program i.e. word):
 
 ```sh
   kill -sigint pid
@@ -1235,6 +1249,8 @@
 ```sh
   kill -sigterm pid
 ```
+
+`N\B:` This creates a swap file for the terminated file.
 
 `3) SIGKILL (Signal Kill)`
 
@@ -1254,18 +1270,54 @@
 
 `5) SIGCONT (Signal Continue)`
 
-- Resume stopped process:
+- Resume stopped process (Unpause the editor), run the command on the terminal session where the stopped process was running:
 
 ```sh
   kill -sigcont pid
 ```
 
+- Bring a background process to the foreground of the current terminal session:
+
+```sh
+    fg
+```
+
 `6) SIGSEGV (Signal Segmentation Fault)`
 
-- Sent to a process when it tries to access an invalid memory location which causes a crash `Segmentation Fault`:
+- Sent to a process when it tries to access an invalid memory location which causes a crash `Segmentation Fault` (Like opening a file that doesn't exist in memory):
 
 ```sh
   kill -sigsegv pid
+```
+
+### B) Real Time Signals
+`1) SIGRTMIN (Signal Real Time Minimum)`
+
+- Marks the beginning of the real time signal range i.e. any real time signal starts from this point (When a system starts it sends this signal to turn it on):
+
+```sh
+  kill -sigint pid
+  Ctrl + C
+```
+
+`N\B:` Signal 0 is commonly used to check if a process is alive without interrupting it.
+
+`2) SIGRTMAX (Signal Real Time Maximum)`
+
+- Marks the end of the real time signal range i.e. highest number in this range (When a system shuts down it sends this signal to turn it off):
+
+```sh
+  kill -sigint pid
+  Ctrl + C
+```
+
+`3) Intermediate Signal`
+
+- Used for custom processes i.e. allow running programs to send specific messages/ data to each other (In btwn the signals they are used for specific tasks e.g. one can be used to turn on the lights, adjust the A/C, or tell the CCTV to start recording):
+
+```sh
+  kill -sigint pid
+  Ctrl + C
 ```
 
 ## 🌐 Networking
