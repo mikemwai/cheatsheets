@@ -1144,6 +1144,73 @@
     crontab
 ```
 
+- List current user's cronjobs that are running:
+
+```sh
+    crontab -l
+```
+
+```sh
+    grep CRON /var/log/syslog
+```
+
+- Delete all the cron jobs for specific user:
+
+```sh
+    crontab -i -r
+```
+
+- Manage the crond service `crond - daemon/ service managing scheduling`:
+
+```sh
+    systemctl status crond
+```
+
+- Open the crontab editor for the current user `Create/ modify scheduled tasks (cronjobs)`:
+
+```sh
+    crontab -e
+```
+
+```sh
+    * * * * * scriptfile/ command-to-run
+    | | | | |
+    | | | | └── Day of week (0–7) (Sun=0 or 7)
+    | | | └──── Month (1–12)
+    | | └────── Day of month (1–31)
+    | └──────── Hour (0–23)
+    └────────── Minute (0–59)
+```
+
+- Creating, & executing a script file and adding it as a cron job:
+
+```sh
+    vi myscript.sh
+```
+
+```sh
+    #!/bin/bash
+    # This script writes the current date and time into a log file
+    
+    echo "Script ran at: $(date)" >> /home/yourname/mylog.txt # Edit the command
+```
+
+```sh
+    chmod +x myscript.sh
+```
+
+```sh
+    ./myscript.sh
+```
+
+```sh
+    crontab -e
+```
+
+```sh
+    * * * * * /home/yourname/myscript.sh
+```
+
 ### 5) at
 
 - Schedule processes/services on a one time basis:
@@ -1578,67 +1645,6 @@
 
 ```sh
     sudo hostnamectl set-hostname new-hostname
-```
-
-- List current user's cronjobs that are running:
-
-```sh
-    crontab -l
-```
-
-```sh
-    grep CRON /var/log/syslog
-```
-
-- Delete all the cron jobs for specific user:
-
-```sh
-    crontab -i -r
-```
-
-- Open the crontab editor for the current user `Create/ modify scheduled tasks (cronjobs)`:
-
-```sh
-    crontab -e
-```
-
-```sh
-    * * * * * scriptfile/ command-to-run
-    | | | | |
-    | | | | └── Day of week (0–7) (Sun=0 or 7)
-    | | | └──── Month (1–12)
-    | | └────── Day of month (1–31)
-    | └──────── Hour (0–23)
-    └────────── Minute (0–59)
-```
-
-- Creating, & executing a script file and adding it as a cron job:
-
-```sh
-    nano myscript.sh
-```
-
-```sh
-    #!/bin/bash
-    # This script writes the current date and time into a log file
-    
-    echo "Script ran at: $(date)" >> /home/yourname/mylog.txt # Edit the command
-```
-
-```sh
-    chmod +x myscript.sh
-```
-
-```sh
-    ./myscript.sh
-```
-
-```sh
-    crontab -e
-```
-
-```sh
-    * * * * * /home/yourname/myscript.sh
 ```
 
 - Read information about a computer's hardware:
