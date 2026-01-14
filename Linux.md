@@ -1213,10 +1213,30 @@
 
 ### 5) at
 
-- Schedule processes/services on a one time basis:
+- Schedule processes/services on a one time basis (only once):
 
 ```sh
-    at
+    at hh:mm pm/ am 
+```
+
+`N\B:` To get out of the interactive mode, you press `Ctrl` + `d`.
+
+- List all the entries in the at table:
+
+```sh
+    atq
+```
+
+- Remove an entry in the at table:
+
+```sh
+    atrm entry_no
+```
+
+- Manage the atd service `atd - daemon/ service managing scheduling`:
+
+```sh
+    systemctl status atd
 ```
 
 ### 6) top 
