@@ -1211,6 +1211,15 @@
     * * * * * /home/yourname/myscript.sh
 ```
 
+> - Additional cron jobs:
+>   - Hourly
+>   - Daily
+>   - Weekly
+>   - Monthly
+> - All the above crons are setup in: `/etc/cron.hourly`, `/etc/cron.daily`, `/etc/cron.weekly`, & `/etc/cron.monthly`.
+> - The timing for each are set in `/etc/anacrontab` except hourly.
+> - For hourly `/etc/cron.d/0hourly`.
+
 ### 5) at
 
 - Schedule processes/services on a one time basis (only once):
@@ -1237,6 +1246,16 @@
 
 ```sh
     systemctl status atd
+```
+
+- Other scheduling formats:
+
+```sh
+    at 2:45 AM 101621 # Schedule a job to run on Oct 16th, 2021 at 2:45am
+    at 4PM + 4 days # Schedule a job at 4pm four days from now
+    at now +5 hours # Schedule a job to run five hours from now
+    at 8:00 AM Sun # Schedule a job to 8am on coming Sunday
+    at 10:00 AM next month # Schedule a job to 10am next month
 ```
 
 ### 6) top 
