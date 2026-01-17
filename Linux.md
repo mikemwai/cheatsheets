@@ -1133,7 +1133,7 @@
 
 ```sh
     killall # Terminate all parents processes with their children processes
-    pkill # Terminate by the process name
+    pkill process_name# Terminate by the process name
 ```
 
 ### 4) crontab
@@ -1425,6 +1425,47 @@
   kill -sigint pid
   Ctrl + C
 ```
+
+### Process Management
+
+- Put a process in the background:
+
+```sh
+    `Ctrl` + `z`
+    jobs # View the stopped processes
+    bg
+```
+
+- Bring a process in the foreground:
+
+```sh
+    fg
+```
+
+- `N/B:` Click `Ctrl` + `C` to bring back your prompt, however the background process will be killed. 
+
+- Run process even after exiting the terminal:
+
+    ```sh
+        nohup process & # A message is displayed on the prompt by the `nohup` command.
+        nohup process > /dev/null 2>&1 & # Doesn't display the nohup message.
+    ```
+
+    - Example:
+
+        ```sh
+            nohup sleep 75 & 
+        ```
+
+- `N/B:` A `nohup.out` file is generated and it contains all the recorded info. 
+  
+- Prioritise a process:
+
+```sh
+    nice -n 5 process_name
+```
+
+- `N/B:` The niceness scale goes from `-20` to `19`. The lower the number, more priority that task gets. 
 
 ## 🌐 Networking
 ### 1) Miscellaneous
