@@ -564,20 +564,6 @@
   lsblk
 ```
 
-- Before using `iostat`, you have to install:
-
-```sh
-    sudo apt install sysstat # Debian based
-    sudo zypper install sysstat # Open Suse based
-    sudo yum/dnf install sysstat # RPM based 
-```
-
-- Check disk I/O capability:
-
-```sh
-  iostat
-```
-
 - List the files while showing their sizes `du - disk usage`:
 
 ```sh
@@ -588,24 +574,6 @@
 
 ```sh
   du -sh * | grep G
-```
-
-- Displays disk space usage and availability:
-
-```sh
-  df -h
-```
-
-- View the disk file system usage in order:
-
-```sh
-  df -kh
-```
-
-- View the disk file system usage including filesystem type:
-
-```sh
-    df -hT
 ```
 
 - List the disk space:
@@ -1465,7 +1433,113 @@
     nice -n 5 process_name
 ```
 
-- `N/B:` The niceness scale goes from `-20` to `19`. The lower the number, more priority that task gets. 
+- `N/B:` The niceness scale goes from `-20` to `19`. The lower the number, more priority that task gets.
+
+### System Monitoring
+
+`1) df`
+- Shows the disk partition information:
+
+```sh
+    df
+    df -h # Human readable format
+```
+
+- Displays disk space usage and availability:
+
+```sh
+  df -h
+```
+
+- View the disk file system usage in order:
+
+```sh
+  df -kh
+```
+
+- View the disk file system usage including filesystem type:
+
+```sh
+    df -hT
+```
+  
+`2) dmesg`
+- Shows the output of system related warnings, error messages or failures:
+
+```sh
+    dmesg
+```
+
+`3) netstat/ ip & ss`
+- Print network connections, routing tables etc:
+
+```sh
+    netstat
+    ip & ss # In-depth investigation
+```
+
+`4) free`
+- Show the physical memory and your swap (Virtual memory):
+
+```sh
+    free
+```
+
+`5) cat /proc/cpuinfo`
+- View the details of your CPU:
+
+```sh
+    cat /proc/cpuinfo
+```
+
+- `N/B:` `proc` directory keeps all the system information.
+
+`6) cat /proc/meminfo`
+- View the details of your memory:
+
+```sh
+    cat /proc/meminfo
+```
+
+`7) top`
+
+`8) iostat`
+- View the input/ output statistics/ capability:
+
+```sh
+  iostat
+```
+
+- Before using `iostat`, you have to install:
+
+```sh
+    sudo apt install sysstat # Debian based
+    sudo zypper install sysstat # Open Suse based
+    sudo yum/dnf install sysstat # RPM based 
+```
+
+- View the I/O statistics after every certain time duration i.e. 1 second:
+
+```sh
+    iostat time_duration # Example: iostat 1
+```
+
+- `N/B:` Enter `Ctrl` + `C` to quit and return back to your prommpt.
+
+`9) ip route`
+- View the routing information i.e. gateway information, source ip address assigned to your interface:
+
+```sh
+    ip route
+    ip route | column -t # Human readable format
+```
+
+`10) ss`
+- View detailed information of the routing information showing active connections of the system, including their state, local & peer addresses, & associated processes:
+
+```sh
+    ss | more
+```
 
 ## 🌐 Networking
 ### 1) Miscellaneous
