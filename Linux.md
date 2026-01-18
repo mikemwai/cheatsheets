@@ -152,6 +152,12 @@
         tail -200f filename.txt
     ```
 
+    - View newly added content of a file in real time:
+
+    ```sh
+        tail -f filename
+    ```
+
     - View contents of a file:
     
     ```sh
@@ -1539,6 +1545,42 @@
 
 ```sh
     ss | more
+```
+
+### Log Monitoring
+
+> - Way of keeping record of the system activities.
+> - Log directory is `/var/log`.
+> - Examples of logs: `boot`, `chronyd`, `cron`, `maillog`, `secure`, `messages`, `httpd`.
+
+`boot`
+- View the boot log file (Records booting activity):
+
+```sh
+    more boot.log
+```
+
+`cron`
+- View the cron log file:
+
+```sh
+    more cron.log
+```
+
+`secure`
+- View the secure log file (Records loggging in and out activities):
+
+```sh
+    more secure.log
+    tail -f secure.log # View newly added logs in real time
+```
+
+`messages`
+- View the messages log file (Records system issues):
+
+```sh
+    more messages.log
+    grep -i error messages # Ignore case senstivity and find lines containing `error`.
 ```
 
 ## 🌐 Networking
