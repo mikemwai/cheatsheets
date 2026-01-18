@@ -1441,7 +1441,7 @@
 
 - `N/B:` The niceness scale goes from `-20` to `19`. The lower the number, more priority that task gets.
 
-### System Monitoring
+## System Monitoring
 
 `1) df`
 - Shows the disk partition information:
@@ -1547,7 +1547,7 @@
     ss | more
 ```
 
-### Log Monitoring
+## Log Monitoring
 
 > - Way of keeping record of the system activities.
 > - Log directory is `/var/log`.
