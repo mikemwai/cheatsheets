@@ -1782,6 +1782,21 @@
     sudo apt clean
 ```
 
+## SOS Report
+- It collects and packages diagnostic and support data:
+
+```sh
+    sosreport
+```
+
+- View the version:
+
+```sh
+    sos-version
+```
+
+- `N/B:` The files are saved by default under `/var/tmp/`.
+
 ## Help commands
 
 - Show a shorter info version of a command:
