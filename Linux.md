@@ -1842,7 +1842,7 @@
     man command
 ```
 
-## 🛠️ System Utility Commands
+## 🛠️ System Utility/ Terminal Commands
 
 - Show the time/ date:
 
@@ -1869,6 +1869,26 @@
 ```sh
     bc
 ```
+
+- Clear your screen:
+
+```sh
+    clear
+```
+
+- Get out of the shell, terminal, user session:
+
+```sh
+    exit
+```
+
+- Store terminal activities in a log file that is named by the user:
+
+```sh
+    script
+```
+
+- `N/B:` Default filename if not named is `typescript`.
 
 ## 🛠️ Common commands
 
