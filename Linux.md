@@ -1797,6 +1797,31 @@
 
 - `N/B:` The files are saved by default under `/var/tmp/`.
 
+## Terminal Control Keys
+- Erase everything typed on the command line:
+
+```sh
+    Ctrl + u
+```
+
+- Stop/ kill a command:
+
+```sh
+    Ctrl + c
+```
+
+- Suspend a command (Puts process in the background):
+
+```sh
+    Ctrl + z
+```
+
+- Exit from an interactive program (signals end of data):
+
+```sh
+    Ctrl + d
+```
+
 ## Help commands
 
 - Show a shorter info version of a command:
