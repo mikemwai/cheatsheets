@@ -866,6 +866,44 @@
 
  - Save the message by clicking `Ctrl+d`.
 
+### Recover root password
+- Restart the computer:
+
+```sh
+    reboot
+```
+
+- Edit the grub file:
+    - For Centos 7, 8:
+        - While the boot menu, press `E` on your keyboard on the 1st option which is your actual OS.
+        - Scroll down the parameters to the section with `ro`, remove `ro` and write `rw init=/sysroot/bin/sh`. Then do `Ctrl` + `x`. (Starts the computer in `single user mode`)
+        - Mounts the system to sys root:
+         ```sh
+             chroot /sysroot
+         ```
+         
+        - Change the password:
+         ```sh
+             password root
+         ```
+    
+        - Update selinux info:
+         ```sh
+             touch /.autorelabel
+         ```
+    
+        - Exit out of the sysroot:
+         ```sh
+             exit
+         ```
+    
+        - Restart the system:
+         ```sh
+             reboot
+         ```
+         
+    - For CentOS 9, go to the end of the line and type `rd.break` and do `Ctrl` + `x`.
+
 ## Linux Directory Service - Account Authentication
 
 > - Types of Accounts:
