@@ -1634,6 +1634,20 @@
 
 - `N/B:` The file used to save the new hostname is `/etc/hostname` or `/etc/sysconfig/network`.
 
+## System Information
+- Show the operating system name being used:
+
+```sh
+    uname
+    uname -a # Gives more details i.e. OS, hostname, kernel version, build date
+```
+
+- Read information about a computer's hardware:
+
+```sh
+    dmidecode
+```
+
 ## 🌐 Networking
 ### 1) Miscellaneous
 - Connect to a server:
@@ -1796,13 +1810,6 @@
     uptime
 ```
 
-- Show the operating system name being used:
-
-```sh
-    uname
-    uname -a # Gives more details i.e. OS, hostname, kernel version, build date
-```
-
 - Show the calendar:
 
 ```sh
@@ -1861,12 +1868,6 @@
       ```
 
 `N/B:` Mostly important for scripting, automation and daily tasks.
-
-- Read information about a computer's hardware:
-
-```sh
-    dmidecode
-```
 
 - Ever found yourself in a situation where your keyboard inputs a different key as shown?, try these:
 
