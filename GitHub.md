@@ -1,4 +1,4 @@
-# GitHub 
+# A) Git 
 ## Basic Git Commands
 ## 1) Git Repository
 - Cloning a Git repository:
@@ -258,6 +258,17 @@
 - Deleting a tag:
 ```sh
    git tag -d tagname
+```
+
+# B) GitHub CLI
+- Display the active account & authentication state for each known GitHub host:
+```sh
+   gh auth status
+```
+
+- Authenticate GitHub CLI with your GitHub account:
+```sh
+   gh auth login
 ```
 
 - - -  
