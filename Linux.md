@@ -1611,6 +1611,29 @@
   halt
 ```
 
+## System Hostname
+- View the hostname of your system:
+
+```sh
+    hostname
+    hostname -f # Display the fully qualified domain name (FQDN)
+    hostname -s # Without the domain name
+```
+
+- Change the hostname:
+
+```sh
+    sudo hostnamectl set-hostname new-hostname
+```
+
+- Reboot the system for the changes to be applied:
+
+```sh
+    reboot
+```
+
+- `N/B:` The file used to save the new hostname is `/etc/hostname` or `/etc/sysconfig/network`.
+
 ## 🌐 Networking
 ### 1) Miscellaneous
 - Connect to a server:
@@ -1773,12 +1796,6 @@
     uptime
 ```
 
-- Show the system's network name logged in:
-
-```sh
-    hostname
-```
-
 - Show the operating system name being used:
 
 ```sh
@@ -1844,14 +1861,6 @@
       ```
 
 `N/B:` Mostly important for scripting, automation and daily tasks.
-
-- Show the current hostname:
-
-```sh
-    hostname
-    hostname -f # Display the fully qualified domain name (FQDN)
-    hostname -s # Without the domain name
-```
 
 - Read information about a computer's hardware:
 
