@@ -1583,6 +1583,34 @@
     grep -i error messages # Ignore case senstivity and find lines containing `error`.
 ```
 
+## System Maintenance
+- Commands are used to bring the systemm to shutdown, reboot, single mode etc.
+
+`1) shutdown`
+- Power off the system gracefully:
+```sh
+  shutdown
+```
+
+`2) init`
+```sh
+  init no
+```
+
+- `N/B:` `init` run levels are from 0-6, with `0` for shutdown, `6` for reboot, and `3` for multi user mode.
+
+`3) reboot`
+- Restart the system:
+```sh
+  reboot
+```
+
+`4) halt`
+- Shutdowns the system right away without waiting for running processes to stop:
+```sh
+  halt
+```
+
 ## 🌐 Networking
 ### 1) Miscellaneous
 - Connect to a server:
@@ -1798,18 +1826,6 @@
     uptime
 ```
 
-- Restart the system:
-
-```sh
-    reboot
-```
-
-- Shutting down the system:
-
-```sh
-    shutdown
-```
-
 - Show the system date and time:
 
 ```sh
@@ -1835,12 +1851,6 @@
     hostname
     hostname -f # Display the fully qualified domain name (FQDN)
     hostname -s # Without the domain name
-```
-
-- Change the hostname:
-
-```sh
-    sudo hostnamectl set-hostname new-hostname
 ```
 
 - Read information about a computer's hardware:
