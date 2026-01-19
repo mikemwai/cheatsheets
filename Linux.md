@@ -1648,6 +1648,12 @@
     dmidecode
 ```
 
+- View the system architecture:
+
+```sh
+    arch
+```
+
 ## 🌐 Networking
 ### 1) Miscellaneous
 - Connect to a server:
