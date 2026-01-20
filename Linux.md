@@ -975,7 +975,7 @@
 >   1) Application/ Service -  Program running on your computer i.e. NTP, NFS, rsyslog, Apache.
 >   2) Script - Instructions written in a file and then packaged in a way that is executable.
 >   3) Process - Instance of an application/ service being executed.
->   4) Daemon - Background process running continuously without direct user interaction.
+>   4) Daemon - Background process running continuously without direct user interaction, waiting for requests/ events like `sshd`, `httpd`.
 >   5) Threads - Several smallest sequence of instructions that can be managed indepently by a scheduler.
 >   6) Job/ Workorder -  Task that runs a service/ process at a schedule time.
 >   7) Signal - Short message sent to a process to interrupt, control or communicate with the process without modifying the code of the program.
