@@ -1929,6 +1929,12 @@
 
 ## GNU Screen
 - Used for managing multiple terminal sessions in a single window.
+- Verify if screen has been installed:
+
+```sh
+    rpm -qa | grep screen
+```
+
 - Install the screen package:
 
 ```sh
@@ -1975,6 +1981,114 @@
 ```sh
     screen -r
     screen -r pid
+```
+
+## Terminal Multiplex 
+- Screen utility allowing one to run multiple terminal sessions in a single window (For CentOS and above).
+- Verify if screen has been installed:
+
+```sh
+    rpm -qa | grep tmux
+```
+
+- Install tmux package:
+
+```sh
+    sudo dnf install tmux -y # Installs tmux and answers y to the prompts
+```
+
+- Use tmux:
+
+```sh
+    tmux
+```
+
+- `N/B:` `[0]` shows the current session number, `0:bash` shows window 0, and `*` shows the active window which are displayed at the bottom of the screen.
+
+- Create a vertical split in tmux:
+
+```sh
+    `Ctrl` + `b`
+    `Shift` + `%`
+```
+
+- Create a horizontal split in tmux:
+
+```sh
+    `Ctrl` + `b`
+    `Shift` + `"`
+```
+
+- Switch between the screens:
+
+```sh
+    `Ctrl` + `b`
+    `Arrow keys` # Choose the correct key based on the direction of your screen
+```
+
+- Quit tmux without closing it:
+
+```sh
+    `Ctrl` + `b`
+    `d`
+```
+
+- Check all active tmux sessions:
+
+```sh
+    tmux ls
+```
+
+- Return back to tmux:
+
+```sh
+    tmux a
+```
+
+- Create a tmux session with a custom name:
+
+```sh
+    tmux new -s custom_name
+```
+
+- Create multiple tmux terminals in the same session without splitting the screen:
+
+```sh
+    `Ctrl` + `b`
+    `c`
+```
+
+- Switch between multiple tmux terminals within the same session:
+
+```sh
+    `Ctrl` + `b`
+    `n`
+```
+
+- Permanently close a window in tmux:
+
+```sh
+    `Ctrl` + `d`
+```
+
+- Return to a certain tmux session:
+
+```sh
+    tmux attach-session -t session_name
+```
+
+- Rename a current window in tmux:
+
+```sh
+    `Ctrl` + `b`
+    `,`
+    new_name
+```
+
+- Terminate a tmux session:
+
+```sh
+    tmux kill-session -t session_name
 ```
 
 ## Environment Variables
