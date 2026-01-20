@@ -1481,7 +1481,7 @@
 
 ## System Monitoring
 
-`1) df`
+`1) df` - Disk space usage
 - Shows the disk partition information:
 
 ```sh
@@ -1522,7 +1522,7 @@
     ip & ss # In-depth investigation
 ```
 
-`4) free`
+`4) free` - Memory statistics
 - Show the physical memory and your swap (Virtual memory):
 
 ```sh
@@ -1545,9 +1545,9 @@
     cat /proc/meminfo
 ```
 
-`7) top`
+`7) top` - CPU & memory usage
 
-`8) iostat`
+`8) iostat` - CPU & I/O performance
 - View the input/ output statistics/ capability:
 
 ```sh
@@ -1643,7 +1643,7 @@
   reboot
 ```
 
-`4) halt`
+`4) halt` - Leaves the system powered on
 - Shutdowns the system right away without waiting for running processes to stop:
 ```sh
   halt
