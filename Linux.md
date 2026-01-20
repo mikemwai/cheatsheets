@@ -1777,7 +1777,6 @@
     ```
 
 ## 🔄 Updates Management
-
 - Run updates for a `Debian based distro`:
 
 ```sh
@@ -1927,6 +1926,95 @@
 ```
 
 - `N/B:` Default filename if not named is `typescript`.
+
+## GNU Screen
+- Used for managing multiple terminal sessions in a single window.
+- Install the screen package:
+
+```sh
+    sudo dnf install epel-release
+    sudo dnf install screen
+```
+
+- Use screen:
+
+```sh
+    screen
+```
+
+- Split the terminal screen vertically:
+
+```sh
+    `Alt` + `A`
+    `Shift` + `|`
+```
+
+- Split the terminal screen horizontally:
+
+```sh
+    `Alt` + `A`
+    `Shift` + `S`
+```
+
+- Switch between the different screens:
+
+```sh
+    `Alt` + `A`
+    `Tab`
+```
+
+- Activate an inactive screen:
+
+```sh
+    `Alt` + `A`
+    `C`
+```
+
+- View previously detached screen sessions to reconnect to:
+
+```sh
+    screen -r
+    screen -r pid
+```
+
+## Environment Variables
+- Set of defined rules and values to build an environment.
+- View all environment variables:
+
+```sh
+    printenv or env
+```
+
+- View one environment variable:
+
+```sh
+    echo $SHELL # Update $SHELL to the variable you want
+```
+
+- Set the environment variables:
+
+```sh
+    export TEST=1
+    echo $TEST
+```
+
+- Set environment variable permanently:
+
+```sh
+    vi .bashrc
+    TEST=`123`
+    export TEST
+```
+
+- `N/B:` Log out of the session and log in again for the change to be applied.
+
+- Set global environment variable permanently:
+
+```sh
+    vi /etc/profile or /etc/bashrc
+    Test=`123`
+    export TEST
+```
 
 ## 🛠️ Common commands
 
