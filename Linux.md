@@ -2130,6 +2130,25 @@
     export TEST
 ```
 
+## Shell Scripting
+- `Kernel` - Interface between hardware and software, forwards commands from the shell to the hardware.
+- `Shell` - Interface between users and kernel.
+- Find the shell:
+
+```sh
+    echo $0
+```
+
+- List all available shells:
+
+```sh
+    cat /etc/shells
+    cat /etc/passwd # Shows the type of shell assigned to a user
+```
+
+> ### Types of Linux Shells
+> - Examples: `Gnome`, `KDE`, `sh`, `bash`, `csh and tcsh`, `ksh`
+
 ## 🛠️ Common commands
 
 - Ever wondered how to check what Linux distro a server is running? Try running:
