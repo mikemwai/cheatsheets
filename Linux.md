@@ -915,60 +915,6 @@
 |------------------|------------------|----------------------|------------------|----------------------|
 |Microsoft         |Identity Manager  |Linux/Windows (Samba) |Open source       |IBM                   |
 
-## 🗄️ Database 
-
-### 🦉 Oracle
-
-- Check listener status:
-
-```sh
-  lsnrctl status
-```
-
-- Check where the cluster services are running from:
-  
-```sh
-  crm status
-```
-
-- Switch to oracle:
-
-```sh
-  su - oracle
-```
-
-- Enter OGG command interpreter:
-
-```sh
-  g
-```
-
-- Check for OGG lag:
-
-```sh
-  info all
-```
-
-- View OGG lag info in detail:
-
-```sh
-  view report
-```
-
-- View more information about a specific process based on the group name:
-
-```sh
-  info group_name
-```
-
-### 🐬 SQL
-
-- Connect to SQL:
-
-```sh
-  sqlplus / as sysdba
-```
-
 ## ⚙️ Processes, Signals & Jobs
 
 > - Terms used:
