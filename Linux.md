@@ -562,47 +562,6 @@
     # owner group
 ```
 
-## 💽 Disk Usage
-
-- List the disks in the system:
-
-```sh
-  lsblk
-```
-
-- List the files while showing their sizes `du - disk usage`:
-
-```sh
-  du -sh *
-```
-
-- List the files while showing their sizes `du - disk usage` and if you want those starting with G `grep G`:
-
-```sh
-  du -sh * | grep G
-```
-
-- List the disk space:
-
-```sh
-    fdisk -l
-```
-
-- Partition a disk:
-
-```sh
-    fdisk /dev/disk
-    n - p - enter- enter - w
-    mkfs.xfs /dev/disk
-```
-
-- Mount a disk:
-
-```sh
-    mkdir new_directory
-    fdisk /dev/disk new_directory
-```
-
 ## 👥 Users' Management
 
 ### 1) Users' Creation
@@ -1627,6 +1586,47 @@
     echo
     echo Hello $b
     echo
+```
+
+## 💽 Disk Usage
+
+- List the disks in the system:
+
+```sh
+  lsblk
+```
+
+- List the files while showing their sizes `du - disk usage`:
+
+```sh
+  du -sh *
+```
+
+- List the files while showing their sizes `du - disk usage` and if you want those starting with G `grep G`:
+
+```sh
+  du -sh * | grep G
+```
+
+- List the disk space:
+
+```sh
+    fdisk -l
+```
+
+- Partition a disk:
+
+```sh
+    fdisk /dev/disk
+    n - p - enter- enter - w
+    mkfs.xfs /dev/disk
+```
+
+- Mount a disk:
+
+```sh
+    mkdir new_directory
+    fdisk /dev/disk new_directory
 ```
 
 ## System Monitoring
