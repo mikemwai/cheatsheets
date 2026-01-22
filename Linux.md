@@ -2152,7 +2152,7 @@
 >
 > ### Contents of shell script
 > `i) Shell` (#!/bin/bash) - The 1st line of a shell script file.
-> `2) Comments` (# comments) - Shows what the script does.
+> `2) Comments` (# comments) - Description of the script.
 > `3) Commands` (echo, cp, grep etc.)
 > `4) Statements` (if, while, for etc.)
 >
@@ -2193,12 +2193,61 @@
     ./output-screen
 ```
 
-`2) Output to screen using echo`
-- Create the directory `myscripts`:
+`2) Defining small tasks`
+```sh
+    #!/bin/bash
+    # Defines small tasks
+    whoami
+    echo
+    pwd
+    echo # Creates a blank line
+    hostname
+    echo # Creates a blank line
+    ls -ltr
+    echo # Creates a blank line
+```
+
+`3) Defining variables`
+```sh
+    #!/bin/bash
+    # Defines variables
+
+    a=welcome
+    b=to
+    c='Linux course' # Single quote since there is a space in between
+
+    echo "Hi $a"
+    echo "$b my"
+    echo "$c"
+```
+
+`3) Input/Output`
+```sh
+    #!/bin/bash
+    # Input/Output
+
+    echo Hello, my name is Linux
+    echo
+    echo What is your name?
+    read name
+    echo
+    echo Hello $name
+    echo
+```
 
 ```sh
-    mkdir myscripts
-    cd myscripts
+    #!/bin/bash
+    # Input/Output
+
+    a=`hostname` # The ticks (`) allow you to run an actual Linux command
+
+    echo Hello, my name is $a
+    echo
+    echo What is your name?
+    read b
+    echo
+    echo Hello $b
+    echo
 ```
 
 ## 🛠️ Common commands
