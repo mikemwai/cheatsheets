@@ -1,14 +1,64 @@
-# SQL Queries
+# 🗄️ Databases 
 
-## Basic Commands
+## 🦉 Oracle
 
-## CRUD Commands
+- Check listener status:
+
+```sh
+  lsnrctl status
+```
+
+- Check where the cluster services are running from:
+  
+```sh
+  crm status
+```
+
+- Switch to oracle:
+
+```sh
+  su - oracle
+```
+
+- Enter OGG command interpreter:
+
+```sh
+  g
+```
+
+- Check for OGG lag:
+
+```sh
+  info all
+```
+
+- View OGG lag info in detail:
+
+```sh
+  view report
+```
+
+- View more information about a specific process based on the group name:
+
+```sh
+  info group_name
+```
+
+## 🐬 SQL
+### Commands
+- Connect to SQL:
+
+```sh
+  sqlplus / as sysdba
+```
+
+### Queries
 
 ---
 
-# NoSQL Queries (MongoDB)
+## NoSQL (MongoDB)
 
-## Basic Commands
+### Commands
 ```sh
     show dbs;
 ```
@@ -25,8 +75,8 @@
    show collections;
 ```
 
-## CRUD Commands
-### Create
+### Queries
+#### Create
 ```sh
     db.collectionname.insertOne({"name": "Laptop", "rating": 4.5})
 ```
@@ -34,7 +84,7 @@
     db.collectionname.insertMany([{"name": "Laptop", "rating": 4.5},{"name": "Laptop", "rating": 4.5}]);
 ```
 
-### Find
+#### Find
 ```sh
     db.collectionname.find()
 ```
@@ -54,7 +104,7 @@
     db.collectionname.find().limit(3)
 ```
 
-### Update
+#### Update
 ```sh
     db.collectionname.updateOne({name: "Name1"}, {$set: {rating: 5.0}});
 ```
