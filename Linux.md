@@ -866,7 +866,7 @@
 
  - Save the message by clicking `Ctrl+d`.
 
-### Recover root password
+### 7) Recover root password
 - Restart the computer:
 
 ```sh
