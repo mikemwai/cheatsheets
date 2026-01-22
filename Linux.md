@@ -2147,14 +2147,14 @@
     cat /etc/passwd # Shows the type of shell assigned to a user
 ```
 
-> ### Types of Linux Shells
+> #### Types of Linux Shells
 > - Examples: `Gnome`, `KDE`, `sh`, `bash`, `csh and tcsh`, `ksh`
 >
-> ### Contents of shell script
-> `i) Shell` (#!/bin/bash) - The 1st line of a shell script file.
-> `2) Comments` (# comments) - Description of the script.
-> `3) Commands` (echo, cp, grep etc.)
-> `4) Statements` (if, while, for etc.)
+> #### Contents of shell script
+>   1) `Shell` (#!/bin/bash) - The 1st line of a shell script file.
+>   2) `Comments` (# comments) - Description of the script.
+>   3) `Commands` (echo, cp, grep etc.)
+>   4) `Statements` (if, while, for etc.)
 >
 > - `N/B:`- A shell script should have executable permissions e.g. -rwx, r-x.
 >         - A shell script has to be called from the absolute path.
@@ -2239,7 +2239,7 @@
     #!/bin/bash
     # Input/Output
 
-    a=`hostname` # The ticks (`) allow you to run an actual Linux command
+    a=`hostname` # The ticks (``) allow you to run an actual Linux command
 
     echo Hello, my name is $a
     echo
