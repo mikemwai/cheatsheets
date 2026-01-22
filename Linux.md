@@ -1777,109 +1777,6 @@
         quit # Exit
     ```
 
-## 🔄 Updates Management
-- Run updates for a `Debian based distro`:
-
-```sh
-  sudo apt update
-```
-
-- Download and install updates for each outdated package for a `Debian based distro`:
-
-```sh
-  sudo apt upgrade
-```
-
-- List the packages that can be upgraded:
-
-```sh
-    sudo apt list --upgradable
-```
-
-- Install a package for a `Debian based distro`:
-
-```sh
-  sudo apt install package
-```
-
-- Upgrading the Linux distribution to the next version:
-
-```sh
-    sudo apt dist-upgrade -y
-```
-
-- Remove packages that are not being used:
-
-```sh
-    sudo apt autoremove -y
-```
-
-- Delete stored `.deb` cached package files:
-
-```sh
-    sudo apt clean
-```
-
-## SOS Report
-- It collects and packages diagnostic and support data:
-
-```sh
-    sosreport
-```
-
-- View the version:
-
-```sh
-    sos-version
-```
-
-- `N/B:` The files are saved by default under `/var/tmp/`.
-
-## Terminal Control Keys
-- Erase everything typed on the command line:
-
-```sh
-    Ctrl + u
-```
-
-- Stop/ kill a command:
-
-```sh
-    Ctrl + c
-```
-
-- Suspend a command (Puts process in the background):
-
-```sh
-    Ctrl + z
-```
-
-- Exit from an interactive program (signals end of data):
-
-```sh
-    Ctrl + d
-```
-
-## Help commands
-
-- Show a shorter info version of a command:
-
-```sh
-    whatis command
-```
-
-- Show a longer info version of a command:
-
-```sh
-    command --help
-```
-
-- Check for the manual for a command:
-
-```sh
-    man command
-```
-
 ## 🛠️ System Utility/ Terminal Commands
 
 - Show the time/ date:
@@ -1927,6 +1824,31 @@
 ```
 
 - `N/B:` Default filename if not named is `typescript`.
+
+## Terminal Control Keys
+- Erase everything typed on the command line:
+
+```sh
+    Ctrl + u
+```
+
+- Stop/ kill a command:
+
+```sh
+    Ctrl + c
+```
+
+- Suspend a command (Puts process in the background):
+
+```sh
+    Ctrl + z
+```
+
+- Exit from an interactive program (signals end of data):
+
+```sh
+    Ctrl + d
+```
 
 ## GNU Screen
 - Used for managing multiple terminal sessions in a single window.
@@ -2249,6 +2171,84 @@
     echo
     echo Hello $b
     echo
+```
+
+## 🔄 Updates Management
+- Run updates for a `Debian based distro`:
+
+```sh
+  sudo apt update
+```
+
+- Download and install updates for each outdated package for a `Debian based distro`:
+
+```sh
+  sudo apt upgrade
+```
+
+- List the packages that can be upgraded:
+
+```sh
+    sudo apt list --upgradable
+```
+
+- Install a package for a `Debian based distro`:
+
+```sh
+  sudo apt install package
+```
+
+- Upgrading the Linux distribution to the next version:
+
+```sh
+    sudo apt dist-upgrade -y
+```
+
+- Remove packages that are not being used:
+
+```sh
+    sudo apt autoremove -y
+```
+
+- Delete stored `.deb` cached package files:
+
+```sh
+    sudo apt clean
+```
+
+## SOS Report
+- It collects and packages diagnostic and support data:
+
+```sh
+    sosreport
+```
+
+- View the version:
+
+```sh
+    sos-version
+```
+
+- `N/B:` The files are saved by default under `/var/tmp/`.
+
+## Help commands
+
+- Show a shorter info version of a command:
+
+```sh
+    whatis command
+```
+
+- Show a longer info version of a command:
+
+```sh
+    command --help
+```
+
+- Check for the manual for a command:
+
+```sh
+    man command
 ```
 
 ## 🛠️ Common commands
