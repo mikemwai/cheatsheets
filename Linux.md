@@ -1485,10 +1485,10 @@
     cat /etc/passwd # Shows the type of shell assigned to a user
 ```
 
-> #### Types of Linux Shells
+> Types of Linux Shells
 > - Examples: `Gnome`, `KDE`, `sh`, `bash`, `csh and tcsh`, `ksh`
 >
-> #### Contents of shell script
+> Contents of shell script
 >   1) `Shell` (#!/bin/bash) - The 1st line of a shell script file.
 >   2) `Comments` (# comments) - Description of the script.
 >   3) `Commands` (echo, cp, grep etc.)
