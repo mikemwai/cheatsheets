@@ -1622,12 +1622,13 @@
 ```
 
 ## System Maintenance
-- Commands are used to bring the systemm to shutdown, reboot, single mode etc.
+- Commands that are used to bring the system to shutdown, reboot, single mode etc include `shutdown`, `init`, `reboot`, `halt`.
 
 `1) shutdown`
 - Power off the system gracefully:
 ```sh
   shutdown
+    shutdown -h now # Power off immediately
 ```
 
 `2) init`
