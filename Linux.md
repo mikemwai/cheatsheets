@@ -1425,6 +1425,210 @@
 
 - `N/B:` The niceness scale goes from `-20` to `19`. The lower the number, more priority that task gets.
 
+## 🌐 Networking
+### 1) Miscellaneous
+- Connect to a server:
+
+```sh
+  curl -v telnet://ip_address
+```
+
+- Check if specific server is reachable/ Continuous ping:
+
+```sh
+    ping ip_address
+```
+
+- Ping with specific number of requests:
+
+```sh
+    ping -c no_of_requests ip_address
+```
+
+- Check ip address for the device:
+
+```sh
+    ip addr show
+    ip addr
+```
+
+```sh
+    ifconfig # Works if you have installed net-tools
+```
+
+- Perform a traceroute:
+
+```sh
+  traceroute ip_address/ hostname
+```
+
+### 2) Hostname/ IP lookup 
+- Makes use of `nslookup` and `dig`:
+  
+    - `nslookup`:
+      
+    ```sh
+        nslookup www.google.com # Update this part
+    ```
+
+    - `dig`:
+  
+    ```sh
+        dig www.google.com # This one gives a more detailed output
+    ```
+
+### 3) Network Time Protocol (NTP) 
+- For time synchronization, runs on `port no. 123`:
+
+    ```sh
+        - rpm -qa | grep ntp # Check if ntp has been installed
+        - yum install ntp # Install the ntp package if not installed
+        - vi /etc/ntp.conf # Modify the configuration file
+    
+        - In the file, edit the server to 8.8.8.8 (Google's DNS server for the correct time):
+            # Please consider joining the pool....
+            server 8.8.8.8
+        
+            Save the file...esc...:wq!
+    
+        - systemctl start ntpd # Starts the service to save the changes done
+        - systemctl status ntpd # Confirm that the service is running
+          ps -ef | grep ntp # Check if the service is running
+    ```
+    
+    `N\B`:
+    ```sh
+        systemctl enable ntpd # If not started, enable it to start at boot
+        systemctl stop ntpd # Stops the ntp service
+    ```
+    
+    - In the ntpq interactive command line:
+    ```sh
+        ntpq # Takes you to the interactive ntp command line
+        peers # Shows you the servers you are connected to
+        quit # Exit
+    ```
+
+## Shell Scripting
+- `Kernel` - Interface between hardware and software, forwards commands from the shell to the hardware.
+- `Shell` - Interface between users and kernel.
+- `Shell script` - Executable file containing multiple shell commands that are executed sequentially.
+- Find the shell:
+
+```sh
+    echo $0
+```
+
+- List all available shells:
+
+```sh
+    cat /etc/shells
+    cat /etc/passwd # Shows the type of shell assigned to a user
+```
+
+> #### Types of Linux Shells
+> - Examples: `Gnome`, `KDE`, `sh`, `bash`, `csh and tcsh`, `ksh`
+>
+> #### Contents of shell script
+>   1) `Shell` (#!/bin/bash) - The 1st line of a shell script file.
+>   2) `Comments` (# comments) - Description of the script.
+>   3) `Commands` (echo, cp, grep etc.)
+>   4) `Statements` (if, while, for etc.)
+>
+> - `N/B:`- A shell script should have executable permissions e.g. -rwx, r-x.
+>         - A shell script has to be called from the absolute path.
+
+### Basic Scripts
+`1) Output to screen using echo`
+- Create the directory `myscripts`:
+
+```sh
+    mkdir myscripts
+    cd myscripts
+```
+
+- Create the shell script:
+
+```sh
+    vi output-screen
+```
+
+```sh
+    #!/bin/bash
+
+    echo Hello World
+```
+
+- Change the file permissions to allow it to be executable:
+
+```sh
+    chmod a+x output-screen
+    ls -ltr # Confirm the file is now executable
+```
+
+- Run the shell script:
+
+```sh
+    ./output-screen
+```
+
+`2) Defining small tasks`
+```sh
+    #!/bin/bash
+    # Defines small tasks
+    whoami
+    echo
+    pwd
+    echo # Creates a blank line
+    hostname
+    echo # Creates a blank line
+    ls -ltr
+    echo # Creates a blank line
+```
+
+`3) Defining variables`
+```sh
+    #!/bin/bash
+    # Defines variables
+
+    a=welcome
+    b=to
+    c='Linux course' # Single quote since there is a space in between
+
+    echo "Hi $a"
+    echo "$b my"
+    echo "$c"
+```
+
+`3) Input/Output`
+```sh
+    #!/bin/bash
+    # Input/Output
+
+    echo Hello, my name is Linux
+    echo
+    echo What is your name?
+    read name
+    echo
+    echo Hello $name
+    echo
+```
+
+```sh
+    #!/bin/bash
+    # Input/Output
+
+    a=`hostname` # The ticks (``) allow you to run an actual Linux command
+
+    echo Hello, my name is $a
+    echo
+    echo What is your name?
+    read b
+    echo
+    echo Hello $b
+    echo
+```
+
 ## System Monitoring
 
 `1) df` - Disk space usage
@@ -1638,90 +1842,6 @@
 ```sh
     arch
 ```
-
-## 🌐 Networking
-### 1) Miscellaneous
-- Connect to a server:
-
-```sh
-  curl -v telnet://ip_address
-```
-
-- Check if specific server is reachable/ Continuous ping:
-
-```sh
-    ping ip_address
-```
-
-- Ping with specific number of requests:
-
-```sh
-    ping -c no_of_requests ip_address
-```
-
-- Check ip address for the device:
-
-```sh
-    ip addr show
-    ip addr
-```
-
-```sh
-    ifconfig # Works if you have installed net-tools
-```
-
-- Perform a traceroute:
-
-```sh
-  traceroute ip_address/ hostname
-```
-
-### 2) Hostname/ IP lookup 
-- Makes use of `nslookup` and `dig`:
-  
-    - `nslookup`:
-      
-    ```sh
-        nslookup www.google.com # Update this part
-    ```
-
-    - `dig`:
-  
-    ```sh
-        dig www.google.com # This one gives a more detailed output
-    ```
-
-### 3) Network Time Protocol (NTP) 
-- For time synchronization, runs on `port no. 123`:
-
-    ```sh
-        - rpm -qa | grep ntp # Check if ntp has been installed
-        - yum install ntp # Install the ntp package if not installed
-        - vi /etc/ntp.conf # Modify the configuration file
-    
-        - In the file, edit the server to 8.8.8.8 (Google's DNS server for the correct time):
-            # Please consider joining the pool....
-            server 8.8.8.8
-        
-            Save the file...esc...:wq!
-    
-        - systemctl start ntpd # Starts the service to save the changes done
-        - systemctl status ntpd # Confirm that the service is running
-          ps -ef | grep ntp # Check if the service is running
-    ```
-    
-    `N\B`:
-    ```sh
-        systemctl enable ntpd # If not started, enable it to start at boot
-        systemctl stop ntpd # Stops the ntp service
-    ```
-    
-    - In the ntpq interactive command line:
-    ```sh
-        ntpq # Takes you to the interactive ntp command line
-        peers # Shows you the servers you are connected to
-        quit # Exit
-    ```
 
 ## 🛠️ System Utility/ Terminal Commands
 
@@ -1997,126 +2117,6 @@
     vi /etc/profile or /etc/bashrc
     Test=`123`
     export TEST
-```
-
-## Shell Scripting
-- `Kernel` - Interface between hardware and software, forwards commands from the shell to the hardware.
-- `Shell` - Interface between users and kernel.
-- `Shell script` - Executable file containing multiple shell commands that are executed sequentially.
-- Find the shell:
-
-```sh
-    echo $0
-```
-
-- List all available shells:
-
-```sh
-    cat /etc/shells
-    cat /etc/passwd # Shows the type of shell assigned to a user
-```
-
-> #### Types of Linux Shells
-> - Examples: `Gnome`, `KDE`, `sh`, `bash`, `csh and tcsh`, `ksh`
->
-> #### Contents of shell script
->   1) `Shell` (#!/bin/bash) - The 1st line of a shell script file.
->   2) `Comments` (# comments) - Description of the script.
->   3) `Commands` (echo, cp, grep etc.)
->   4) `Statements` (if, while, for etc.)
->
-> - `N/B:`- A shell script should have executable permissions e.g. -rwx, r-x.
->         - A shell script has to be called from the absolute path.
-
-### Basic Scripts
-`1) Output to screen using echo`
-- Create the directory `myscripts`:
-
-```sh
-    mkdir myscripts
-    cd myscripts
-```
-
-- Create the shell script:
-
-```sh
-    vi output-screen
-```
-
-```sh
-    #!/bin/bash
-
-    echo Hello World
-```
-
-- Change the file permissions to allow it to be executable:
-
-```sh
-    chmod a+x output-screen
-    ls -ltr # Confirm the file is now executable
-```
-
-- Run the shell script:
-
-```sh
-    ./output-screen
-```
-
-`2) Defining small tasks`
-```sh
-    #!/bin/bash
-    # Defines small tasks
-    whoami
-    echo
-    pwd
-    echo # Creates a blank line
-    hostname
-    echo # Creates a blank line
-    ls -ltr
-    echo # Creates a blank line
-```
-
-`3) Defining variables`
-```sh
-    #!/bin/bash
-    # Defines variables
-
-    a=welcome
-    b=to
-    c='Linux course' # Single quote since there is a space in between
-
-    echo "Hi $a"
-    echo "$b my"
-    echo "$c"
-```
-
-`3) Input/Output`
-```sh
-    #!/bin/bash
-    # Input/Output
-
-    echo Hello, my name is Linux
-    echo
-    echo What is your name?
-    read name
-    echo
-    echo Hello $name
-    echo
-```
-
-```sh
-    #!/bin/bash
-    # Input/Output
-
-    a=`hostname` # The ticks (``) allow you to run an actual Linux command
-
-    echo Hello, my name is $a
-    echo
-    echo What is your name?
-    read b
-    echo
-    echo Hello $b
-    echo
 ```
 
 ## 🔄 Updates Management
