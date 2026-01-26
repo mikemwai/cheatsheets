@@ -1497,7 +1497,7 @@
 > - `N/B:`- A shell script should have executable permissions e.g. -rwx, r-x.
 >         - A shell script has to be called from the absolute path.
 
-### Basic Scripts
+### Basic Scripting
 `1) Output to screen using echo`
 - Create the directory `myscripts`:
 
@@ -1529,104 +1529,6 @@
 
 ```sh
     ./output-screen
-```
-
-`2) Defining small tasks`
-```sh
-    #!/bin/bash
-    # Defines small tasks
-    whoami
-    echo
-    pwd
-    echo # Creates a blank line
-    hostname
-    echo # Creates a blank line
-    ls -ltr
-    echo # Creates a blank line
-```
-
-`3) Defining variables`
-```sh
-    #!/bin/bash
-    # Defines variables
-
-    a=welcome
-    b=to
-    c='Linux course' # Single quote since there is a space in between
-
-    echo "Hi $a"
-    echo "$b my"
-    echo "$c"
-```
-
-`3) Input/Output`
-```sh
-    #!/bin/bash
-    # Input/Output
-
-    echo Hello, my name is Linux
-    echo
-    echo What is your name?
-    read name
-    echo
-    echo Hello $name
-    echo
-```
-
-```sh
-    #!/bin/bash
-    # Input/Output
-
-    a=`hostname` # The ticks (``) allow you to run an actual Linux command
-
-    echo Hello, my name is $a
-    echo
-    echo What is your name?
-    read b
-    echo
-    echo Hello $b
-    echo
-```
-
-`4) if-then Scripts`
-```sh
-    #!/bin/bash
-    # Check the variable
-
-    count=100
-    if [ $count -eq 100 ] # -eq means equal
-    then
-        echo Count is 100
-    else
-        echo Count is not 100
-    fi # Opposite of if and it signals exit out of the loop
-```
-
-```sh
-    #!/bin/bash
-    # Check if a file exists
-
-    clear
-    if [ -e /home/user/file ] 
-    then
-        echo "File exists"
-    else
-        echo "File does not exist"
-    fi 
-```
-
-```sh
-    #!/bin/bash
-    # Check if a variable value is met
-
-    a=`date | awk '{print $1}'`
-
-    if [ "$a" == Mon ] 
-    then
-        echo Today is $a
-    else
-        echo Today is not Monday
-    fi 
 ```
 
 ## 💽 Disk Usage
