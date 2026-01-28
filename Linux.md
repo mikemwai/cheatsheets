@@ -363,8 +363,8 @@
   - `tar`
  
   ```sh
-      tar cvf zipped_folder_name folder_name # Zip the folder
-      tar xvf zipped_folder_name # Unzip the folder
+      tar -cvf zipped_folder_name folder_name # Zip the folder
+      tar -xvf zipped_folder_name # Unzip the folder
   ```
 
   - `gzip`
@@ -553,6 +553,7 @@
 
 ```sh
     chown owner filename
+    chown -R owner directory # Changes the ownership of the directory and the files/ folders inside it recursively
     chgrp groupname filename
 
     # Owners:
