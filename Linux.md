@@ -1365,8 +1365,10 @@
 - Run process even after exiting the terminal:
 
     ```sh
-        nohup process & # A message is displayed on the prompt by the `nohup` command.
+        nohup process # Does not return your prompt back. 
+        nohup process & # A message is displayed on the prompt by the `nohup` command. It returns your prompt back. Saves the logs by default to nohup.out
         nohup process > /dev/null 2>&1 & # Doesn't display the nohup message.
+        cat nohup.out # View the progress of nohup
     ```
 
     - Example:
