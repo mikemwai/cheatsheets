@@ -1346,6 +1346,7 @@
 
 ### Process Management
 
+#### 1) bg
 - Put a process in the background:
 
 ```sh
@@ -1354,6 +1355,7 @@
     bg
 ```
 
+#### 2) fg
 - Bring a process in the foreground:
 
 ```sh
@@ -1362,6 +1364,7 @@
 
 - `N/B:` Click `Ctrl` + `C` to bring back your prompt, however the background process will be killed. 
 
+#### 3) nohup
 - Run process even after exiting the terminal:
 
     ```sh
@@ -1378,7 +1381,8 @@
         ```
 
 - `N/B:` A `nohup.out` file is generated and it contains all the recorded info. 
-  
+
+#### 4) nice
 - Prioritise a process:
 
 ```sh
