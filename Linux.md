@@ -1761,7 +1761,7 @@ fi
 - Power off the system gracefully:
 ```sh
   shutdown
-    shutdown -h now # Power off immediately
+  shutdown -h now # Power off immediately
 ```
 
 `2) init`
@@ -1812,6 +1812,7 @@ fi
 ```sh
     uname
     uname -a # Gives more details i.e. OS, hostname, kernel version, build date
+    uname -r # Shows the kernel version
 ```
 
 - Read information about a computer's hardware:
