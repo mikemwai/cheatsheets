@@ -1469,6 +1469,39 @@
         quit # Exit
     ```
 
+### 4) Check Servers Connectivity
+- Create the shell script:
+
+```sh
+    vi ping-script.sh
+```
+
+```sh
+#!/bin/bash
+# The script pings a remote host and shows the output
+
+ping -c1 192.168.1.1 # Update the ip_address to 192.168.1.235 or any. The ping command only pings once.
+if [ $? -eq 0 ]
+then
+echo OK
+else
+echo NOT OK
+fi
+```
+
+- Change the file permissions to allow it to be executable:
+
+```sh
+    chmod a+x ping-script
+    ls -ltr # Confirm the file is now executable
+```
+
+- Run the shell script:
+
+```sh
+    ./ping-script
+```
+
 ## Shell Scripting
 - `Kernel` - Interface between hardware and software, forwards commands from the shell to the hardware.
 - `Shell` - Interface between users and kernel.
