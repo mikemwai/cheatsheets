@@ -1392,6 +1392,13 @@
 - `N/B:` The niceness scale goes from `-20` to `19`. The lower the number, more priority that task gets.
 
 ## 🌐 Networking
+> - Interface configuration files include:
+>    - `/etc/nsswitch.conf`
+>    - `/etc/hostname`
+>    - `/etc/sysconfig/network`
+>    - `/etc/sysconfig/network-scripts-ifcfg-nic`
+>    - `/etc/resolv.conf`
+
 ### 1) Miscellaneous
 - Connect to a server:
 
