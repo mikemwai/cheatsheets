@@ -1571,6 +1571,61 @@ fi
     ./output-screen
 ```
 
+## Aliases
+- Used to cut down on lengthy and repetitive commands.
+
+- View the different created aliases:
+
+```sh
+    alias
+```
+
+- Remove a created alias:
+
+```sh
+    unalias alias_name
+```
+
+- Setting up different aliases:
+
+```sh
+    alias ls="ls -la
+    alias tell="whami; hostname; pwd"
+    alias dir="ls -l | grep ^d"
+    alias wpa="chmod a+w"
+    alias d="df -h | awk '{print \$6}' | cut -cl-4" # Shows the first 4 disk partitions
+```
+
+- `N/B:` The alias will work if after configuring no error will be displayed.
+
+### Creating user or global aliases
+> User alias - Applies only to a specific user profile/ session.
+> Global alias - Applies to everyone who has a system account.
+
+- Set up an alias only specific to a user:
+
+    ```sh
+        vi /home/user/.bashrc
+    ```
+
+    - Add this at the end of the lines (`Shift` + `G`), & save the file:
+    ```sh
+        # Personal Aliases
+        alias hh="hostname"
+    ```
+
+- Set up a global alias:
+
+    ```sh
+        vi /etc/bashrc
+    ```
+    
+    - Add this at the end of the lines (`Shift` + `G`), & save the file:
+    ```sh
+        # Global Aliases
+        alias hh="hostname"
+    ```
+
 ## 💽 Disk Usage
 
 - List the disks in the system:
@@ -1875,61 +1930,6 @@ fi
 
 - `N/B:` Default filename if not named is `typescript`.
 
-## Aliases
-- Used to cut down on lengthy and repetitive commands.
-
-- View the different created aliases:
-
-```sh
-    alias
-```
-
-- Remove a created alias:
-
-```sh
-    unalias alias_name
-```
-
-- Setting up different aliases:
-
-```sh
-    alias ls="ls -la
-    alias tell="whami; hostname; pwd"
-    alias dir="ls -l | grep ^d"
-    alias wpa="chmod a+w"
-    alias d="df -h | awk '{print \$6}' | cut -cl-4" # Shows the first 4 disk partitions
-```
-
-- `N/B:` The alias will work if after configuring no error will be displayed.
-
-### Creating user or global aliases
-> User alias - Applies only to a specific user profile/ session.
-> Global alias - Applies to everyone who has a system account.
-
-- Set up an alias only specific to a user:
-
-    ```sh
-        vi /home/user/.bashrc
-    ```
-
-    - Add this at the end of the lines (`Shift` + `G`), & save the file:
-    ```sh
-        # Personal Aliases
-        alias hh="hostname"
-    ```
-
-- Set up a global alias:
-
-    ```sh
-        vi /etc/bashrc
-    ```
-    
-    - Add this at the end of the lines (`Shift` + `G`), & save the file:
-    ```sh
-        # Global Aliases
-        alias hh="hostname"
-    ```
-
 ## Terminal Control Keys
 - Erase everything typed on the command line:
 
@@ -2010,6 +2010,39 @@ fi
     screen -r
     screen -r pid
 ```
+
+## Shell History
+- Display list of commands ran in the terminal (audit purposes):
+
+    ```sh
+      history
+    ```
+
+    Output:
+    ```sh
+      666 history # 666 shows the no. of times the command has been ran.    
+    ```
+
+- To run a previous command captured on history using the no. of times:
+
+```sh
+    !666 # Runs the command history which was ran previously
+```
+
+- Search for a command that was captured on history:
+
+```sh
+    history | grep command_name
+```
+
+- View other users history of shell commands:
+
+```sh
+    sudo -i # Switch to root
+    cat /home/username/.bash_history
+```
+
+- `N/B:` The file where the history of the shell commands are saved is `/home/user/.bash_history`
 
 ## Terminal Multiplex 
 - Screen utility allowing one to run multiple terminal sessions in a single window (For CentOS and above).
@@ -2248,12 +2281,6 @@ fi
 
 ```sh
   ke
-```
-
-- Display list of commands ran in the terminal (audit purposes):
-
-```sh
-  history
 ```
 
 - Check for system uptime:
