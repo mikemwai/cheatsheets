@@ -1553,7 +1553,99 @@ fi
 
 > - Examples of NICs:
 >   - `lo` - Loopback device that your computer uses to communicate with itself. Mainly used for diagnostics & troubleshooting, & to connect to servers running on local machine.
->   - `virb0/ Virtual Bridge 0` - Interface used for NAT (Network Address Translation) and sometimes connect to the outside network. 
+>   - `virb0/ Virtual Bridge 0` - Interface used for NAT (Network Address Translation) and sometimes connect to the outside network.
+
+- View the wired Ethernet network interface drivers & hardware settings:
+
+```sh
+    sudo -i # Switch to root
+    ethtool interface_name
+```
+
+#### NIC/ Network Bonding Procedure
+> - Refers to the combination of multiple NIC into a single bond interface for high availability & redundancy.
+> - `N\B:` Create a snapshot to revert to the machine snapchot without the NIC Bonding settings
+
+- Get the configurations of your driver/ Install the bonding driver:
+
+```sh
+    modprobe bonding
+```
+
+- Get the configurations of your bonding:
+
+```sh
+    modinfo bonding
+```
+
+- Create the bond interface file:
+
+    ```sh
+        vi /etc/sysconfig/network-scripts/ifcfg-bond0
+    ```
+
+    - Add the following parameters:
+
+     ```sh
+         DEVICE=bond0
+         TYPE=Bond
+         NAME=bond0
+         BONDING_MASTER=yes
+         BOOTPROTO=none # none/ static is if you want to assign a static IP address
+         ONBOOT=yes # Enable when system reboots 
+         IPADDR= # Write an ip address that hasn't been taken
+         NETMASK=255.255.255.0
+         GATEWAY= # IP Address of your modem/ router
+         BONDING_OPTS="mode=5 miimon=100"
+     ```
+
+- Edit the 1st NIC file (enp0s3):
+
+    ```sh
+        vi /etc/sysconfig/network-scripts/ifcfg-enp0s3
+    ```
+
+    - Add the following parameters:
+
+     ```sh
+         TYPE=Ethernet
+         BOOTPROTO=none
+         DEVICE=enp0s3
+         ONBOOT=yes
+         HWADDR="MAC from the ifconfig command"
+         MASTER=bond0
+         SLAVE=yes
+     ```
+
+- Edit the 2nd NIC file (enp0s8):
+
+    ```sh
+        vi /etc/sysconfig/network-scripts/ifcfg-enp0s8
+    ```
+
+    - Add the following parameters:
+
+     ```sh
+         TYPE=Ethernet
+         BOOTPROTO=none
+         DEVICE=enp0s8
+         ONBOOT=yes
+         HWADDR="MAC from the ifconfig command"
+         MASTER=bond0
+         SLAVE=yes
+     ```
+
+- Restart the `network` service:
+ 
+```sh
+    sudo systemctl restart network
+```
+
+- View the bond interface settings like bonding mode & slave interface:
+
+```sh
+    cat /proc/net/bonding/bond0
+```
 
 ## Shell Scripting
 - `Kernel` - Interface between hardware and software, forwards commands from the shell to the hardware.
