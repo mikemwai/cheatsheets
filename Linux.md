@@ -1393,11 +1393,24 @@
 
 ## 🌐 Networking
 > - Interface configuration files include:
->    - `/etc/nsswitch.conf`
->    - `/etc/hostname`
->    - `/etc/sysconfig/network`
->    - `/etc/sysconfig/network-scripts-ifcfg-nic`
->    - `/etc/resolv.conf`
+>    - `/etc/nsswitch.conf` - Tells the system where it should resolve it's host name to IP address.
+>    - `/etc/hosts` - Where you define your IP address and system host name. Acts like a DNS where you can give a name to a certain IP address and you can ping using that name.
+>    - `/etc/sysconfig/network` - Where you specify your host name.
+>    - `/etc/sysconfig/network-scripts` - Where you specify your IP address on all the networks.
+>    - `/etc/sysconfig/network-scripts-ifcfg-interface` - Where you specify the interface details.
+>    - `/etc/resolv.conf` - Specifies your DNS server i.e. resolves host name to IP address and vice versa.
+>
+> - Network Components:
+>   - `IP`
+>   - `Subnet mask` - A 32-bit number masking an IP address, & divides it into network address and host address. Done by setting network bits to all "1"s & setting host bits to all "0"s e.g. `255 = 11111111`, `0 = 0`.
+>   - `Gateway` - Tells the computer which route to pick when sending traffic in and out i.e. switch.
+>   - `Static vs DHCP`
+>   - `Interface`
+>
+> - Address Classes:
+>   - `Class A` - Subnet Mask is `255.0.0.0`.
+>   - `Class B` - Subnet Mask is `255.255.0.0`.
+>   - `Class C` - Subnet Mask is `255.255.255.0`.
 
 ### 1) Miscellaneous
 - Connect to a server:
@@ -1421,11 +1434,9 @@
 - Check ip address for the device:
 
 ```sh
-    ip addr show
+    ip a
     ip addr
-```
-
-```sh
+    ip addr show
     ifconfig # Works if you have installed net-tools
 ```
 
@@ -1433,6 +1444,30 @@
 
 ```sh
   traceroute ip_address/ hostname
+```
+
+- Bring up a network interface
+
+```sh
+    if up
+```
+
+- Bring down a network interface:
+  
+```sh
+    if up
+```
+
+- Show your gateway, how traffic is flowing & which interfaces it's flowing from:
+
+```sh
+    netstat -rnv
+```
+
+- Trace/ Listen every single transaction leaving & entering your machine (Acts as a sniffing tool):
+
+```sh
+    tcpdump -i interface_name # Check under the Iface column
 ```
 
 ### 2) Hostname/ IP lookup 
