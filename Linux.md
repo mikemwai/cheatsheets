@@ -1647,6 +1647,19 @@ fi
     cat /proc/net/bonding/bond0
 ```
 
+### 6) Network Utilities
+#### i) NetworkManager
+> - Service providing set of tools designed specifically to make it easier to manage Linux networking configuration & is the default network management service on RHEL 8 & 9.
+>   
+> - `Network configuration methods`
+>     - `i) Network Manager Command Line Interface (nmcli)`
+>     - `ii) Network Manager Text User Interface (nmtui)` - 
+>     - `iii) nm-connection-editor`
+>     - `iv) GNOME Settings`
+
+##### Network Manager Text User Interface (nmtui)
+
+
 ## Shell Scripting
 - `Kernel` - Interface between hardware and software, forwards commands from the shell to the hardware.
 - `Shell` - Interface between users and kernel.
