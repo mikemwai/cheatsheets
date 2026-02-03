@@ -1431,15 +1431,6 @@
     ping -c no_of_requests ip_address
 ```
 
-- Check ip address for the device:
-
-```sh
-    ip a
-    ip addr
-    ip addr show
-    ifconfig # Works if you have installed net-tools
-```
-
 - Perform a traceroute:
 
 ```sh
@@ -1549,6 +1540,20 @@ fi
 ```sh
     ./ping-script
 ```
+
+### 5) Network Interface Card (NIC) Information (ethtool)
+- Check ip address for the device/ Find NIC information:
+
+```sh
+    ip a
+    ip addr
+    ip addr show
+    ifconfig # Works if you have installed net-tools
+```
+
+> - Examples of NICs:
+>   - `lo` - Loopback device that your computer uses to communicate with itself. Mainly used for diagnostics & troubleshooting, & to connect to servers running on local machine.
+>   - `virb0/ Virtual Bridge 0` - Interface used for NAT (Network Address Translation) and sometimes connect to the outside network. 
 
 ## Shell Scripting
 - `Kernel` - Interface between hardware and software, forwards commands from the shell to the hardware.
