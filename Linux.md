@@ -1656,8 +1656,7 @@ fi
     cat /proc/net/bonding/bond0
 ```
 
-### 6) Network Utilities
-#### i) NetworkManager
+### 6) NetworkManager
 > - Service providing set of tools designed specifically to make it easier to manage Linux networking configuration & is the default network management service on RHEL 8 & 9.
 >   
 > - `Network configuration methods`
@@ -1666,7 +1665,7 @@ fi
 >     - `iii) nm-connection-editor`
 >     - `iv) GNOME Settings`
 
-##### Network Manager Text User Interface (nmtui)
+#### Network Manager Text User Interface (nmtui)
 - Start it up:
 
 ```sh
@@ -1675,7 +1674,7 @@ fi
 
 - `N/B:` Use `Tab` key to navigate the network manager.
 
-##### Network Manager Command Line Interface (nmcli)
+#### Network Manager Command Line Interface (nmcli)
 - Start it up:
 
 ```sh
@@ -1688,7 +1687,7 @@ fi
     nmcli con show
 ```
 
-- Get the listing of network interface:
+- Get the listing of network interfaces:
 
 ```sh
     nmcli device
