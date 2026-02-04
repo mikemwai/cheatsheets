@@ -358,8 +358,17 @@
 
 ### 7) File compression and unzipping
 
-- The commands include `tar`, `gzip`, `gunzip`:
+- The commands include `tar`, `gzip`, `gunzip`, `zip`:
+  
+  - `zip`
 
+  ```sh
+      zip new_zipped_folder folder # Compresses the folder to a zip folder
+      zip -r new_zipped_folder folder # Include all the files and folders in the folder to be zipped
+      unzip zipped_folder # Unzip the zipped folder
+      sudo yum install zip # Install the zip package if not nstalled (RHEL based)
+  ```
+  
   - `tar`
  
   ```sh
@@ -1652,13 +1661,62 @@ fi
 > - Service providing set of tools designed specifically to make it easier to manage Linux networking configuration & is the default network management service on RHEL 8 & 9.
 >   
 > - `Network configuration methods`
->     - `i) Network Manager Command Line Interface (nmcli)`
->     - `ii) Network Manager Text User Interface (nmtui)` - 
+>     - `i) Network Manager Command Line Interface (nmcli)` 
+>     - `ii) Network Manager Text User Interface (nmtui)` 
 >     - `iii) nm-connection-editor`
 >     - `iv) GNOME Settings`
 
 ##### Network Manager Text User Interface (nmtui)
+- Start it up:
 
+```sh
+    nmtui
+```
+
+- `N/B:` Use `Tab` key to navigate the network manager.
+
+##### Network Manager Command Line Interface (nmcli)
+- Start it up:
+
+```sh
+    nmcli
+```
+
+- View the available connections:
+
+```sh
+    nmcli con show
+```
+
+- Get the listing of network interface:
+
+```sh
+    nmcli device
+```
+
+- Configure a static IP:
+
+    ```sh
+        nmcli connection modify interface ipv4.addresses 10.253.1.211/24 # Assign the IP address
+        nmcli connection modify interface ipv4.gateway 10.253.1.1 # Assign the gateway
+        nmcli connection modify interface ipv4.method manual 
+        nmcli connection  modify interface ipv4.dns 8.8.8.8 # DNS
+        nmcli connection down interface && nmcli connection up interface # Restarting the network interface
+        ip address show interface
+    ```
+    - `N/B:` Make sure the ip address is not pingable before assigning it to the interface.
+
+- Adding a secondary static IP:
+
+```sh
+    nmcli device status # Check the interface connection status
+    nmcli connection show --active # View the active interface
+    ifconfig
+    nmcli connection modify enp0s3 +ipv4.addresses 10.0.0.211/24 # Add the secondary IP address
+    nmcli connection reload # Restart the network manager
+    systemctl reboot # Reboot the system for the secondary IP address to be added to the interface
+    ip address show
+```
 
 ## Shell Scripting
 - `Kernel` - Interface between hardware and software, forwards commands from the shell to the hardware.
