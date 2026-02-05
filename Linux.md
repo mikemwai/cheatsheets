@@ -1717,6 +1717,143 @@ fi
     ip address show
 ```
 
+### 7) SSH & Telnet
+> - `SSH` refers to secure shell.
+> - Its service daemon is `sshd` and its port number is `22`.
+
+### Configure & secure SSH
+#### i) Idle Timeout Interval
+- Set the Idle timeout interval:
+  
+    ```sh
+        sudo -i
+        cp /etc/ssh/sshd_config /etc/ssh/sshd_config-orig # Backup the file
+        vi /etc/ssh/sshd_config
+    ```
+    
+    - Add the following lines in `sshd_config`:
+    
+    ```sh
+        ClientAliveInterval 600 # Time in seconds
+        ClientAliveCountMax 0
+    ```
+
+- Restart the ssh service:
+
+```sh
+    systemctl restart sshd
+```
+
+#### ii) Disable root login
+- Set the disable root login:
+
+    ```sh
+        sudo -i
+        vi /etc/ssh/sshd_config
+    ```
+
+    - Replace the `PermitRootLogin` yes to no:
+
+    ```sh
+        PermitRootLogin no
+    ```
+
+- Restart the ssh service:
+
+```sh
+    systemctl restart sshd
+```
+
+#### iii) Disable Empty Passwords
+> - Prevent remote logins from accounts with empty passwords for added security.
+
+- Set the disable empty passwords:
+
+    ```sh
+        sudo -i
+        vi /etc/ssh/sshd_config
+    ```
+
+    - Add this line:
+
+    ```sh
+        PermitEmptyPasswords no
+    ```
+
+- Restart the ssh service:
+
+```sh
+    systemctl restart sshd
+```
+
+#### iv) Limits Users' SSH Access
+- Set the limit of SSH logins:
+
+    ```sh
+        sudo -i
+        vi /etc/ssh/sshd_config
+    ```
+
+    - Add the following line:
+
+    ```sh
+        AllowUsers user1 user 2
+    ```
+
+- Restart the ssh service:
+
+```sh
+    systemctl restart sshd
+```
+
+#### v) Use a different port
+> - By default SSH port runs on port 22 hence changing the SSH port number makes the system more secure.
+
+- Change the port number:
+  
+    ```sh
+        sudo -i
+        vi /etc/ssh/sshd_config
+    ```
+
+    - Change the port number from 22:
+
+    ```sh
+        Port 22
+    ```
+
+- Restart the ssh service:
+
+```sh
+    systemctl restart sshd
+```
+
+#### vi) SSH Keys - Access Remote Server without Password
+> - Benefits of SSH Keys:
+>    1) Repetitive logins
+>    2) Automation through scripts
+>       
+> - Keys are generated at user level in the client and the keys are copied over to the server for seamless login.
+
+##### Steps of Allowing Remote Server Access
+- Generate the key:
+
+```sh
+    ssh-keygen
+```
+
+- Copy the key to the server:
+
+```sh
+    ssh-copy-id user@ip_address
+```
+
+- Login from client to the server:
+
+```sh
+    ssh user@ip_address
+```
+
 ## Shell Scripting
 - `Kernel` - Interface between hardware and software, forwards commands from the shell to the hardware.
 - `Shell` - Interface between users and kernel.
