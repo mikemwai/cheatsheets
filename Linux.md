@@ -1407,7 +1407,7 @@
 >    - `/etc/sysconfig/network` - Where you specify your host name.
 >    - `/etc/sysconfig/network-scripts` - Where you specify your IP address on all the networks.
 >    - `/etc/sysconfig/network-scripts-ifcfg-interface` - Where you specify the interface details.
->    - `/etc/resolv.conf` - Specifies your DNS server i.e. resolves host name to IP address and vice versa.
+>    - `/etc/resolv.conf` - Specifies your DNS server i.e. resolves host name to IP address and vice versa. (Default port number for DNS is `53`)
 >
 > - Network Components:
 >   - `IP`
@@ -1429,6 +1429,8 @@
   curl http://website.com/filename # Downloads a file from a web server using the HTTP protocol.
   curl -O http://website.com/filename # Downloads the file.
 ```
+
+> - The default port number for Telnet is `23`.
 
 - Check if specific server is reachable/ Continuous ping:
 
@@ -1809,7 +1811,7 @@ fi
 ```
 
 #### v) Use a different port
-> - By default SSH port runs on port 22 hence changing the SSH port number makes the system more secure.
+> - By default SSH port runs on port `22` hence changing the SSH port number makes the system more secure.
 
 - Change the port number:
   
@@ -1912,6 +1914,71 @@ fi
 ```sh
     ss -t -l -n
 ```
+
+### 9) File Transfer Protocol (FTP)
+> - Used for transfer of files between a client and server on a computer network.
+> - Built on a client-server model architecture using separate control & data connections between the client and server.
+> - Default port is `21`.
+
+#### i) Remote Server
+- Install & configure FTP on the remote server:
+
+    ```sh
+        sudo -i # Switch to root
+        rpm -qa | grep vsftpd # Check if server vsftpd package has been installed
+        yum install vsftpd # Install the server vsftpd package if uninstalled
+        ping www.google.com # Confirm you have internet connectivity
+        cp /etc/vsftpd/vsftpd.conf /etc/vsftpd/vsftpd-orig.conf # Backup the config file
+        vi /etc/vsftpd/vsftpd.conf # Edit the config file
+    ```
+
+    - Make the following changes in the file:
+
+    ```sh
+        ## Disable anonymous login
+        anonymous_enable=NO
+
+        ## Uncomment
+        ascii_upload_enable=YES
+        ascii_download_enable=YES
+
+        ## Uncomment - Enter your Welcome message
+        ftpd_banner=Welcome to blah FTP service.
+
+        ## Add at the end of this file
+        use_localtime=YES
+    ```
+
+- Configure the service:
+
+```sh
+    systemctl start vsftpd
+    systemctl enable vsftpd
+    systemctl stop firewalld
+    systemctl disable firewalld
+```
+
+#### ii) Client Server
+- Install & configure FTP on the client server:
+
+    ```sh
+        sudo -i # Switch to root
+        rpm -qa | grep ftp # Check if client ftp package has been installed
+        yum install ftp # Install the client ftp package if uninstalled
+        ping www.google.com # Confirm you have internet connectivity
+        su - user
+        touch file1
+    ```
+
+    - Transfer the file to the FTP server:
+
+    ```sh
+        ftp server_ip_address # Enter the username & password
+        bin # Switch to Binary mode because you want to transfer a file
+        hash # Show the file transfer progress
+        put file1 # Add the file to be transferred
+        bye # Exit the ftp interactive cmd 
+    ```
 
 ## Shell Scripting
 - `Kernel` - Interface between hardware and software, forwards commands from the shell to the hardware.
