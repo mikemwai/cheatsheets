@@ -1422,10 +1422,12 @@
 >   - `Class C` - Subnet Mask is `255.255.255.0`.
 
 ### 1) Miscellaneous
-- Connect to a server:
+- Connect to a server using a url:
 
 ```sh
-  curl -v telnet://ip_address
+  curl -v telnet://ip_address # Connects to a server via the Telnet protocol.
+  curl http://website.com/filename # Downloads a file from a web server using the HTTP protocol.
+  curl -O http://website.com/filename # Downloads the file.
 ```
 
 - Check if specific server is reachable/ Continuous ping:
@@ -1473,7 +1475,7 @@
 ### 2) Hostname/ IP lookup 
 - Makes use of `nslookup` and `dig`:
   
-    - `nslookup`:
+    - `nslookup` used to find out what website is using the ip address:
       
     ```sh
         nslookup www.google.com # Update this part
