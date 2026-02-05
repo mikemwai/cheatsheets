@@ -1854,6 +1854,63 @@ fi
     ssh user@ip_address
 ```
 
+### 8) SS Command
+> - Tool that checks how your system is talking to the internet by displaying open connections, finding and fixing problems.
+> - Moreover, it displays the source & destination IP addresses, shows port numbers, & indicates connection states (established, listening etc).
+>   
+> - SS command shows various types of sockets:
+>   i) `Transmission Control Protocol (TCP)` - Set of rules ensuring data is sent successfully between two computers over the internet. Used for web browsing, email, SSH, & file transfers.
+>   ii) `User Datagram Protocol (UDP)` - Way of sending data over the internet without checking if it arrives correctly. Doesn't wait for acknowledgements hence faster but less reliable. Used for live streaming.
+>   iii) `UNIX` - Way for programs on the same computer to talk to each other by using a special file for message exchange. Used in databases, web servers & local system services without internet.
+
+- Open ss:
+
+    ```sh
+        ss
+    ```
+
+    - Output columns and meanings:
+
+    ```sh
+       Netid - Shows the protocol/ socket being used i.e. UNIX will look like this u_
+       State - Shows the status of the connection i.e. ESTAB for Established.
+       Recv-Q - Shows the data amount queued for receiving.
+       Send-Q - Shows the data amount queued for sending.
+       Local Address:Port - Shows the IP and port on your local machine.
+       Peer Address:Port - Shows the IP and port on the remote device.
+       Process - Identifies which process is using the connection.
+    ```
+
+- View only the active tcp connections on the system:
+
+```sh
+    ss -t
+```
+
+- View only the active udp connections on the system:
+
+```sh
+    ss -u
+```
+
+- View only the active unix connections on the system:
+
+```sh
+    ss -x
+```
+
+- View only the connections waiting for incoming requests from other systems:
+
+```sh
+    ss -l
+```
+
+- View only the active tcp connections that are listening on the system with the ip addresses in numerical form:
+
+```sh
+    ss -t -l -n
+```
+
 ## Shell Scripting
 - `Kernel` - Interface between hardware and software, forwards commands from the shell to the hardware.
 - `Shell` - Interface between users and kernel.
