@@ -359,7 +359,7 @@
 ### 7) File compression and unzipping
 
 - The commands include `tar`, `gzip`, `gunzip`, `zip`:
-  
+
   - `zip`
 
   ```sh
@@ -373,6 +373,7 @@
  
   ```sh
       tar -cvf zipped_folder_name folder_name # Zip the folder
+      tar -cvf zipped_folder_name . # Zip the current folder
       tar -xvf zipped_folder_name # Unzip the folder
   ```
 
@@ -1991,6 +1992,51 @@ fi
     su - user
     touch file1
     scp file1 user@ip_address:/file_path
+```
+
+### 11) Remote Synchronization (rsync)
+> - Transfers & synchronizes files within the same/ remote computer by comparing the modification times & file sizes.
+> - It's a lot faster than ftp/ scp and is mostly used to backup files & directories from one server to another. Default port is `22`.
+
+- Syntax of rsync:
+
+```sh
+    rsync options source destination
+```
+
+- Install rsync in your machine:
+
+```sh
+    rpm -qa | grep rsync # Confirm if it has been installed
+    yum install rsync
+```
+
+- Transfer a file on your local machine:
+
+```sh
+    zip -r home_backup.zip /home/user
+    mkdir /tmp/backups
+    rsync -zvh home_backup.zip /tmp/backups/ 
+```
+
+- Transfer a directory on a local machine:
+
+```sh
+    rsync -azvh /home/user /tmp/backups
+```
+
+- Transfer a file to a remote machine:
+
+```sh
+    mkdir /tmp/backups
+    rsync -azv file_name user@ip_address:/file_path
+```
+
+- Transfer a file from a remote machine:
+
+```sh
+    touch file_name
+    rsync -azvh user@ip_address:/file_path /destination_file_path
 ```
 
 ## Shell Scripting
