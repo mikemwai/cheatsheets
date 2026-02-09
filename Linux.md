@@ -1981,6 +1981,18 @@ fi
         bye # Exit the ftp interactive cmd 
     ```
 
+### 10) Secure Copy Protocol (SCP)
+> - Helps to transfer computer files securely from a local to a remote host.
+> - `N/B:` Only difference with FTP is that it adds security and authentication. Default port is `22`.
+
+- Transfer the file to the remote server:
+
+```sh
+    su - user
+    touch file1
+    scp file1 user@ip_address:/file_path
+```
+
 ## Shell Scripting
 - `Kernel` - Interface between hardware and software, forwards commands from the shell to the hardware.
 - `Shell` - Interface between users and kernel.
