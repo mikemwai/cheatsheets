@@ -2039,6 +2039,16 @@ fi
     rsync -azvh user@ip_address:/file_path /destination_file_path
 ```
 
+### 12) Download Files/ Apps (wget)
+> - `wget` stands for worldwide web get.
+> - Most use cases are for situations where some programs are not available in your package installer i.e. yum etc hence the need to download from the program's official site.
+
+- Syntax:
+
+```sh
+    wget http://website.com/filename
+```
+
 ## Shell Scripting
 - `Kernel` - Interface between hardware and software, forwards commands from the shell to the hardware.
 - `Shell` - Interface between users and kernel.
