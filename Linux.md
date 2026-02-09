@@ -386,10 +386,11 @@
 ### 8) File truncate
 
 - Command used is `truncate` which shrinks/ extends the file size to the specified size.
-- `N\B:` Be careful it removes contents in the file i.e. it delete contents.
+- `N\B:` Be careful it removes contents in the file i.e. it deletes contents.
 
   ```sh
       truncate -s 10 filename # Reduces the file size to 10 bytes
+      truncate -s 500MB filename # Reduces the file size to 500 megabytes
   ```
 
 ### 9) Combining & splitting files
