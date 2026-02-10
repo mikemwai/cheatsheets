@@ -2049,6 +2049,28 @@ fi
     wget http://website.com/filename
 ```
 
+### 13) System updates and repositories
+> - Package managers include `dnf (for new RHEL versions i.e. 8+)/ yum` for RHEL distros, `apt` for Debian distros. The config file for RHEL is `/etc/yum.repos.d`.
+> - `redhat package manager (rpm)` is used when you already have a package downloaded in your system and then you can install it locally. Mostly used in environments without internet access.
+> - However, `dnf` downloads and installs the package.
+
+- `dnf` syntax:
+
+```sh
+    dnf install package_name # Install a package
+    dnf remove package_name # Remove a package
+```
+
+- `rpm` syntax:
+
+```sh
+    rpm -qa # View all the installed packages
+    rpm -qa | grep package_name # View for only a specific package
+    rpm -qa | wc -l # Get the total number of installed packages
+    rpm -ihv /downloaded_package_file_path # Install a downloaded package
+    rpm -e package_name # Remove an installed package
+```
+
 ## Shell Scripting
 - `Kernel` - Interface between hardware and software, forwards commands from the shell to the hardware.
 - `Shell` - Interface between users and kernel.
