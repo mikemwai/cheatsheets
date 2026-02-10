@@ -2071,6 +2071,29 @@ fi
     rpm -e package_name # Remove an installed package
 ```
 
+### 14) System Upgrade and Patch Management
+> - `Types of upgrades:`
+>   - `Major version upgrade` - One version to another higher version e.g. RHEL 7 to 8 or 8 to 9.
+>   - `Minor version upgrade` - Makes use of traditional point releases e.g. RHEL 8.1, 8.2 etc.
+>     
+> - `N/B:` The major version upgrade cannot be upgraded through the dnf command unlike the minor version upgrade.
+> - For a major version upgrade, you would have to backup the server, build a new server from scratch and transfer the files.
+
+- View the current running Linux version:
+
+```sh
+    cat /etc/os-release
+    cat /etc/redhat-release # For RHEL
+```
+
+- Perform a minor version upgrade:
+
+```sh
+    dnf update -y # For every question, use yes as the answer
+```
+
+> - `N/B:` `dnf upgrade` remove the old installed package versions and replaces them with newer ones. `dnf update` preserves the older package versions.
+
 ## Shell Scripting
 - `Kernel` - Interface between hardware and software, forwards commands from the shell to the hardware.
 - `Shell` - Interface between users and kernel.
