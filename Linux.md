@@ -2049,7 +2049,7 @@ fi
     wget http://website.com/filename
 ```
 
-### 13) System updates and repositories
+### 13) Package Management
 > - Package managers include `dnf (for new RHEL versions i.e. 8+)/ yum` for RHEL distros, `apt` for Debian distros. The config file for RHEL is `/etc/yum.repos.d`.
 > - `redhat package manager (rpm)` is used when you already have a package downloaded in your system and then you can install it locally. Mostly used in environments without internet access.
 > - However, `dnf` downloads and installs the package.
@@ -2069,6 +2069,35 @@ fi
     rpm -qa | wc -l # Get the total number of installed packages
     rpm -ihv /downloaded_package_file_path # Install a downloaded package
     rpm -e package_name # Remove an installed package
+```
+
+- Installing a package using a `.rpm` file:
+
+```sh
+    uname -m # Confirm the architecture before choosing the .rpm file to download
+    wget https://package_download_link/package.rpm
+    ls -ltrh # Confirm the file has been downloaded
+    rpm -ivh package.rpm # Install the package
+    rpm -qa | grep package_name # Confirm the package has been installed
+```
+
+- View the information about an installed package:
+
+```sh
+    rpm -qi full_package_name
+```
+
+- List the configuration files of an installed package:
+
+```sh
+    rpm -qc full_package_name 
+```
+
+- View which package a command belongs to:
+
+```sh
+    which package_name # View the full path for the package
+    rpm -qf full_package_path
 ```
 
 ### 14) System Upgrade and Patch Management
