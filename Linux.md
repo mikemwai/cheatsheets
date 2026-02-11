@@ -1,4 +1,4 @@
-# 🐧 Linux Cheatsheet
+ [REMOVED]🐧 Linux Cheatsheet
 
 > [!IMPORTANT]
 > - When using these commands and you notice they don't run use `sudo` infront of the command.
@@ -2094,10 +2094,83 @@ fi
 
 > - `N/B:` `dnf upgrade` remove the old installed package versions and replaces them with newer ones. `dnf update` preserves the older package versions.
 
+### 15) Create a Local Repository (Yum Server)
+> - `Repositroy` refers to where all the packages are stored and downloaded from.
+> - `/etc/yum.repos.d` is the directory that contains all the files which show Linux all the different mirrors.
+
+- Create a local repository:
+
+```sh
+    createrepo_c
+    createrepo # For RHEL 7 and earlier versions
+```
+
+- Install the `create_repo` package:
+
+```sh
+    dnf install createrepo_c
+```
+
+- Mount your DVD/ ISO file in your Linux machine:
+
+```sh
+    mkdir local_repo # Create in `/`
+    sudo mount /dev/cdrom/ local_repo # Choose any directory you want to mount the disk 
+```
+
+- Copy all the packages into the local repo:
+
+```sh
+    cd mounted_disk_directory/AppStream/Packages
+    ls -ltr | wc -l # Confirm the number of packages
+    du -sh . # Confirm you have enough space
+    df -kh # Confirm you have enough space in `/`
+    cp -rv mounted_disk_directory/AppStream/Packages/* /local_repo/
+```
+
+- Remove all the files in the `/etc/yum.repos.d` directory:
+
+```sh
+    cd /etc/yum.repos.d
+    rm -rf /etc/yum.repos.d/*
+```
+
+- Create a new file in the `/etc/yum.repos.d` directory:
+
+```sh
+    vi local.repo
+
+    # Add these values
+    [CentOS9]
+    name=CentOS9
+    baseurl=file:///localrepo
+    enabled=1
+    gpgcheck=0
+```
+
+- Run the `createrepo` command:
+
+```sh
+    createrepo_c /localrepo/
+```
+
+- Clear out any cache for the old repository:
+
+```sh
+    dnf clean all
+```
+
+- View the details of the current repository:
+
+```sh
+    dnf repolist all
+```
+
 ## Shell Scripting
-- `Kernel` - Interface between hardware and software, forwards commands from the shell to the hardware.
-- `Shell` - Interface between users and kernel.
-- `Shell script` - Executable file containing multiple shell commands that are executed sequentially.
+> - `Kernel` - Interface between hardware and software, forwards commands from the shell to the hardware.
+> - `Shell` - Interface between users and kernel.
+> - `Shell script` - Executable file containing multiple shell commands that are executed sequentially.
+
 - Find the shell:
 
 ```sh
