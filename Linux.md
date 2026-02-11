@@ -2123,6 +2123,24 @@ fi
 
 > - `N/B:` `dnf upgrade` remove the old installed package versions and replaces them with newer ones. `dnf update` preserves the older package versions.
 
+- Rollback a package/ patch:
+
+```sh
+    yum install package_name
+    yum history # View the history of the yum commands executed  
+    yum history undo task_id # Undo the task done
+```
+
+- Rollback an update:
+
+```sh
+    yum update # Updates and preserves the old packages
+    yum upgrade # Upgrade will delete obsolete packages
+    yum history undo task_id
+```
+
+> - `N/B:` Downgrading a system to a minor version i.e. RHEL 7.1 to RHEL 7.0 isn't recommended as it might leave the system unstable.
+
 ### 15) Create a Local Repository (Yum Server)
 > - `Repositroy` refers to where all the packages are stored and downloaded from.
 > - `/etc/yum.repos.d` is the directory that contains all the files which show Linux all the different mirrors.
