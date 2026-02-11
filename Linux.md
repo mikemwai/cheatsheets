@@ -1,4 +1,4 @@
- [REMOVED]🐧 Linux Cheatsheet
+🐧 Linux Cheatsheet
 
 > [!IMPORTANT]
 > - When using these commands and you notice they don't run use `sudo` infront of the command.
