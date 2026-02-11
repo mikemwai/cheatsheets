@@ -2098,13 +2098,6 @@ fi
 > - `Repositroy` refers to where all the packages are stored and downloaded from.
 > - `/etc/yum.repos.d` is the directory that contains all the files which show Linux all the different mirrors.
 
-- Create a local repository:
-
-```sh
-    createrepo_c
-    createrepo # For RHEL 7 and earlier versions
-```
-
 - Install the `create_repo` package:
 
 ```sh
@@ -2143,7 +2136,7 @@ fi
     # Add these values
     [CentOS9]
     name=CentOS9
-    baseurl=file:///localrepo
+    baseurl=file:///local_repo/
     enabled=1
     gpgcheck=0
 ```
@@ -2151,7 +2144,8 @@ fi
 - Run the `createrepo` command:
 
 ```sh
-    createrepo_c /localrepo/
+    createrepo_c /local_repo/ # For RHEL versions 8 and above
+    createrepo /local_repo/ # For RHEL versions 7 and below 
 ```
 
 - Clear out any cache for the old repository:
@@ -2164,6 +2158,12 @@ fi
 
 ```sh
     dnf repolist all
+```
+
+- Try installing a package using the local repository:
+
+```sh
+    dnf install package_name 
 ```
 
 ## Shell Scripting
