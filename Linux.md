@@ -2213,6 +2213,210 @@ fi
     dnf install package_name 
 ```
 
+### 16) Domain Name System (DNS)
+> - System that is used to translate a host/ computer name to an IP address.
+> - `Types of DNS Records:`
+>     - `Pointer Record (PTR)` refers to the record that translates an IP address to the hostname.
+>     - `A Record (Address Record)` - refers to the record that translates a hostname to the IP address.
+>     - `CNAME Record` - refers to the record that translates a hostname to another hostname.
+>
+> - `DNS Files & Directories:`
+>     - `/etc/named.conf` is the DNS configuration file. `Named` is the process of the DNS. `Bind` is the package that you install for DNS.
+>     - `/var/named` is the directory that has all zone files where you define all hostname to IP and vice versa.
+> 
+> - `Master server` refers to the primary server that stores the master copy of DNS records.
+> - `Secondary/ Slave server` refers to a replication to the master server.
+> - `Client` refers to any machine that will resolve its hostname/ server's hostname to IP address.
+>
+> - The default DNS port number is `53`.
+
+#### Setting up a DNS Server (Master Server)
+- Install the DNSP package `bind`:
+
+```sh
+    sudo dnf install bind bind-utils -y
+```
+
+- Modify the `/etc/named.conf`:
+
+```sh
+    vi /etc/named.conf
+
+    # Replace with this line
+    listen-on port 53 { 127.0.0.1; network_interface_ip; };
+
+    # Go to the bottom of the file and edit/ add these lines at the zone section
+    zone "lab.local" IN {
+            type master;
+            file "forward.lab";
+            allow-update { none; };
+    };
+
+    ## IP Address written in reverse order
+    zone "1.168.192.in-addr.arpa" IN {
+            type master;
+            file "reverse.lab";
+            allow-update { none; };
+    };
+```
+
+- Create two zone files:
+
+```sh
+    cd /var/named
+    touch forward.lab # Performs hostname to IP address lookup
+    touch reverse.lab # Performs a reverse lookup (IP address to hostname)
+```
+
+- Modify the zone files:
+
+```sh
+    vi forward.lab
+
+    # Add these lines
+    $TTL 86400
+    @ IN SOA masterdns.lab.local. root.lab.local. (
+    	2011071001 ;Serial
+    	3600 ;Refresh
+    	1800 ;Retry
+    	604800 ;Expire
+    	86400 ;Minimum TTL
+    )
+    @ 		        IN NS 	     masterdns.lab.local.
+    @ 		        IN A 	     192.168.100.153
+    masterdns       IN A 	     192.168.100.153
+    clienta 	    IN A 	     192.168.1.240
+    clientb 	    IN A 	     192.168.1.241
+```
+
+```sh
+    vi reverse.lab
+
+    # Add these lines
+    $TTL 86400
+    @ IN SOA masterdns.lab.local. root.lab.local. (
+    	2011071001 ;Serial
+    	3600 ;Refresh
+    	1800 ;Retry
+    	604800 ;Expire
+    	86400 ;Minimum TTL
+    )
+    @ 		    IN NS 	masterdns.lab.local.
+    @ 		    IN PTR 	lab.local.
+    masterdns 	IN A 	192.168.100.153
+    29 		    IN PTR 	masterdns.lab.local.
+    240 		IN PTR 	clienta.lab.local.
+    241 		IN PTR 	clientb.lab.local.
+```
+
+- Start & enable the DNS service:
+
+```sh
+    systemctl start named
+    systemctl enable named
+```
+
+- Disable the firewall:
+
+```sh
+    systemctl stop firewalld
+```
+
+- Configure the permissions especially if you run SELinux:
+
+```sh
+    chgrp named -R /var/named
+    chown -V root:named /etc/named.conf
+    restorecon -rv /var/named
+    restorecon /etc/named.conf
+```
+
+- Verify that the changes made don't have any syntax errors:
+
+```sh
+    named-checkconf /etc/named.conf
+    named-checkzone lab.local /var/named/forward.lab
+    named-checkzone lab.local /var/named/reverse.lab
+```
+
+- Modify the network interface config file:
+
+```sh
+    cd /etc/NetworkManager/system-connections/
+    vi enp0s3.nmconnection
+
+    # Add these line under ipv4 section
+    DNS=192.168.100.153
+```
+
+- Restart the NetworkManager service:
+
+```sh
+    systemctl restart NetworkManager
+```
+
+- Modify the configuration file:
+
+```sh
+    vi /etc/resolv.conf
+
+    # Edit the nameserver to your new DNS server IP Address
+    nameserver 192.168.100.153
+```
+
+- Test DNS server using forward lookup:
+
+```sh
+    dig masterdns.lab.local # Gives more info than nslookup
+    nslookup masterdns.lab.local
+    nslookup clienta.lab.local
+    nslookup clientb.lab.local
+```
+
+- Test DNS server using reverse lookup:
+
+```sh
+    dig masterdns.lab.local 
+    nslookup masterdns.lab.local
+    nslookup 192.168.100.240
+    nslookup 192.168.100.241
+```
+
+- Add a new entry to the DNS server:
+
+```sh
+    cd /var/named
+    vi forward.lab
+```
+
+```sh
+    vi forward.lab
+
+    # Add these lines
+    $TTL 86400
+    @ IN SOA masterdns.lab.local. root.lab.local. (
+    	2011071002 ;Serial
+    	3600 ;Refresh
+    	1800 ;Retry
+    	604800 ;Expire
+    	86400 ;Minimum TTL
+    )
+    @ 		        IN NS 	     masterdns.lab.local.
+    @ 		        IN A 	     192.168.100.153
+    masterdns       IN A 	     192.168.100.153
+    clienta 	    IN A 	     192.168.1.240
+    clientb 	    IN A 	     192.168.1.241
+    new_client      IN A         ip_address
+```
+
+> - `N/B:` Don't forget to increase the serial number by 1.
+
+- Restart the DNS/ named service:
+
+```sh
+    systemctl restart named
+```
+
 ## Shell Scripting
 > - `Kernel` - Interface between hardware and software, forwards commands from the shell to the hardware.
 > - `Shell` - Interface between users and kernel.
