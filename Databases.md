@@ -20,6 +20,7 @@
   su - oracle
 ```
 
+### OGG Command Interpreter
 - Enter OGG command interpreter:
 
 ```sh
@@ -50,6 +51,26 @@
 
 ```sh
   sqlplus / as sysdba
+```
+
+- Unlock a SQL account:
+
+```sh
+  alter user account_name account unlock;
+```
+
+- Change the password for a SQL account:
+
+  ```sh
+    alter user account_name identified by "new_password";
+  ```
+  
+  - `N/B:` Ensure you follow the password policy.
+
+- View the current hostname:
+
+```sh
+  !hostname
 ```
 
 ### Queries
