@@ -46,7 +46,7 @@
 ```
 
 ## 🐬 SQL
-### Commands
+### SQL Command Interpreter
 - Connect to SQL:
 
 ```sh
