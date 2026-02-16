@@ -580,6 +580,16 @@ fi
         bye # Exit the ftp interactive cmd 
     ```
 
+    - Pull a file from the FTP server:
+
+    ```sh
+        ftp server_ip_address # Enter the username & password
+        bin # Switch to Binary mode because you want to transfer a file
+        hash # Show the file transfer progress
+        get file1 # Pull the file to be transferred
+        bye # Exit the ftp interactive cmd 
+    ```
+
 ### 10) Secure Copy Protocol (SCP)
 > - Helps to transfer computer files securely from a local to a remote host.
 > - `N/B:` Only difference with FTP is that it adds security and authentication. Default port is `22`.
