@@ -90,8 +90,11 @@
     ```
 
 ### 3) Network Time Protocol (NTP) 
-- For time synchronization, NTP runs on `port no. 123`:
+> - Used for time synchronization, and NTP runs on `port no. 123`.
+> - The configuration file is `/etc/ntp.conf`.
 
+- Configuring NTP:
+  
     ```sh
         rpm -qa | grep ntp # Check if ntp has been installed
         yum install ntp # Install the ntp package if not installed
@@ -115,17 +118,66 @@
     
   - `N\B`:
     
-    ```sh
-        systemctl enable ntpd # If not started, enable it to start at boot
-        systemctl stop ntpd # Stops the ntp service
-    ```
+  ```sh
+      systemctl enable ntpd # If not started, enable it to start at boot
+      systemctl stop ntpd # Stops the ntp service
+      systemctl restart ntpd # Restarts the ntp service
+  ```
     
-    - In the ntpq interactive command line:
-    ```sh
-        ntpq # Takes you to the interactive ntp command line
-        peers # Shows you the servers you are connected to
-        quit # Exit
-    ```
+  - In the ntpq interactive command line:
+    
+  ```sh
+      ntpq # Takes you to the interactive ntp command line
+      peers # Shows you the servers you are connected to
+      quit # Exit
+  ```
+
+#### Chronyd (New Version of NTP)
+> - Package name is `chrony`.
+> - The configuration file is `/etc/chrony.conf`.
+> - The log file is `/var/log/chrony`.
+> - The service is `systemctl start/restart chronyd`.
+> - The program command is `chronyc`.
+> - `N/B:` Chronyd and NTP cannot run concurrently, choose only one service to run. Make sure you have stopped and disabled the other service.
+
+- Confirm if the `chrony` package has been installed:
+
+  ```sh
+    rpm -qa | grep chrony
+    yum install chrony # If chrony package has not been installed.
+  ```
+
+- Configuring chronyd:
+
+  - Edit the configuration file:
+
+  ```sh
+    vi /etc/chrony.conf
+
+    # Scroll to the section beginning with and add the line:
+    # Please consider joining the pool...
+    server 8.8.8.8 # Google's DNS server
+
+    # Save the file: wq!
+  ```
+
+  - Start the service:
+
+  ```sh
+    systemctl status chronyd # Confirm if the service is running
+    systemctl start chronyd # Start the chronyd service
+    systemctl enable chronyd # Enable the chronyd service to start at boot time
+    systemctl restart chronyd # Use the restart command anytime you modify the configuration file...this is after you've started and enabled it
+  ```
+
+- Enter the interactive mode for chrony:
+
+```sh
+  chronyc
+  help # View detailed info about the chrony in it's interactive mode
+  sources # View the info about the current sources
+  quit # Exit the chrony interactive mode
+```
 
 ### 4) Check Servers Connectivity
 - Create the shell script:
