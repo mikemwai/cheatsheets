@@ -21,6 +21,13 @@
 >   - `Class B` - Subnet Mask is `255.255.0.0`.
 >   - `Class C` - Subnet Mask is `255.255.255.0`.
 
+### Network Protocols and their port numbers
+
+|Network Protocol  | Port Number      |
+|------------------|------------------|
+|DNS               |53                |
+|NTP               |123               |
+
 ### 1) Miscellaneous
 - Connect to a server using a url:
 
