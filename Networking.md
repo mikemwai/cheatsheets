@@ -90,25 +90,31 @@
     ```
 
 ### 3) Network Time Protocol (NTP) 
-- For time synchronization, runs on `port no. 123`:
+- For time synchronization, NTP runs on `port no. 123`:
 
     ```sh
-        - rpm -qa | grep ntp # Check if ntp has been installed
-        - yum install ntp # Install the ntp package if not installed
-        - vi /etc/ntp.conf # Modify the configuration file
-    
-        - In the file, edit the server to 8.8.8.8 (Google's DNS server for the correct time):
-            # Please consider joining the pool....
-            server 8.8.8.8
-        
-            Save the file...esc...:wq!
-    
-        - systemctl start ntpd # Starts the service to save the changes done
-        - systemctl status ntpd # Confirm that the service is running
-          ps -ef | grep ntp # Check if the service is running
+        rpm -qa | grep ntp # Check if ntp has been installed
+        yum install ntp # Install the ntp package if not installed
+        vi /etc/ntp.conf # Modify the configuration file
     ```
     
-    `N\B`:
+    - In the file, edit the server to 8.8.8.8 (Google's DNS server for the correct time):
+      
+    ```sh
+      # Please consider joining the pool....
+      server 8.8.8.8
+  
+      # Save the file...esc...:wq!
+    ```
+
+    ```sh
+       systemctl start ntpd # Starts the service to save the changes done
+       systemctl status ntpd # Confirm that the service is running
+       ps -ef | grep ntp # Check if the service is running
+    ```
+    
+  - `N\B`:
+    
     ```sh
         systemctl enable ntpd # If not started, enable it to start at boot
         systemctl stop ntpd # Stops the ntp service
