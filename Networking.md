@@ -1,14 +1,5 @@
 # 🌐 Networking
 
-## 🐧Linux
-> - Interface configuration files include:
->    - `/etc/nsswitch.conf` - Tells the system where it should resolve it's host name to IP address.
->    - `/etc/hosts` - Where you define your IP address and system host name. Acts like a DNS where you can give a name to a certain IP address and you can ping using that name.
->    - `/etc/sysconfig/network` - Where you specify your host name.
->    - `/etc/sysconfig/network-scripts` - Where you specify your IP address on all the networks.
->    - `/etc/sysconfig/network-scripts-ifcfg-interface` - Where you specify the interface details.
->    - `/etc/resolv.conf` - Specifies your DNS server i.e. resolves host name to IP address and vice versa. (Default port number for DNS is `53`)
->
 > - Network Components:
 >   - `IP`
 >   - `Subnet mask` - A 32-bit number masking an IP address, & divides it into network address and host address. Done by setting network bits to all "1"s & setting host bits to all "0"s e.g. `255 = 11111111`, `0 = 0`.
@@ -21,12 +12,30 @@
 >   - `Class B` - Subnet Mask is `255.255.0.0`.
 >   - `Class C` - Subnet Mask is `255.255.255.0`.
 
-### Network Protocols and their port numbers
+## Network Protocols and their port numbers
 
 |Network Protocol  | Port Number      |
 |------------------|------------------|
-|DNS               |53                |
+|DNS (TCP/UDP)     |53                |
+|DHCP              |67/68             |
+|FTP/SCP/rsync     |21                |
+|HTTP              |80                |
+|HTTPS             |443               |
+|IMAP              |143/993           |
 |NTP               |123               |
+|RDP               |3389              |
+|SMTP              |25                |
+|SSH               |22                |
+|Telnet            |23                |
+
+## 🐧Linux
+> - Interface configuration files include:
+>    - `/etc/nsswitch.conf` - Tells the system where it should resolve it's host name to IP address.
+>    - `/etc/hosts` - Where you define your IP address and system host name. Acts like a DNS where you can give a name to a certain IP address and you can ping using that name.
+>    - `/etc/sysconfig/network` - Where you specify your host name.
+>    - `/etc/sysconfig/network-scripts` - Where you specify your IP address on all the networks.
+>    - `/etc/sysconfig/network-scripts-ifcfg-interface` - Where you specify the interface details.
+>    - `/etc/resolv.conf` - Specifies your DNS server i.e. resolves host name to IP address and vice versa. (Default port number for DNS is `53`)
 
 ### 1) Miscellaneous
 - Connect to a server using a url:
