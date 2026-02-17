@@ -1777,13 +1777,46 @@
     arch
 ```
 
-## 🛠️ System Utility/ Terminal Commands
+## Timedatectl
+
+> - New utility for RHEL 7/ 8 distros that comes as a part of the systemd system & service manager.
+> - It is a replacement for old traditional `date` command.
+> - It shows/ change date, time & timezone.
+> - Moreover, it synchronizes the time with NTP server. You can either use `chronyd` or `ntpd` and make the ntp setting in `timedatectl` as `yes`.
+> - Or you can use `systemctl-timesyncd` to synchronize time which is a replacement for ntpd & chronyd.
 
 - Show the time/ date:
 
 ```sh
+    timedatectl # Detailed time status
     date
 ```
+
+- View all available time zoes:
+
+```sh
+    timedatectl list-timezones
+```
+
+- Set the time zone:
+
+```sh
+    timedatectl set-timezone "America/New_York"
+```
+
+- Set the date:
+
+```sh
+    timedatectl set-time YYYY-MM-DD
+```
+
+- Set the date and time:
+
+```sh
+    timedatectl set-time '2026-02-17 16:05:50'
+```
+
+## 🛠️ System Utility/ Terminal Commands
 
 - Show how long the system has been up, no. of logged in users, and average CPU load:
 
