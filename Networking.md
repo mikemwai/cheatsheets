@@ -1098,3 +1098,71 @@ fi
 ```sh
     systemctl restart named
 ```
+
+### 17) Mail Servers
+> - Computer system that sends and receives emails.
+> - Purpose is to handle the storage, processing, and delivery of emails.
+> - Emaples of mail servers:
+>   - i) Postfix (RHEL/ Centos)
+>   - ii) Sendmail (RHEL/ Centos) 
+>   - iii) Exim mail server 
+>   - iv) Qmail 
+>   - v) OpenSMTPD 
+
+#### Postfix
+> - Popular, easy to configure, excellent performance, and secure MTA known for it's simplicity and active community support. Hence, making it the preferred mail server for RHEL/ Centos 8+.
+> - The configuration files are located in `/etc/postfix/` directory. The main configuration file is `/etc/postfix/main.cf`.
+
+- Install the needed packages `postfix` and `s-nail`:
+
+```sh
+  rpm -qa | grep postfix
+  dnf install postfix # Install postfix if not installed
+  rpm -qa | grep s-nail
+  dnf install s-nail # Install s-nail if not installed
+```
+
+> - Postfix handles the delivery of the emails on the server (Acts as the post office). S-nail is used to write and send emails on the terminal (Acts as the mail man).
+> - The mail relay server is defined in the `main.cf` file. It accepts emails from any server and delivers them to the recipients (Acts as the middleman).
+
+- Configuring Postfix:
+
+  - Edit the configuration file:
+    
+  ```sh
+    vi /etc/postfix/main.cf
+  
+    # Find the lines starting with relay_hosts and uncomment the parameters fitting your setup
+    #relayhost = $mydomain
+    #relayhost = [gateway.my.domain]
+    #relayhost = [mailserver.isp.tld]
+    #relayhost = uucphost
+    #relayhost = [an.ip.add.ress]
+  ```
+
+  - Restart the service:
+
+  ```sh
+    systemctl restart postfix
+    systemctl status postfix
+  ```
+
+- Sending an email on the terminal:
+
+  ```sh
+    mail -s "mail setup" email_address 
+  ```
+
+  - Save the email: `Ctrl` + `d`.
+  - For the next prompt:
+    - Type `yes` to send the email.
+    - Type `no` to cancel/ edit the email.
+
+- Dealing with the `postfix` service:
+
+```sh
+  systemctl restart postfix
+  systemctl start postfix
+  systemctl status postfix
+  systemctl stop postfix
+```
