@@ -1816,6 +1816,12 @@
     timedatectl set-time '2026-02-17 16:05:50'
 ```
 
+- Start automatic time synchronization with a remote NTP server:
+
+```sh
+    timedatectl set-ntp true
+```
+
 ## 🛠️ System Utility/ Terminal Commands
 
 - Show how long the system has been up, no. of logged in users, and average CPU load:
