@@ -740,7 +740,7 @@ fi
 
 ```sh
     dnf install -y package_name # Install a package
-    dnf localinstall -y pavkage_name # Install a local .rpm package
+    dnf localinstall -y package_name # Install a local .rpm package
     dnf remove package_name # Remove a package
 ```
 
