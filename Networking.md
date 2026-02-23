@@ -739,7 +739,8 @@ fi
 - `dnf` syntax:
 
 ```sh
-    dnf install package_name # Install a package
+    dnf install -y package_name # Install a package
+    dnf localinstall -y pavkage_name # Install a local .rpm package
     dnf remove package_name # Remove a package
 ```
 
