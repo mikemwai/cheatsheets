@@ -617,6 +617,14 @@
         man groupdel # Manual for grouodel
     ```
 
+  - `usermod`:
+
+    ```sh
+      usermod -aG group_name user_name # a is for append (don't remove from other groups), G is for supplementary group(s)
+    ```
+
+    - *`N/B` This is helpful for an existing user.*
+
 - Files where the user info is stored `/etc/passwd`, `/etc/group`, `/etc/shadow`:
 
   ```sh
