@@ -1103,7 +1103,7 @@ fi
 ### 17) Mail Servers
 > - Computer system that sends and receives emails.
 > - Purpose is to handle the storage, processing, and delivery of emails.
-> - Emaples of mail servers:
+> - Emaples of mail transfer agents (servers):
 >   - i) Postfix (RHEL/ Centos)
 >   - ii) Sendmail (RHEL/ Centos) 
 >   - iii) Exim mail server 
@@ -1167,3 +1167,45 @@ fi
   systemctl status postfix
   systemctl stop postfix
 ```
+
+### 18) Web Server (HTTPD)
+> - Purpose is to server webpages and the service/package name is `httpd`.
+> - Files include: 1) `/etc/httpd/conf/httpd.conf` - This is the configuration file where you make the changes, allow connections, run on a specific protocol, and specify the user directories.
+>                  2) `/var/www/html/index.html` - This is the homepage.
+> 
+> - The log files are stored under `/var/log/httpd/`
+
+- Confirm you have the package installed:
+
+```sh
+  rpm -qa | grep httpd
+  dnf install httpd # Install the package if not installed
+```
+
+- Edit the configuration file:
+
+```sh
+  cd /etc/httpd/conf
+  vi  httpd.conf
+
+  # To change the HTTP listening port, edit:
+  Listen 80
+
+  # Change the location of your home page of your web server
+  DocumentRoot "/var/www/html"
+```
+
+- Edit the homepage:
+
+```sh
+  cd /var/www/html/
+  vi index.html
+```
+
+- Configure the service:
+
+```sh
+  systemctl restart httpd
+  systemctl enable httpd
+```
+
