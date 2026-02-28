@@ -1168,7 +1168,8 @@ fi
   systemctl stop postfix
 ```
 
-### 18) Web Server (HTTPD)
+### 18) Web Server 
+#### Apache (HTTPD)
 > - Purpose is to server webpages and the service/package name is `httpd`.
 > - Files include: 1) `/etc/httpd/conf/httpd.conf` - This is the configuration file where you make the changes, allow connections, run on a specific protocol, and specify the user directories.
 >                  2) `/var/www/html/index.html` - This is the homepage.
@@ -1200,12 +1201,28 @@ fi
 ```sh
   cd /var/www/html/
   vi index.html
+
+  # Enter this content if blank
+  Welcome to my first webpage.
 ```
 
-- Configure the service:
+- Start the service:
 
 ```sh
   systemctl restart httpd
   systemctl enable httpd
+```
+
+- Access the website using the ip address of your host:
+
+```sh
+  ifconfig
+```
+
+- Disable the firewall to allow the website to be accessed from outside your host:
+
+```sh
+  systemctl status firewalld
+  systemctl stop firewalld
 ```
 
