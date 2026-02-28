@@ -625,12 +625,14 @@ fi
 
 - Configure the service:
 
-```sh
-    systemctl start vsftpd
-    systemctl enable vsftpd
-    systemctl stop firewalld
-    systemctl disable firewalld
-```
+  ```sh
+      systemctl start vsftpd
+      systemctl enable vsftpd
+      systemctl stop firewalld
+      systemctl disable firewalld
+  ```
+
+  - *`N/B:` Configure the firewall corrrectly if working on a production environment instaed of stopping the firewall.*
 
 #### ii) Client Server
 - Install & configure FTP on the client server:
@@ -1001,9 +1003,12 @@ fi
 
 - Disable the firewall:
 
-```sh
-    systemctl stop firewalld
-```
+  ```sh
+      systemctl stop firewalld
+      systemctl disable firewalld
+  ```
+
+  - *`N/B:` Configure the firewall corrrectly if working on a production environment instaed of stopping the firewall.*
 
 - Configure the permissions especially if you run SELinux:
 
@@ -1183,6 +1188,14 @@ fi
   dnf install httpd # Install the package if not installed
 ```
 
+- Configure the service:
+
+```sh
+  systemctl start httpd # Start the HTTPD service
+  systemctl enable httpd # Start on boot
+  systemctl status httpd # Verify the status
+```
+
 - Edit the configuration file:
 
 ```sh
@@ -1206,11 +1219,10 @@ fi
   Welcome to my first webpage.
 ```
 
-- Start the service:
+- Restart the service:
 
 ```sh
   systemctl restart httpd
-  systemctl enable httpd
 ```
 
 - Access the website using the ip address of your host:
@@ -1221,8 +1233,242 @@ fi
 
 - Disable the firewall to allow the website to be accessed from outside your host:
 
+  ```sh
+    systemctl status firewalld
+    systemctl stop firewalld
+  ```
+
+  - *`N/B:` Configure the firewall corrrectly if working on a production environment instaed of stopping the firewall.*
+
+#### Nginx
+> - A powerful, reverse proxy/ load balancer and high performance web server that helps websites handle a large number of requests efficiently.
+> - `Reverse proxy server` acts as a middle man between a user and a web server i.e. forwarding requests to the web server. This distributes traffic to the available servers to ensure none is overwhelmed with too many requests.
+> - It solves the `C10k problem` which means handling 10,000 concurrent connections on a single server.
+
+- Confirm that nginx has been installed:
+
 ```sh
-  systemctl status firewalld
-  systemctl stop firewalld
+  rpm -qa | grep nginx
+  dnf install -y nginx # Install it if not installed
 ```
 
+- Configure the service:
+
+```sh
+  systemctl start nginx # Start the Nginx service
+  systemctl enable nginx # Start on boot
+  systemctl status nginx # Verify the status
+```
+
+- Sometimes when starting nginx it might fail maybe cause port `80` is being used, to resolve the issue:
+
+```sh
+  lsof -i :80 # View the services using port 80
+
+  # Stop the HTTPD service
+  systemctl stop httpd
+  systemctl disable httpd
+```
+
+- Stop and disable the firewall:
+
+  ```sh
+    systemctl stop firewalld
+    systemctl disable firewalld
+  ```
+
+  - *`N/B:` Configure the firewall corrrectly if working on a production environment instaed of stopping the firewall.*
+
+- Configure Nginx:
+
+```sh
+  vi /etc/nginx/nginx.conf
+
+  # Edit the server block section
+  server_name host_ip_address;
+  root /var/www/new/html;
+```
+
+> - `Server block` listens to port `80`, serves content from `/var/www/new/html` and uses `index.html` as the default page.
+
+- Create a custom config file (Set up your server block):
+
+```sh
+  vi /etc/nginx/conf.d/new.conf
+
+  # Add the content
+  server { 
+    listen 80; 
+    server_name host_ip_address; 
+    root /var/www/new/html; 
+    index index.html; 
+    location / { 
+      try_files $uri $uri/ =404; 
+    } 
+   }
+```
+
+> - Reason for creating a custom config file for Nginx is because if the 2nd config file is corrupted, the main config file will remain untouched and unaffected.
+> - `/etc/nginx/conf.d` is used to store additional config files.
+
+- Create the website project structure and content:
+
+```sh
+  mkdir -p /var/www/new/html/
+  cd /var/www/new/html/
+  vi index.html
+
+  # Insert the html content
+  <h1>Hello from new.</h1>
+```
+
+- Test the nginx configuration for errors:
+
+```sh
+  nginx -t
+```
+
+- Restart the nginx service:
+
+```sh
+  systemctl restart nginx
+```
+
+- Access the website via it's IP address: `http://host_ip_address`.
+
+##### Reverse Proxy
+> - Make use of one linux machine with Nginx as the middleman for the the linux machine acting as the web server.
+
+- Confirm that nginx has been installed:
+
+```sh
+  rpm -qa | grep nginx
+  dnf install -y nginx # Install it if not installed
+```
+
+- Configure the service:
+
+```sh
+  systemctl start nginx # Start the Nginx service
+  systemctl enable nginx # Start on boot
+  systemctl status nginx # Verify the status
+```
+
+- Sometimes when starting nginx it might fail maybe cause port `80` is being used, to resolve the issue:
+
+```sh
+  lsof -i :80 # View the services using port 80
+
+  # Stop the HTTPD service
+  systemctl stop httpd
+  systemctl disable httpd
+```
+
+- Stop and disable the firewall:
+
+  ```sh
+    systemctl stop firewalld
+    systemctl disable firewalld
+  ```
+
+  - *`N/B:` Configure the firewall corrrectly if working on a production environment instaed of stopping the firewall.*
+
+- Configure Nginx:
+
+```sh
+  vi /etc/nginx/nginx.conf
+
+  # Edit the server block section
+  server_name host_ip_address;
+  root /var/www/main_server/html;
+```
+
+- Create a custom config file (Set up your server block):
+
+```sh
+  vi /etc/nginx/conf.d/new.conf
+
+  # Add the content
+  server { 
+    listen 80; 
+    server_name host_ip_address; 
+    root /var/www/main_server/html; 
+    index index.html; 
+    location / { 
+      try_files $uri $uri/ =404; 
+    } 
+  }
+```
+
+- Create the website project structure and content:
+
+```sh
+  mkdir -p /var/www/main_server/html/
+  cd /var/www/main_server/html/
+  vi index.html
+
+  # Insert the html content
+  <h1>Hello from main server.</h1>
+```
+
+- Test the nginx configuration for errors:
+
+```sh
+  nginx -t
+```
+
+- Restart the nginx service:
+
+```sh
+  systemctl restart nginx
+```
+
+- Access the website via it's IP address: `http://host_ip_address`.
+
+- Sometimes when trying to acces your website on the browser, you get `403 error` this could be maybe due to `selinux`, to resolve the issue:
+
+```sh
+  sestatus # Check the SE Linux status
+  chcon -R -t httpd_sys_content_t /var/www/main_server/html # Change SE Linux content of the project files
+```
+
+- Set up a reverse proxy on the 1st linux machine:
+
+```sh
+  vi /etc/nginx/conf.d/new.conf
+
+  # Clear out all the existing content and add the new content
+  server { 
+    listen 80; 
+    server_name 1st_linux_ip_address; 
+    location / { 
+      proxy_pass http://2nd_linux_machine_ip_address; 
+      proxy_set_header Host $host; 
+      proxy_set_header X-Real-IP $remote_addr; 
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+      proxy_set_header X-Forwarded-Proto $scheme; 
+    } 
+  }
+```
+
+ - Test the nginx configuration for errors:
+
+```sh
+  nginx -t
+```
+
+- Restart the nginx service:
+
+```sh
+  systemctl restart nginx
+```
+
+- Access the website via 1st Linux machine IP address: `http://1st_linux_machine_ip_address`.
+
+- Sometimes when trying to acces the website on the browser through the proxy server, you get `502 error`, to resolve the issue:
+
+```sh
+  tail -f /var/log/nginx/error.log # Go through the logs
+  setsebool -P httpd_can_network_connect 1 # Resolves the permission denied issue
+  systemctl restart nginx
+```
