@@ -2,6 +2,7 @@
 
 ## 🦉 Oracle
 ## Oracle Database Installation
+### 1) Swap Space
 - Add a swap space
 
 ```sh
@@ -15,6 +16,7 @@
 
 *`N/B:` This is for RAM that is less than 2GB since it prevents out-of-memory errors during installation.*
 
+### 2) Oracle Preinstall Package
 - Install Oracle Preinstall Package:
 
 ```sh
@@ -23,6 +25,7 @@
 
 *`N/B:` This installs all required RPM packages, sets kernel parameters, creates the oracle user and oinstall, dba, oper groups, and configures system limits in /etc/security/limits.conf*
 
+### 3) User and Group Configuration
 - Assign the Oracle user to the required groups and set the password:
 
 ```sh
@@ -64,6 +67,7 @@
 
 *`N/B:` Edit the `database_name` parameter to the correct one.*
 
+### 4) Oracle Software Installation
 - Extract the Oracle software (This is after uploading it to your machine) into `ORACLE_HOME`:
 
 ```sh
@@ -109,6 +113,7 @@
   /u01/app/oracle/product/19.0.0/dbhome_1/root.sh
 ```
 
+### 5) Database Creation
 - Create the Database using DBCA as the oracle user:
 
 ```sh
@@ -141,6 +146,7 @@
 
 *`N/B:` Edit the `database_name` parameter to the correct one.*
 
+### 6) Verification
 - Verify the database instance is running:
 
 ```sh
