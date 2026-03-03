@@ -1472,3 +1472,31 @@ fi
   setsebool -P httpd_can_network_connect 1 # Resolves the permission denied issue
   systemctl restart nginx
 ```
+
+### 19) Cockpit
+> - Server administration tool that provides a UI interface to manage and administer servers.
+> - It is available on `CentOS`, `Redha`, `Ubuntu` and `Fedora`.
+
+- Install the cockpit package as root:
+
+```sh
+  rpm -qa | grep cockpit # verify if cockpit has been installed
+  dnf install -y cockpit # Install cockpit if not present
+```
+
+- Start and enable the service:
+
+```sh
+  systemctl start cockpit
+  systemctl enable cockpit
+  systemctl status cockpit # Confirm if it is running
+```
+
+- Access the web interface:
+
+```sh
+  ifconfig # Confirm the machine's ip address
+  https://machine_ip_address
+```
+
+*`N/b:` Disable the firewall to allow access to the website (If it refuses).*
