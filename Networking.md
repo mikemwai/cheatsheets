@@ -1174,6 +1174,26 @@ fi
 ```
 
 ### 18) Web Server 
+#### HTTP Response Status Codes
+> - They include:
+>   - `1xx (Informational)` - Request received and server is processing.
+>   - `2xx (Success)` - Request received and server is processing i.e. `200 OK`.
+>   - `3xx (Redirection)` - Further action must be taken to complete the request i.e. `301 Moved Permanently`.
+>   - `4xx (Client Error)` - Request cannot be understood.
+>   - `5xx (Server Error)` - Server failed fulfilling the valid request.
+
+|Code | Meaning              |
+|-----|----------------------|
+|400  |Bad Request           |
+|401  |Unauthorized          |
+|403  |Forbidden             |
+|404  |Not Found             |
+|408  |Request Timeout       |
+|500  |Internal Server Error |
+|502  |Bad Gateway           |
+|503  |Service Unavailable   |
+|504  |Gateway Timeout       |
+
 #### Apache (HTTPD)
 > - Purpose is to server webpages and the service/package name is `httpd`.
 > - Files include: 1) `/etc/httpd/conf/httpd.conf` - This is the configuration file where you make the changes, allow connections, run on a specific protocol, and specify the user directories.
