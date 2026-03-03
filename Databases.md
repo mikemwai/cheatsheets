@@ -230,6 +230,11 @@
   info group_name
 ```
 
+> ## Resources
+> - [Oracle Base Articles](https://oracle-base.com/articles/19c/articles-19c)
+
+---
+
 ## 🐬 SQL
 ### SQL Command Interpreter
 - Connect to SQL:
