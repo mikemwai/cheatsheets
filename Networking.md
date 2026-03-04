@@ -1357,7 +1357,7 @@ fi
 - Access the website via it's IP address: `http://host_ip_address`.
 
 ##### Reverse Proxy
-> - Make use of one linux machine with Nginx as the middleman for the the linux machine acting as the web server.
+> - Makes use of one linux machine with Nginx as the middleman for the the linux machine acting as the web server.
 
 - Confirm that nginx has been installed:
 
@@ -1520,3 +1520,88 @@ fi
 ```
 
 *`N/b:` Disable the firewall to allow access to the website (If it refuses).*
+
+### 20) Proxy Server (Squid)
+> - A server application acting as an intermediary between a client requesting a resource and the server providng that resource.
+> - `Benefits of a proxy server:`
+>   - `Hides your real location.`
+>   - `Secures broswing`- Adds an extra line for privacy and control which shields your online activity.
+>   - `Boosts browsing speed.`
+>   - `Access blocked content.`
+>  
+> - An example of a proxy server in Linux is `Squid`.
+> - `Usage of Squid:`
+>   - `Manages internet traffic`
+>   - `Speeds up browsing`
+>   - `Stores copies of websites and files` - For content that is accessed frequently.
+>   - `Provides faster access` - No need for re-downloading.
+>   - `Saves bandwidth`
+>   - `Blocks websites/ controls access`
+>
+> - `N/B:` Makes use of port number `3128` to handle internet traffic.
+> - The configuration file is `/etc/squid/squid.conf`.
+
+- Confirm you have the `squid` package:
+
+```sh
+  rpm -qa | grep squid
+  dnf indtall -y squid* # Installs all the squid packages if not installed
+```
+
+- Confgure the service:
+
+```sh
+  systemctl start squid
+  systemctl enable squid
+  systemctl status squid
+```
+
+- Edit the configuration file:
+
+```sh
+  vi /etc/squid/squid.conf
+
+  # Comment out the acl lines
+  #acl localhost...
+
+  # Add the following content under the acl localhost section
+  acl localnet src 192.168.100.0/24 # Creates an acl for the local network with the specified address range allowing http access for all devices within the subnet of the machine
+  http_access allow localnet # Gives access to the local network
+
+  # Add the following content after the 3rd comment
+  acl blocksites url_regex "/etc/squid/blocksites" 
+  http_access deny blocksites
+```
+
+- Create a new file `blocksites` that will list all the websites blocked for the clients:
+
+```sh
+  vi /etc/squid/blocksites
+
+  # Add the content
+  .facebook.com
+```
+
+- Add a permanent rule to the firewall that allows tcp traffic on port `3128`:
+
+```sh
+  firewall-cmd --permanent --add-port=3128/tcp
+  firewall-cmd --reload # Reload the firewall to allow the changes immediately
+```
+
+- Restart squid:
+
+```sh
+  systemctl restart squid
+```
+
+- Specify the service (host machine) ip address on the client configuration:
+
+```sh
+  ip a # On the host machine
+
+  # Enter the configurations on your client's browser Network connection seetings by adding the manual proxy configurations
+```
+
+*`N/B:` A `(forward) proxy server` acts on behalf of clients (users) to access the internet while a `reverse proxy server` acts on behalf of web servers by receiving requests from the internet.*
+
