@@ -13,4 +13,4 @@ This a repository that contains various commands used frequently by programmers.
 9. 📊 [R Cheatsheet](./R.md)
 10. 🗄️ [Databases cheatsheet](./Databases.md)
 11. 📦 [VMware cheatsheet](./VMware.md)
-12. 🌐 [Networking](./Networking.md)
+12. 🌐 [Networking cheatsheet](./Networking.md)
