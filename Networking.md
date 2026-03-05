@@ -1640,4 +1640,140 @@ fi
   systemctl restart rsyslog
 ```
 
+### 22) Nagios
+> - Monitoring tool that keeps an eye on your IT infrastructure e.g. Application, Network and Server.
+> - Additionally, it also keeps a log of every event.
+> - The required packages include:
+>   - `1) Apache Web Server`
+>   - `2) PHP Development Tools` - GCC, Libraries (glibc & gd).
+>   - `3) Other Utility` - Make, net-snmp, unzip, wget. 
 
+- Confirm the required packages:
+
+```sh
+  rpm -qa | grep nagios
+  dnf install -y httpd php gcc glibc glibc-common gd gd-devel make net-snmp unzip wget 
+```
+
+- Configure the users and group:
+
+```sh
+  useradd nagios # Nagios user used to run the Nagios process
+  groupadd nagcmd
+  usermod -a -G nagcmd nagios
+  usermod -a -G nagcmd apache # Apache user is created by default when you install Apache HTTPD
+  id nagios # Verify the status
+  id apache
+```
+
+- Download and extract Nagios Core in the `/tmp` directory:
+
+```sh
+  cd /tmp
+  wget -O nagios-4.5.4.tar.gz https://go.nagios.org/l/975333/2024-08-14/6dqd8 # Use the latest version from the official Nagios page
+  tar xzf nagios-4.5.4.tar.gz
+  cd nagios-4.5.4
+```
+
+- Configure Nagios core:
+
+```sh
+  ./configure --with-command-group=nagcmd
+  dnf install -y openssl-devel # Sorts out the ssl headers error
+  ./configure --with-command-group=nagcmd # Verify
+```
+
+- Install Nagios Core:
+
+```sh
+  make all
+  make install
+  make install-commandmode
+  make install-init
+  make install-config
+  make install-webconf
+```
+
+- Download & Install Nagios Plugins & Disable the firewall:
+
+```sh
+  wget https://nagios-plugins.org/download/nagios-plugins-2.4.11.tar.gz # Use the latest version from the official Nagios page
+  tar xzf nagios-plugins-2.4.11.tar.gz 
+  cd nagios-plugins-2.4.11
+  ./configure --with-nagios-user=nagios --with-nagios-group=nagios
+  make
+  make install
+  systemctl stop firewalld
+  systemctl disable firewalld
+```
+
+- Setup Nagios Web Interface Password:
+
+```sh
+  htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+
+  systemctl start httpd
+  systemctl enable httpd
+  systemctl start nagios
+  systemctl enable nagios
+  systemctl status nagios
+```
+
+- Configure hosts in Nagios:
+
+```sh
+  cd /usr/local/nagios/etc/objects/
+  ls -ltrh
+  vi localhost.cfg # Default configuration file for the server hosting Nagios
+  vi hosts.cfg # Add the hosts that Nagios will monitor
+
+  # Add the content below in the hosts.cfg
+  define host { 
+    use                     linux-server 
+    host_name               client_hostname # Edit
+    alias                   My First Server 
+    address                 client_ip_address # Edit
+    max_check_attempts      5 
+    check_period            24x7 
+    notification_interval   30 
+    notification_period     24x7 
+  } 
+   
+  define service { 
+      use                     generic-service 
+      host_name               host_hostname # Edit
+      service_description     PING 
+      check_command           check_ping!100.0,20%!500.0,60% 
+      max_check_attempts      5 
+      normal_check_interval   5 
+      retry_check_interval    1 
+      check_period            24x7 
+      notification_interval   30 
+      notification_period     24x7 
+  } 
+```
+
+- Update Nagios configuration:
+
+```sh
+  cd /usr/local/nagios/etc/
+  vi nagios.cfg
+
+  # At the 5th last comment add the content below
+  cfg_file=/usr/local/nagios/etc/objects/hosts.cfg
+```
+
+- Verify Nagios configuration:
+
+```sh
+  /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg # Ensure at the last line it says "Things look okay"
+  systemctl restart nagios
+```
+
+- Access the Nagios web interface:
+
+```sh
+  http://host_ip_address/nagios
+  Username: nagiosadmin
+```
+ 
