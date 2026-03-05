@@ -1605,3 +1605,39 @@ fi
 
 *`N/B:` A `(forward) proxy server` acts on behalf of clients (users) to access the internet while a `reverse proxy server` acts on behalf of web servers by receiving requests from the internet.*
 
+### 21) Central Logger (rsyslog)
+> - Server that generates/collects logs from other clients(servers).
+> - The package name is `rsyslog`. Moreover, the configuration file is `/etc/rsyslog.conf`.
+> - Makes use of port number `514` to facilitate rsyslog communication.
+
+- Confirm you have the `rsyslog` package:
+
+```sh
+  rpm -qa | grep rsyslog
+  dnf indtall -y rsyslog # Installs the rsyslog packages if not installed
+```
+
+- Confgure the service:
+
+```sh
+  systemctl start rsyslog
+  systemctl enable rsyslog
+  systemctl status rsyslog
+```
+
+- Edit the configuration file:
+
+```sh
+  vi /etc/rsyslog.conf
+
+  # Go to the end of the file at the 2nd last comment and uncomment. Save the file after editing. 
+  *.* @@central_logger_ip_address:514
+```
+
+- Restart the service for the changes to take effect:
+
+```sh
+  systemctl restart rsyslog
+```
+
+
