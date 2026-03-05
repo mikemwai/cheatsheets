@@ -1386,12 +1386,12 @@ fi
 
 - Stop and disable the firewall:
 
-  ```sh
-    systemctl stop firewalld
-    systemctl disable firewalld
-  ```
+```sh
+  systemctl stop firewalld
+  systemctl disable firewalld
+```
 
-  - *`N/B:` Configure the firewall corrrectly if working on a production environment instaed of stopping the firewall.*
+- *`N/B:` Configure the firewall corrrectly if working on a production environment instaed of stopping the firewall.*
 
 - Configure Nginx:
 
@@ -1707,6 +1707,8 @@ fi
   systemctl disable firewalld
 ```
 
+- *`N/B:` Configure the firewall corrrectly if working on a production environment instaed of stopping the firewall.*
+
 - Setup Nagios Web Interface Password:
 
 ```sh
@@ -1774,6 +1776,6 @@ fi
 
 ```sh
   http://host_ip_address/nagios
-  Username: nagiosadmin
+  # Username: nagiosadmin
 ```
  
