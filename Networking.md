@@ -1778,4 +1778,42 @@ fi
   http://host_ip_address/nagios
   # Username: nagiosadmin
 ```
- 
+
+### 23) OpenLDAP
+#### Linux Directory Service - Account Authentication
+
+> - Types of Accounts:
+>   1) Local Accounts - Stored locally in `/etc/passwd` and `/etc/shadow`.
+>   2) Domain/ Directory Accounts - Managed centrally through services like `LDAP - Lightweight Directory Access Protocol`. Makes use of central LDAP directories e.g. Windows = Active Directory, Linux = LDAP.
+
+#### Directory Services
+| Active Directory | IDM              | WinBIND              | OpenLDAP         | IBM Directory Server |
+|------------------|------------------|----------------------|------------------|----------------------|
+|Microsoft         |Identity Manager  |Linux/Windows (Samba) |Open source       |IBM                   |
+
+> - OpenLDAP is an open source implementation of LDAP.
+> - The service name is `slapd` and the configuration files are in `/etc/openldap/slapd.d`.
+
+- Install OpenLDAP:
+
+```sh
+  dnf install *openldap* # Any package that matches openldap before or after then install it
+```
+
+- Configure the service:
+
+```sh
+  systemctl start slapd
+  systemctl enable slapd
+  systemctl status slapd
+```
+
+- View the password configuration for the users;
+```sh
+  cat /etc/nsswitch.conf
+
+  # This part
+  passwd: files ss
+```
+
+- [Resource](https://kifarunix.com/install-and-setup-openldap-on-centos-8/)
