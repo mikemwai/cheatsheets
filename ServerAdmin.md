@@ -371,6 +371,414 @@
 - - - - -
 
 ## 3. Server Hardening
+> - Most common basic ways include:
+>      - `a) User account management`
+>      - `b) Remove un-wanted packages`
+>      - `c) Stop un-used services`
+>      - `d) Check on listening ports`
+>      - `e) Secure SSH configuration`
+>      - `f) Enable firewall (iptables/firewalld)`
+>      - `g) Enable SELinux`
+>      - `h) Change listening services port numbers`
+>      - `i) OS security patching`
+
+### RHEL-based Distros
+#### 1. User Accounts Management
+- View all the users in the system:
+
+```sh
+     cat /etc/passwd
+```
+
+- View the password policy enforced for a specific user:
+
+```sh
+     chage -l username
+     chage -h username # Modify the password policy for the user
+```
+
+- View the password policy for all users *(You need sudo privileges to view this file)*:
+
+```sh
+     cat /etc/shadow
+```
+
+- Review the password policy default settings:
+
+```sh
+     cat /etc/login.defs
+```
+
+- Review the security configurations:
+
+```sh
+     cd /etc/pam.d
+     cat system-auth
+```
+
+> - Don't use generic usernames like `oracle`/ `admin` but rather use something like `oracle123`/ `tadmin` This is because it is easy for a hacker to predict those usernames.
+> - Moreover, for the user ids choose from like 10,000 + to make it hard to predict it.
+> - Revieww the password policy for the users.
+    
+#### 2. Firewalls
+> - For RHEL versions 6 and older, the firewall running in them is `iptables`. However, for the RHEL versions 7 and newer they run `firewalld`.
+
+- Makes use of `firewalld`.
+
+```sh
+  sudo yum install firewalld # Installs the firewall
+```
+
+```sh
+  sudo systemctl starts firewall # Starts the firewall service
+```
+
+```sh
+  sudo systemctl enable firewall # Confirms that the firewall service is running
+```
+
+```sh
+  sudo firewall-cmd --list all
+```
+
+```sh
+  sudo firewall-cmd --add-port=443/tcp --zone=public --permanent
+```
+
+```sh
+  sudo firewall-cmd --add-service=ssh --zone=public --permanent
+```
+
+```sh
+  sudo firewall-cmd --permanent --add-service=http
+```
+
+```sh
+  sudo firewall-cmd --permanent --add-service=https
+```
+
+```sh
+  sudo firewall-cmd — get-services
+```
+
+```sh
+  sudo firewall-cmd --remove-port=443/tcp --zone=public --permanent
+```
+
+```sh
+  sudo firewall-cmd --remove-service=ssh --zone=public --permanent
+```
+
+```sh
+  sudo firewall-cmd --reload
+```
+
+> - Manages how traffic makes use of the different ports.
+> - When you enable the firewall, it blocks all the traffic hence you need to specify the protocols and their port numbers on the firewall to allow traffic for that protocol.
+
+- View how to add/ remove a port in the firewall:
+
+```sh
+     firewall-cmd --help
+```
+
+- View how to add/ remove a port in the firewall for the versions using `iptables`:
+
+```sh
+     iptables --help
+```
+
+- List all the services using `iptables`:
+
+```sh
+     iptables --list
+```
+
+- View the config file for iptables:
+
+```sh
+     cat /etc/sysconfig/iptables-config
+```
+
+- View the config file for firewalld:
+
+```sh
+     cat /etc/firewalld/firewalld.conf
+```
+
+*- `N/B:` Modifying the configuration files helps if you don't want to use the commands to make certain changes.*
+
+#### 3. SSL Certificates
+
+```sh
+  yum install mod_ssl # Installs the mod_ssl module for Apache
+```
+
+```sh
+  yum install openssl # For SSl certificate generation and management
+```
+
+```sh
+  mkdir /etc/ssl/private # Directory for the storing SSL private key
+```
+
+```sh
+  chmod 700 /etc/ssl/private # Sets the permissions on the private key directory
+```
+
+```sh
+  openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt # Generates a self-signed SSL certificate and private key
+```
+
+```sh
+  sudo vi etc/httpd/conf.d/(your_domain_or_ip).conf # Specifies the server settings
+
+  # In the file:
+  # <VirtualHost *:443>
+  #  ServerName your_domain_or_ip
+  #  DocumentRoot /var/www/html
+  #  SSLEngine on
+  #  SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
+  #  SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
+  # </VirtualHost>
+
+```
+
+```sh
+  sudo vi /etc/httpd/conf.d/non-ssl.conf # Specifies the non-SSL settings
+
+  # In the file:
+  # <VirtualHost *:80>
+  #  ServerName your_domain_or_ip
+  #  Redirect "/" "https://your_domain_or_ip/"
+  # </VirtualHost>
+```
+
+```sh
+  sudo apachectl configtest # Checks the Apache configuration files for sysntax errors
+```
+
+```sh
+  sudo systemctl restart httpd.service # Restarts the Apache service to apply the changes made
+```
+
+```sh
+  https://your_domain_or_ip # Confirm the status of your website
+```
+
+#### 4. SSH Keys & Configuration
+- View the current SSH configuration:
+
+```sh
+     cat /etc/ssh/sshd_config
+```
+
+```sh
+  sudo nano etc/ssh/sshd_config # Update the ssh configuration file
+
+  # In the file:
+  # Port - 717
+  # PermitRootLogin - no
+  # PasswordAuthentication - no
+```
+
+```sh
+  sudo systemctl restart sshd # Restart sshd to apply the changes made
+```
+
+> - The basic changes to review are the `Port` and `PermitRootLogin`.
+> - For `PermitRootLogin`, it forces users to login with their usernames and track all their activities even when they switch to root.
+
+```sh
+  ssh-keygen -b 4096 # Generate ssh keys
+```
+
+```sh
+  scp /path/to/public key username@ipaddress:/path/to/store/key # Copy the public key to the remote server
+```
+
+```sh
+  ssh username@ipaddress # Login using ssh
+```
+
+```sh
+  sudo chmod 700 .ssh # Set correct permissions
+```
+
+```sh
+  sudo nano etc/ssh/sshd_config # Update the ssh configuration file
+
+  # In the file:
+  # Port - 717
+  # PermitRootLogin - no
+  # PasswordAuthentication - no
+```
+
+```sh
+  sudo systemctl restart sshd # Restart sshd to apply the changes made
+```
+
+```sh
+  ssh username@ipaddress -p 717 # Login using ssh through the port number
+```
+
+`N/B:` Incase you get into an error that refuses to log in a user using ssh even after secure copying the public key to the .ssh directory try:
+
+```sh
+  sudo chown user:user /home/user/.ssh/authorized_keys
+```
+
+```sh
+  sudo chmod 600 /home/user/.ssh/authorized_keys
+```
+
+#### 5. Intrusion Prevention
+
+- Mostly uses `fail2ban` to protect servers from brute-force attacks & other suspicious activities by monitoring log files and implementing automatic IP blocking.
+
+```sh
+  sudo yum install epel-release
+  sudo yum install fail2ban
+```
+
+```sh
+  sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+  sudo nano /etc/fail2ban/jail.local
+```
+
+```sh
+  sudo systemctl enable fail2ban
+```
+
+```sh
+  sudo systemctl start fail2ban
+  sudo systemctl restart fail2ban
+```
+
+#### 6. SELinux (Security Enhanced Linux)
+
+> - Security feature integrated into the Linux kernel that provides mandatory access controls for processes and services.
+
+```sh
+  sudo sestatus # Check SELinux status
+```
+
+```sh
+  sudo setenforce 1 # Enable SELinux
+  sudo nano /etc/selinux/config
+```
+
+```sh
+  sudo reboot # Reboot the system
+```
+
+```sh
+  sudo cat /var/log/audit/audit.log # Review SELinux logs
+```
+
+- View details about a file such as SELinux Access status:
+
+```sh
+   stat filename
+```
+
+- View how to change the file SELinux security context:
+
+```sh
+   man chcon
+```
+
+- View how to use SELinux policy compiler:
+  
+```sh
+   man checkpolicy
+```
+
+> - SELinux helps in controlling the permission access of processes and applications.
+> - Modes of SELinux:
+>   - `a) Enforcing` - Means that SELinux security policy has been applied.
+>   - `b) Permissive` - Means that SELinux prints warnings instead of enforcing.
+>   - `c) Disabled` - Means that no SELinux policy has been applied.
+
+#### 7. Package Management
+- View the installed packages:
+
+```sh
+     rpm -qa
+     rpm -qa | wc -l # Gives the total installed packages 
+```
+
+- Remove the installed packages that are not in use *(Be very careful before deleting due to the dependncy issue with other packages)*:
+
+```sh
+     rpm -e packagename
+```
+
+- Check for available package updates:
+  
+```sh
+  sudo yum check-update 
+```
+
+- Update the packages:
+  
+```sh
+  sudo yum update -y
+  sudo yum update -y openssl # Update for a specific package
+```
+
+- Find and remove unused packages:
+
+```sh
+  sudo yum autoremove 
+```
+
+- Find and remove temporary files:
+```sh
+  sudo yum clean all
+```
+
+#### 8. Log review
+
+- Makes use of `journalctl` which is a utility enabling users to query and display logs from the systemd journal.
+
+```sh
+  sudo journalctl # View all logs
+```
+
+```sh
+  sudo journalctl -f # Follow real time logs
+```
+
+```sh
+  sudo journalctl --since "yyyy-mm-dd 00:00:00" --until "yyyy-mm-dd 00:00:00" # Filter logs by time
+```
+
+```sh
+  sudo journalctl -p err # Filter logs by priority
+```
+
+#### 9. OS Security patching
+> - Keep updated on the latest patch versions being released by the vendor (Redhat, Windows, Ubuntu) by getting emails from them. This can be done by signing up in their websites.
+> - Once you've received the emails apply the patches suggested.
+
+#### 10. Service Management
+- View the list of all services in the system:
+
+```sh
+     systemctl -a
+```
+
+> - Stop un-used services.
+
+#### 11. Port Management
+- Check on the listening ports:
+
+```sh
+     netstat -tunlp
+```
+
+> - Stop any listening port for an unused service.
 
 ### Debian-based Distros
 1. Firewalls
@@ -546,248 +954,6 @@
 
 ```sh
   sudo journalctl --since "yyyy-mm-dd 00:00:00" --until "yyyy-mm-dd 00:00:00"
-```
-
-```sh
-  sudo journalctl -p err # Filter logs by priority
-```
-
-### RHEL-based Distros
-1. Firewalls
-
-- Makes use of `firewalld`.
-
-```sh
-  sudo yum install firewalld # Installs the firewall
-```
-
-```sh
-  sudo systemctl starts firewall # Starts the firewall service
-```
-
-```sh
-  sudo systemctl enable firewall # Confirms that the firewall service is running
-```
-
-```sh
-  sudo firewall-cmd --list all
-```
-
-```sh
-  sudo firewall-cmd --add-port=443/tcp --zone=public --permanent
-```
-
-```sh
-  sudo firewall-cmd --add-service=ssh --zone=public --permanent
-```
-
-```sh
-  sudo firewall-cmd --permanent --add-service=http
-```
-
-```sh
-  sudo firewall-cmd --permanent --add-service=https
-```
-
-```sh
-  sudo firewall-cmd — get-services
-```
-
-```sh
-  sudo firewall-cmd --remove-port=443/tcp --zone=public --permanent
-```
-
-```sh
-  sudo firewall-cmd --remove-service=ssh --zone=public --permanent
-```
-
-```sh
-  sudo firewall-cmd --reload
-```
-
-2. SSL Certificates
-
-```sh
-  yum install mod_ssl # Installs the mod_ssl module for Apache
-```
-
-```sh
-  yum install openssl # For SSl certificate generation and management
-```
-
-```sh
-  mkdir /etc/ssl/private # Directory for the storing SSL private key
-```
-
-```sh
-  chmod 700 /etc/ssl/private # Sets the permissions on the private key directory
-```
-
-```sh
-  openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt # Generates a self-signed SSL certificate and private key
-```
-
-```sh
-  sudo vi etc/httpd/conf.d/(your_domain_or_ip).conf # Specifies the server settings
-
-  # In the file:
-  # <VirtualHost *:443>
-  #  ServerName your_domain_or_ip
-  #  DocumentRoot /var/www/html
-  #  SSLEngine on
-  #  SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
-  #  SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
-  # </VirtualHost>
-
-```
-
-```sh
-  sudo vi /etc/httpd/conf.d/non-ssl.conf # Specifies the non-SSL settings
-
-  # In the file:
-  # <VirtualHost *:80>
-  #  ServerName your_domain_or_ip
-  #  Redirect "/" "https://your_domain_or_ip/"
-  # </VirtualHost>
-```
-
-```sh
-  sudo apachectl configtest # Checks the Apache configuration files for sysntax errors
-```
-
-```sh
-  sudo systemctl restart httpd.service # Restarts the Apache service to apply the changes made
-```
-
-```sh
-  https://your_domain_or_ip # Confirm the status of your website
-```
-
-3. SSH Keys & Configuration
-
-```sh
-  ssh-keygen -b 4096 # Generate ssh keys
-```
-
-```sh
-  scp /path/to/public key username@ipaddress:/path/to/store/key # Copy the public key to the remote server
-```
-
-```sh
-  ssh username@ipaddress # Login using ssh
-```
-
-```sh
-  sudo chmod 700 .ssh # Set correct permissions
-```
-
-```sh
-  sudo nano etc/ssh/sshd_config # Update the ssh configuration file
-
-  # In the file:
-  # Port - 717
-  # PermitRootLogin - no
-  # PasswordAuthentication - no
-```
-
-```sh
-  sudo systemctl restart sshd # Restart sshd to apply the changes made
-```
-
-```sh
-  ssh username@ipaddress -p 717 # Login using ssh through the port number
-```
-
-`N/B:` Incase you get into an error that refuses to log in a user using ssh even after secure copying the public key to the .ssh directory try:
-
-```sh
-  sudo chown user:user /home/user/.ssh/authorized_keys
-```
-
-```sh
-  sudo chmod 600 /home/user/.ssh/authorized_keys
-```
-
-4. Intrusion Prevention
-
-- Mostly uses `fail2ban` to protect servers from brute-force attacks & other suspicious activities by monitoring log files and implementing automatic IP blocking.
-
-```sh
-  sudo yum install epel-release
-  sudo yum install fail2ban
-```
-
-```sh
-  sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
-  sudo nano /etc/fail2ban/jail.local
-```
-
-```sh
-  sudo systemctl enable fail2ban
-```
-
-```sh
-  sudo systemctl start fail2ban
-  sudo systemctl restart fail2ban
-```
-
-5. SELinux (Security Enhanced Linux)
-
-- Security feature integrated into the Linux kernel that provides mandatory access controls for processes and services.
-
-```sh
-  sudo sestatus # Check SELinux status
-```
-
-```sh
-  sudo setenforce 1 # Enable SELinux
-  sudo nano /etc/selinux/config
-```
-
-```sh
-  sudo reboot # Reboot the system
-```
-
-```sh
-  sudo cat /var/log/audit/audit.log # Review SELinux logs
-```
-
-6. Patch Management
-
-```sh
-  sudo yum check-update # Check for available updates
-```
-
-```sh
-  sudo yum update # Update the system
-```
-
-```sh
-  sudo yum update openssl # Update openssl
-```
-
-```sh
-  sudo yum autoremove # Find and remove unused packages
-```
-
-```sh
-  sudo yum clean all # Find and remove temporary files
-```
-
-7. Log review
-
-- Makes use of `journalctl` which is a utility enabling users to query and display logs from the systemd journal.
-
-```sh
-  sudo journalctl # View all logs
-```
-
-```sh
-  sudo journalctl -f # Follow real time logs
-```
-
-```sh
-  sudo journalctl --since "yyyy-mm-dd 00:00:00" --until "yyyy-mm-dd 00:00:00" # Filter logs by time
 ```
 
 ```sh
