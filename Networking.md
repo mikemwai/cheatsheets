@@ -1817,3 +1817,21 @@ fi
 ```
 
 - [Resource](https://kifarunix.com/install-and-setup-openldap-on-centos-8/)
+
+### 24) Trace Network Traffic (traceroute)
+> - It traces the network traffic by mapping the journey that a packet of information undertakes from its source to its destination.
+> - It locates when data loss occurs throughout a network signifying a node is down.
+
+- View the network traffic hop:
+
+```sh
+  traceroute url/hostname_ipaddress
+```
+
+- View your gateway ip address:
+
+```sh
+  netstat -rnv
+```
+
+
