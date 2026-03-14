@@ -1834,4 +1834,245 @@ fi
   netstat -rnv
 ```
 
+### 24) Firewall
+> - `Types of Firewalls:`
+>   - `1) Software` - Runs on an operating system.
+>   - `2) Hardware` - A dedicated appliance with firewall software.
+>     
+> - `Tools for managing firewwalls:`
+>   - `1) iptables` - For older Linux versions but still widely used.
+>   - `2) firewalld` - For newer versions like 7 and up.
 
+#### a) iptables
+- Ensure `firewalld` is not running:
+
+```sh
+  systemctl status firewalld
+  systemctl stop firewalld
+  systemctl disable firewalld
+  systemctl mask firewalld # Permanently prevent the service from starting manually or automatically.
+```
+
+- Confirm if `iptables` package is installed:
+
+```sh
+  rpm -qa | grep iptables-services
+  yum install iptables-services
+```
+
+- Start the service:
+
+```sh
+  systemctl start iptables
+  systemctl enable iptables
+```
+
+- Check the iptables rules:
+
+```sh
+  iptables -L
+```
+
+- Flush (Delete) the iptables:
+
+```sh
+  iptables -F
+  iptables -L # Confirm they have been deleted
+```
+
+> - Function of iptables tool is `packet filtering`.
+> - The packet filtering mechanism is organized into 3 different structure kinds:
+>   - `Tables` refers to something that allows you to process packets in specific ways. There are 4 different table types `filter`, `mangle`, `nat` and `raw`.
+>   - `Chain` are attached to tables and allow one to inspect traffic at various points. Main chains used are:
+>     - `i) INPUT` - Incoming traffic.
+>     - `ii) FORWARD` - Going to a router, from one device to another.
+>     - `iii) OUTPUT` - Outgoing traffic.
+>     - `N/B:` Chains allow one to filter traffic by adding rules to them.
+>     - `Rule` = If traffic is coming from `192.168.1.35` then go to defined target.
+>   - `Targets` decide the fate of a packet (Allowing or rejecting it). There are 3 different target types:
+>     - `i) ACCEPT` - Connection accepted.
+>     - `ii) REJECT` - Send reject response.
+>     - `iii) DROP` - Drop connection without sending any response.
+
+##### Graphical representation of iptables
+|Chain   | Rule | Target             |
+|--------|------|--------------------|
+|INPUT   | Rule | ACCEPT/DROP/REJECT |
+|FORWARD | Rule | ACCEPT/DROP/REJECT |
+|OUTPUT  | Rule | ACCEPT/DROP/REJECT |
+
+- Sample output:
+
+```sh
+ Chain INPUT (policy ACCEPT)
+ target   prot opt source         destination # prot is protocol such as tcp, udp, icmp, or all
+```
+
+#### b) firewalld
+> - It has pre-defined service rules that are very easy to turn on and off. Services include NFS, NTP, HTTPD etc.
+> - Also has the following: `Table`, `Chains`, `Rules`, and `Targets`.
+
+- Ensure `iptables` is not running:
+
+```sh
+  systemctl status iptables
+  systemctl stop iptables
+  systemctl disable iptables
+  systemctl mask iptables # Permanently prevent the service from starting manually or automatically.
+```
+
+- Check if firewalld package is installed:
+
+```sh
+  rpm -qa | grep firewalld
+```
+
+- Start firewalld:
+
+```sh
+  systemctl unmask firewalld
+  systemctl start firewalld
+  systemctl enable firealld
+  systemctl status firewalld
+```
+
+- Check the rule of firewalld:
+
+```sh
+  firewall-cmd --list-all
+```
+
+- Get the listing of all services firewalld is aware of:
+
+```sh
+  firewall-cmd --get-services
+```
+
+- Make firewalld re-read the configuration added:
+
+```sh
+  firewall-cmd --reload
+```
+
+- Get a list of all zones:
+
+```sh
+  firewall-cmd --get-zones
+```
+
+- Get a list of active zones:
+
+```sh
+  fireall-cmd --get-active-zones
+```
+
+- Get firewall rules for particular zone:
+
+```sh
+  firewall-cmd --zone=public --list-all # Zone is public zone
+  firewwall-cmd --list-all # For all available zones
+```
+
+- Add a predefined service (http):
+
+  ```sh
+    firewall-cmd --add-service=http
+  ```
+
+  - Confirm if the httpd service is running:
+
+  ```sh
+    systemctl status httpd
+  ``systemctl unmask httpd
+    systemctl start httpd
+    systemctl enable httpd
+  ```
+
+- Remove a service:
+
+```sh
+  firewall-cmd --remove-service=http 
+```
+
+- Reload the firewall configuration:
+
+```sh
+  firewall-cmd --reload
+```
+
+*`N/B:` The reload command removes any temporary rules.*
+
+- Add/ remove a service permanently:
+
+```sh
+  firewall-cmd --add-seervice=http --permanent
+  firewall-cmd --remove-seervice=http --permanent
+```
+
+ Add a (3rd party) service that is not pre-defined by firewalld:
+ ```sh
+    cd /usr/lib/firewalld/services/
+  ```
+
+  - Copy any `.xml` file and change the service and port number:
+
+  ```sh
+    cp test.xml sap.xml
+    vi sap.xml
+
+    # Change the service and port number (32)
+    <?xml version="1.0" encoding="utf-8"?>
+    <service>
+      <short>SAP</short>
+      <description>This is a 3rd party application service.</description>
+      <port protocol="tcp" port="32"/>
+    </service>
+  ```
+
+- Configure the firewall:
+
+```sh
+  systemctl restart firewalld # See sap in the firewall listing
+  firewall-cmd --get-services | grep sap # Verifies the new service
+  firewall-cmd --add-service=sap # Add the service to the firewall configuration
+  fireall-cmd --list-all # Verify the service appears in the firewall configuration
+```
+
+- Add a port to the firewalld configuration:
+
+```sh
+  firewall-cmd --add-port=1110/tcp # Temporary (Goes away after reload)
+  firewall-cmd --add-port=1110/tcp --permanent
+  firewall-cmd --list-all
+```
+
+- Remove a port:
+
+```sh
+  firewwall-cmd --remove-port=1110/tcp
+  firewall-cmd --list-all
+```
+
+- Reject incoming traffic from an IP address:
+
+```sh
+  firewall-cmd --add-rich-rule='rule family="ipv4" source address="192.168.0.25" reject' # Edit the IP address
+  firewall-cmd --list-all # Verify 
+```
+
+- Block or unblock ICMP incoming traffic:
+
+```sh
+  firewall-cmd --add-icmp-block-inversion
+  firewall-cmd --remove-icmp-block-inversion
+  firewall-cmd --list-all
+```
+
+*`N/B:` ICMP enables your host to be pingable*
+
+- Block outgoing traffic to a specific website/IP address e.g. Facebook:
+
+```sh
+  host -t a www.facebook.com # Find IP Address for the website host
+  firewall-cmd --direct --add-rule ipv4 filter OUTPUT 0 -d 31.13.71.36 -j DROP # Edit the IP Address
+```
