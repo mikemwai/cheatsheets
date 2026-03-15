@@ -1529,6 +1529,124 @@
         alias hh="hostname"
     ```
 
+## Tune System Performance
+### `tuned`
+> - This is made possible by selecting a tuning profile managed by the `tuned` daemon (`Tune` for system tuning and `d` for daemon).
+> - `systemd` service is used to tune Linux system performance.
+> - Installed in RHEL version 7 and above by defualt.
+> - Based on selected profile `tuned` service automatically adjust system to get best performance. Example: `tuned` adjusts networking if downloading a large file or adjust I/O settings if high storage read/write is detected.
+> - `tuned` applies system settings when service starts/ upon selection of a new tuning profile.
+- Check if `tuned` package has been installed:
+
+```sh
+    rpm -qa | grep tuned
+    dnf install tuned # Install if not available
+```
+
+- Check the service status:
+
+```sh
+    systemctl status tuned
+    systemctl start tuned
+    systemctl enable tuned
+```
+
+- Change setting for tuned daemon:
+
+```sh
+    tuned-adm
+```
+
+- Check which profile is active:
+
+```sh
+    tuned-adm active
+```
+
+- List available tuned profiles:
+
+```sh
+    tuned-adm list
+```
+
+#### Tuned Profiles
+| Tuned profile          | Purpose                                                                                  |
+|------------------------|------------------------------------------------------------------------------------------|
+| balanced               | Ideal for systems requiring a compromise between power saving and performance.           |
+| desktop                | Derived from the balanced profile. Provides faster response of interactive applications. |
+| Throughput-performance | Tunes the system for maximum throughput.                                                 |
+| Latency-performance    | Ideal for systems requiring low latency at expense of power consumption.                 |
+| network-latency        | Enables additional network tuning parameters providing low network latency.              |
+| Network-throughput     | Additional network tuning parameters are applied for maximum network throughput.         |
+| powersave              | Tunes the system for maximum power saving.                                               |
+| oracle                 | Optimized for Oracle database loads based on the throughput-performance profile.         |
+| virtual-guest          | Tunes the system for maximum performance if it runs on a virtual machine.                |
+| virtual-host           | Tunes the system for maximum performance if it acts as a host for virtual machines.      |
+
+- Change to desired profile:
+
+```sh
+    tuned-adm profile profile-name
+```
+
+- Check for tuned recommedation:
+
+```sh
+    tuned-adm recommend
+```
+
+- Turn off tuned setting daemon:
+
+```sh
+    tuned-adm off
+```
+
+- Change profile through web console:
+
+```sh
+    login to https://hostname_ipaddress:9090
+    Overview -> Configuration -> Performance profile
+```
+
+### `nice/ renice`
+> - Another way of fine-tuning the system is to prioritize/ de-prioritize specific processes with the `nice` and `renice` commands.
+> - If a server has 1 CPU then it can execute ` process at a time as they come in while the others must wait.
+> - With `nice` and `renice` commands we can make the system give preference to certain processes than others.
+> - This priortiy can be set at 40 different levels.
+> - The nice level values range from -20 (highest priority) to 19 (lowest priority) and by default, processes inherit their nice level from their parent which is usually 0.
+
+- Check process priority:
+
+```sh
+    top
+
+    # Output
+    PR - Process Priority, NI - Nice Level set for the process 
+```
+
+*`N/B:` Process Priority (0 to 139 - Highest priority to lowest priority) and Nice Level (-20 to 19 - Highest priority to lowest priority)*
+
+> - Nice value is a user-space and priority PR is the process's actual priority used by Linux kernel. In Linux system priorities are 0 to 139 in which 0 to 99 for real time and 100 to 139 for users.
+
+- Process priority can be viewed through:
+
+```sh
+    ps axo pid,comm,nice,cls --sort=-nice
+```
+
+- Set the process priority:
+
+```sh
+    nice -n # process-name
+    nice -n -15 top # Example
+```
+
+- Change the process priority (Without stopping the process):
+
+```sh
+    renice -n 12 PID
+```
+
 ## 💽 Disk Usage
 
 - List the disks in the system:
@@ -2174,124 +2292,6 @@
 
 ```sh
     sudo apt clean
-```
-
-## Tune System Performance
-### `tuned`
-> - This is made possible by selecting a tuning profile managed by the `tuned` daemon (`Tune` for system tuning and `d` for daemon).
-> - `systemd` service is used to tune Linux system performance.
-> - Installed in RHEL version 7 and above by defualt.
-> - Based on selected profile `tuned` service automatically adjust system to get best performance. Example: `tuned` adjusts networking if downloading a large file or adjust I/O settings if high storage read/write is detected.
-> - `tuned` applies system settings when service starts/ upon selection of a new tuning profile.
-- Check if `tuned` package has been installed:
-
-```sh
-    rpm -qa | grep tuned
-    dnf install tuned # Install if not available
-```
-
-- Check the service status:
-
-```sh
-    systemctl status tuned
-    systemctl start tuned
-    systemctl enable tuned
-```
-
-- Change setting for tuned daemon:
-
-```sh
-    tuned-adm
-```
-
-- Check which profile is active:
-
-```sh
-    tuned-adm active
-```
-
-- List available tuned profiles:
-
-```sh
-    tuned-adm list
-```
-
-#### Tuned Profiles
-| Tuned profile          | Purpose                                                                                  |
-|------------------------|------------------------------------------------------------------------------------------|
-| balanced               | Ideal for systems requiring a compromise between power saving and performance.           |
-| desktop                | Derived from the balanced profile. Provides faster response of interactive applications. |
-| Throughput-performance | Tunes the system for maximum throughput.                                                 |
-| Latency-performance    | Ideal for systems requiring low latency at expense of power consumption.                 |
-| network-latency        | Enables additional network tuning parameters providing low network latency.              |
-| Network-throughput     | Additional network tuning parameters are applied for maximum network throughput.         |
-| powersave              | Tunes the system for maximum power saving.                                               |
-| oracle                 | Optimized for Oracle database loads based on the throughput-performance profile.         |
-| virtual-guest          | Tunes the system for maximum performance if it runs on a virtual machine.                |
-| virtual-host           | Tunes the system for maximum performance if it acts as a host for virtual machines.      |
-
-- Change to desired profile:
-
-```sh
-    tuned-adm profile profile-name
-```
-
-- Check for tuned recommedation:
-
-```sh
-    tuned-adm recommend
-```
-
-- Turn off tuned setting daemon:
-
-```sh
-    tuned-adm off
-```
-
-- Change profile through web console:
-
-```sh
-    login to https://hostname_ipaddress:9090
-    Overview -> Configuration -> Performance profile
-```
-
-### `nice/ renice`
-> - Another way of fine-tuning the system is to prioritize/ de-prioritize specific processes with the `nice` and `renice` commands.
-> - If a server has 1 CPU then it can execute ` process at a time as they come in while the others must wait.
-> - With `nice` and `renice` commands we can make the system give preference to certain processes than others.
-> - This priortiy can be set at 40 different levels.
-> - The nice level values range from -20 (highest priority) to 19 (lowest priority) and by default, processes inherit their nice level from their parent which is usually 0.
-
-- Check process priority:
-
-```sh
-    top
-
-    # Output
-    PR - Process Priority, NI - Nice Level set for the process 
-```
-
-*`N/B:` Process Priority (0 to 139 - Highest priority to lowest priority) and Nice Level (-20 to 19 - Highest priority to lowest priority)*
-
-> - Nice value is a user-space and priority PR is the process's actual priority used by Linux kernel. In Linux system priorities are 0 to 139 in which 0 to 99 for real time and 100 to 139 for users.
-
-- Process priority can be viewed through:
-
-```sh
-    ps axo pid,comm,nice,cls --sort=-nice
-```
-
-- Set the process priority:
-
-```sh
-    nice -n # process-name
-    nice -n -15 top # Example
-```
-
-- Change the process priority (Without stopping the process):
-
-```sh
-    renice -n 12 PID
 ```
 
 ## SOS Report
