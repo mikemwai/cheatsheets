@@ -2076,3 +2076,143 @@ fi
   host -t a www.facebook.com # Find IP Address for the website host
   firewall-cmd --direct --add-rule ipv4 filter OUTPUT 0 -d 31.13.71.36 -j DROP # Edit the IP Address
 ```
+
+## 25) Containers
+> - `Container` refers to a lightweight, standalone, executable package containing code, libraries, and dependencies required to run an application.
+> - Container softwares include `Docker`, and `Podman`.
+> - Red Hat provides a set of command-line tools that can operate without a container engine such as `podman`, `buildah`, `skopeo`, `runc`, and `crun`.
+> - 
+> - Terms used in containers:
+>   -  `1) images` - containers can be created through images and can be converted to imaged.
+>   -  `2) pods` - Group of containers deployed together on the host.
+
+### `podman`
+> - Alternative software, from Red Hat, to Docker that is used to create and manage containers.
+> - It is daemon less, open source, Linux-native tool designed to develop, manage, and run containers.
+> - Directly manages pods and container images (run, stop, start, ps, attach, etc).
+
+- Install podman:
+
+```sh
+  dnf install -y podman
+```
+
+- Create alias to docker *(If you were using docker in your machine and now you want to use podman)*:
+
+```sh
+  alias docker=podman
+```
+
+- Check podman version:
+
+```sh
+  podman -v
+```
+
+- Check podman environment and registry/ repo info:
+
+```sh
+  podman info
+```
+
+- Search a specific image in repository:
+
+```sh
+  podman search httpd
+```
+
+- List any previously downloaded podman images:
+
+```sh
+  podman images
+```
+
+- Download available images:
+
+```sh
+  podman pull docker.io/library/httpd # Get the url from podman search httpd
+  podman images # Verify download has worked
+```
+
+- List podman running containers:
+
+```sh
+  podman ps
+```
+
+- Run a downloaded httpd container:
+
+```sh
+  podman run -dt -p 8080:80/top docker.io/library/httpd # d=detach, t=get the tty shell, p=port
+  podman ps # Verify
+```
+
+- View podman logs:
+
+```sh
+  podman logs -l
+```
+
+- Stop a running container:
+
+```sh
+  podman ps # Get the container_id
+  podman stop container_id
+  podman ps # Verify
+```
+
+- Run multiple containers of httpd by changing the port no:
+
+```sh
+  podman run -dt -p 8081:80/tcp docker.io/library/httpd
+  podman run -dt -p 8082:80/tcp docker.io/library/httpd
+  podman ps
+```
+
+- Stop and start a previously running container:
+
+```sh
+  podman ps
+  podman stop container_id
+  podman start container_id
+```
+
+- Create a new container from the downloaded image:
+
+```sh
+  podman create --name httpd-con docker.io/library/httpd # Use httpd-con to avoid conflict with the native httpd service
+  podman ps
+```
+
+- Start the newly created container:
+
+```sh
+  podman start httpd-con
+```
+
+- Manage containers *(Start up the containers when the host is boot up)* through systemd:
+
+  - Generate a unit file *(Alerts the system that a new process has been added)*:
+    
+    ```sh
+      podman generate systemd --new --files --name httpd-con
+    ```
+
+  - Copy the unit file in systemd directory:
+    
+    ```sh
+      cp /root/container-httpd-con.service /etc/systemd/system
+    ```
+
+- Configure the service:
+
+```sh
+  systemctl enable container-httpd-con.service
+  systemctl start container-httpd-con.service
+  systemctl status container-httpd-con.service
+```
+
+### `docker`
+> - Software used to create, and manage containers.
+> - Ca be installed just like any other package and its service/ daemon can be controlled through native Linux.
+
