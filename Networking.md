@@ -2078,12 +2078,12 @@ fi
 ```
 
 ## 25) Containers
-> - `Container` refers to a lightweight, standalone, executable package containing code, libraries, and dependencies required to run an application.
+> - `Container` refers to a lightweight, standalone, executable package containing code, libraries, and dependencies required to run an application. Sorts out the compatibility issue (It was running on my machine before).
 > - Container softwares include `Docker`, and `Podman`.
 > - Red Hat provides a set of command-line tools that can operate without a container engine such as `podman`, `buildah`, `skopeo`, `runc`, and `crun`.
 > - 
 > - Terms used in containers:
->   -  `1) images` - containers can be created through images and can be converted to imaged.
+>   -  `1) images` - containers can be created through images and can be converted to images. Blueprint of a template that contains everything needed to run an application (Snapshot of the application ready to be used).
 >   -  `2) pods` - Group of containers deployed together on the host.
 
 ### `podman`
@@ -2215,4 +2215,44 @@ fi
 ### `docker`
 > - Software used to create, and manage containers.
 > - Ca be installed just like any other package and its service/ daemon can be controlled through native Linux.
+
+- Install the package:
+
+```sh
+  rpm -qa | grep docker
+  dnf install -y yum-utils
+  dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo # Setup the docker repository
+```
+
+- Install docker engine:
+
+```sh
+  dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+- Configure the service:
+
+```sh
+  systemctl start docker
+  systemctl enable docker
+  systemctl status docker
+```
+
+- Check docker version:
+
+```sh
+  docker --version
+```
+
+- Run the `Hello world` image from docker hub:
+
+```sh
+  docker run hello-world
+```
+
+- Get a detailed documentation of the installation [here](https://docs.docker.com/engine/install)
+
+
+
+
 
