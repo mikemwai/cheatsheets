@@ -2252,7 +2252,105 @@ fi
 
 - Get a detailed documentation of the installation [here](https://docs.docker.com/engine/install)
 
+## 26) Kickstart (Automate Linux Installation)
+> - Method to automate the Linux installation without the need for any intervention from the user.
+> - Done by automating questions that are asked during the installation such as:
+>     - i) Language and time zone
+>     - ii) How the drives should be partitioned
+>     - iii) Which packages should be installed
+>
+> - Purpose of Kickstart: Allows predefined questions answered in a config file attach the iso file to all the required servers and let the installation run on its own.
+> - Prerequisites for using Kickstart:
+>     - 1) Choose a Kickstart server and create/ edit a Kickstart file.
+>     - 2) Make the Kickstart file available on a network location.
+>     - 3) Make the installation source available (iso image).
+>     - 4) Make boot media available for client which will be used to begin the installation.
+>     - 5) Start the Kickstart installation.
+>      
+> - For RHEL, you can use the installation kickstart file which was created during the first installation `/root//anaconda-ks.cfg`.
+> - Additionally you can use automation software such as `Ansible` to do the installation on multiple servers.
 
+- Install kickstart configurator (for RHEL version 7 only):
+
+```sh
+    yum install system-config-kickstart
+    rpm -qa | grep kickstart
+```
+
+- Start the kickstart file configurator and define parameters (Opens a GUI):
+
+```sh
+    system-config-kickstart
+```
+
+- For RHEL version 8, usse the anaconda installation kickstart file and change the hostname only:
+
+```sh
+    cd /root
+    more anaconda-ks.cfg
+    vi anaconda-ks.cfg
+
+    # Change the hostname under the Network Information section
+    network --hostname=mykslinux
+```
+
+- Ensure httpd package is installed and start the httpd service:
+
+```sh
+    rpm -qa | grep httpd
+    dnf install -y httpd
+
+    systemctl start httpd
+    systemctl enable httpd
+    systemctl status httpd
+```
+
+- Copy kickstart file to httpd directory and change the permissions:
+
+```sh
+    cp /root/anacconda-ks.cfg /var/www/html
+    ls -ltrh /var/www/html
+    chmod a+r /var/www/html/anacconda-ks.cfg
+    ls -ltrh /var/www/html
+```
+
+- Disable your firewall:
+
+```sh
+    systemctl stop firewall
+    systemctl disable firewall
+```
+
+- Check SElinux status:
+
+```sh
+    sestatus
+```
+
+- Check the file through the browser on another PC:
+
+```sh
+    http://host_ipaddress/anaconda-ks.cfg
+```
+
+- Create a new VM and attach the iso image.
+- Change the netork adapter to Bridged adapter.
+- Hit Esc once you reach the installation menu with the timer.
+- Type this in the terminal:
+
+```sh
+    boot: linux ks=http://host_ipaddress/anaconda-ks.cfg
+```
+
+- Kickstart for clients with static IP:
+
+```sh
+    boot: linux ks=http://server.example.com/ks.cfg ksdevice=eth0 IP:client_ipaddress netmask=client_subnet_mask gateway=client_gateway
+
+    # ksdevice = is the network adapter of the client
+```
+
+- Wait and enjoy the automated installation.
 
 
 
