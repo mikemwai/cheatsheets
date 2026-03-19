@@ -2401,7 +2401,7 @@ fi
 ```sh
   rpm -qa | grep ansible
   dnf install ansible
-  ansible -version
+  ansible --version
 ```
 
 - Configure Ansible hosts file:
@@ -2430,14 +2430,37 @@ fi
 - Copy the ssh key to the remote server and test the connection:
 
 ```sh
-  ssh-copy-id username@ip_address
-  ansible -m ping all
+  ssh-copy-id client_username@client_ip_address
+  ssh client_username@client_ip_address # Test the connection
 ```
 
 - Create/ Edit the Ansible Playbook to install Apache server by adding the client details such as IP Address and run the playbook:
 
 ```sh
-  vi install_httpd.yml
+  vi /etc/ansible/hosts
+  # Under webservers section, add the line below (Edit with correct details)
+  client_hostname ansible_host=client_ipaddress ansible_user=client_username
+
+  ansible -m ping all # Test the connection to the remote client
+
+  vi install_httpd.yml # Ansible playbook
+
+  # Add the playbook content
+  ---- name: Install Apache on webservers
+  hosts: webservers
+  become: yes
+  become_user: root
+  tasks:
+    - name: Install httpd package
+      yum:
+        name: httpd
+        state: present
+    - name: Start and enable httpd
+      service:
+        name: httpd
+        state: started
+        enabled: true
+
   ansible-playbook install_httpd.yml --ask-become-pass
 ```
 
