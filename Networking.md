@@ -2352,5 +2352,98 @@ fi
 
 - Wait and enjoy the automated installation.
 
+## 27) Ansible
+> - Suite of software tools enabling infrastructure as code. The suite includes software provisioning, configuration management, and application deployment functionality.
+> - Automation tool that simplifies IT tasks like software deployment, config management, and server provisioning.
+> - It is agentless and doesn't need extra software to be downloaded on managed machines. It uses easy to read YAML code for writing playbooks.
+> - YAML is an easy to read code format for storing data in configuration files.
+> - `Playbook` refers to files written in YAML code that contains the list of tasks to automate IT processes.
 
+### YAML Code Format
+- Format:
+  
+```sh
+  # Comment Here
+
+  ---
+
+  # Lists/ sequences 
+  - hosts: localhost # hosts(Key): localhost(Target)
+    become: yes # Indicates whether a task should be implemented with elevated privileges such as admin or sudo
+```
+
+- Example of YAML code:
+
+```sh
+  Student:
+    - name: ABC
+      class: 10
+      id: 1001
+    - name: XYZ
+      class: 11
+      id: 1002
+```
+
+- Indentation shows relationship with more indentations indicating sub-levels.
+
+- Another example:
+
+```sh
+  tasks:
+    - name: Install Nano text editor
+      dnf:
+        name: vim
+        state: present
+```
+
+- Install and verify Ansible:
+
+```sh
+  rpm -qa | grep ansible
+  dnf install ansible
+  ansible -version
+```
+
+- Configure Ansible hosts file:
+
+```sh
+  vi /etc/ansible/hosts
+
+  [webservers]
+  localhost ansible_connection=local
+```
+
+*`N/B:` In this file you will define the webservers group and specify that Ansible should connect to localhost using a local connection* 
+
+- Verify configuration settings:
+
+```sh
+  ansible -m ping webservers
+```
+
+- Generate SSH key pair to connect the ansible host to the clients:
+
+```sh
+  ssh-keygen -t rsa -b 2048
+```
+
+- Copy the ssh key to the remote server and test the connection:
+
+```sh
+  ssh-copy-id username@ip_address
+  ansible -m ping all
+```
+
+- Create/ Edit the Ansible Playbook to install Apache server by adding the client details such as IP Address and run the playbook:
+
+```sh
+  vi install_httpd.yml
+  ansible-playbook install_httpd.yml --ask-become-pass
+```
+
+- Verify the Apache http server installation on the client:
+
+```sh
+  rpm -qa | grep httpd 
+```
 
