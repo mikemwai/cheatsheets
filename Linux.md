@@ -53,10 +53,10 @@
         cp source destination
     ```
     
-    - Copy a file to another directory:
+    - Copy a file to another directory while monitoring the progress:
     
     ```sh
-        cp filename directoryname
+        cp -v filename directoryname
     ```
     
     - Copy a directory and its contents:
