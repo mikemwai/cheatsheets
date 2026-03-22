@@ -2470,3 +2470,164 @@ fi
   rpm -qa | grep httpd 
 ```
 
+## 28) OpenVPN
+> - Tool that creates a secure private connection between your device to the internet by encrypting your data and routing it through a secure server hiding your real location.
+> - Makes use or port number `1194`.
+
+- Install OpenVPN:
+
+```sh
+  rpm -qa | grep openvpn
+  dnf install -y openvpn
+  dnf install -y easy-rsa
+```
+
+- Setup easy rsa for openvpn:
+
+```sh
+  ls /usr/share/easy-rsa/
+  cp -rv /usr/share/easy-rsa/3.1.6/* /etc/openvpn/
+  cd /etc/openvpn/
+  ./easyrsa init-pki # Initialize the Public Key Infrastructure
+  ./easyrsa build-ca nopass # Create the Certificate Authority, press Enter when asked about the common name 
+  ./easyrsa gen-req server nopass # Generate a server certificate (nopass stands for no password, you can remove it and add a password for extra protection)
+  ./easyrsa sign-req server server # Sign the server certificate requesting
+  ./easyrsa gen-dh # Generate the delfi helman (Ensures both server and client communicate safely)
+  ./easyrsa gen-req client nopass # Generate a client certificate
+  ./easyrsa sign-req client client # Sign the client certificate request with the certificate authority
+```
+
+- Add extra security layer by generating a TA .key file:
+
+```sh
+  openvpn --genkey secret ta.key
+```
+
+- Move the essential security files into the openvpn directory
+
+```sh
+  mv pki/ca.crt pki/dh.pem /etc/openvpn/
+  mv pki/issued/server.crt /etc/openvpn/
+  ls -ltrh
+```
+
+- Configure openvpn server:
+
+```sh
+  cp -rv /usr/share/doc/openvpn/samples/sample-config-files/server.conf /etc/openvpn/server/
+  vi /etc/openvpn/server/server.conf
+
+  # Edit this section to:
+  ca /etc/openvpn/ca.crt
+  cert /etc/openvpn/server.crt
+  key /etc/openvpn/server.key
+  dh /etc/openvpn/dh.pem
+  tls-auth /etc/openvpn/ta.key 0
+```
+
+- Enable IP forwarding (Routes traffic between different networks):
+
+```sh
+  vi /etc/sysctl.conf
+
+  # Add this line
+  net.ipv4.ip_forward = 1
+
+  sysctl -p # Applies the changes
+```
+
+- Set the permissions for the keys to allow only root to modify:
+
+```sh
+  chmod 600 /etc/openvpn/server/server.conf /etc/openvpn/*.key /etc/openvpn/*.crt
+```
+
+- Configure firewall and allow openvpn service:
+
+```sh
+  firewall-cmd --add-service-openvpn --permanent
+```
+
+- Enable masquerading which allows proper routing of client traffic through the vpn:
+
+```sh
+  firewall-cmd --add-masquerade --permanent
+```
+
+- Reload the firewall to apply the changes:
+
+```sh
+  firewall-cmd --reload
+```
+
+- Start and enable the openvpn server:
+
+```sh
+  systemctl start openvpn-server@server.service
+  systemctl enable openvpn-server@server.service
+  systemctl status openvpn-server@server.service
+```
+
+- Confirm tunneling is on:
+
+```sh
+  ip a
+  tun0 (Output)
+```
+
+- Check public ip address:
+  
+```sh
+  curl ifconfig.me
+```
+
+- Setup openvpn client (on the client machine):
+
+```sh
+  rpm -qa | grep openvpn
+  dnf install -y openvpn
+  cd /etc/openvpn/
+  ls -ltrh
+  scp /et/copenvpn/ca.crt /etc/openvpn/ta.key /etc/openvpn/pki/issued/client.crt /etc/openvpn/pki/private/client.key root@vpn_server_ipaddress:/etc/openvpn/
+  ls -ltrh
+  cp /usr/share/doc/openvpn/sample/sample-config-files/client.conf /etc/openvpn/client/
+```
+
+- Edit the client config file:
+
+```sh
+  vi /etc/openvpn/client/client.conf
+
+  # Edit these sections
+  remote vpn_server_ipaddress 1194
+  ca /etc/openvpn/ca.cert
+  cert /etc/openvpn/client.crt
+  key /etc/openvpn/client.key
+  tls-auth /etc/openvpn/ta.key
+```
+
+- Set the permissions for the keys to allow only root to modify:
+
+```sh
+  chmod 600 /etc/openvpn/*.key /etc/openvpn/*.crt /etc/openvpn/client/client.conf
+```
+
+- Launch the vpn connection:
+
+```sh
+  openvpn --config /etc/openvpn/client/client.conf
+```
+
+- Open another terminal window and confirm tunnelling is working:
+
+```sh
+  ip a
+  tun0 (Output)
+```
+
+- Check public ip address (Should match with the server's):
+  
+```sh
+  curl ifconfig.me
+```
+
