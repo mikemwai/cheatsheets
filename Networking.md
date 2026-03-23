@@ -2631,3 +2631,68 @@ fi
   curl ifconfig.me
 ```
 
+## 29) Dynamic Host Configuration Protocol (DHCP) Server
+> - DHCP server automatically assigns IP addresses to servers and other devices on the network.
+> - Ideally, at a home setting the router/ gateway provided by the ISP provider assigns IPs to the devices.
+> - However, in the industry dedicated routers run DHCP service to assign IPs on the network. Moreover, static IPs are used. 
+
+- Dedicate a server to be your DHCP server and assign a static IP to it:
+  
+```sh
+  vi /etc/sysconfig/network/enp0s3
+```
+
+```sh
+  nmtui # Network Manager
+```
+
+- Install the dhcp server package:
+
+```sh
+  dnf install dhcp # RHEL version 7
+  dnf install dhcp-server # RHEL version 8
+```
+
+- Edit the configuration file with desire parameters:
+
+```sh
+  vi /etc/dhcp/dhcp.conf
+  cp /usr/share/doc/dhcp-x.x.x/dhcp.conf.example /etc/dhcp/dhcp.conf # If you don't find the conf file
+
+  # Define these parameters
+  defualt-lease-time 600; # DHCP will reserve the IP address for at least 10 minutes
+  max-lease-time 7200; # DHCP will reserve the IP address for a max of 2 hours
+
+  ddns-update-style none;
+  authorirative;
+
+  subnet 192.168.15.0 netmask 255.255.255.0 {    # Defines the subnet range of 256 addresses
+          range 192.168.15.50. 192.168.15.200;   # Defines the DHCP range assignment of 150 addresses
+          option routers 192.168.15.1;           # Routers defines the default gateway
+          option subnet-mask 255.255.255.0;      # Defines the default subnet mask that will be assigned to each host
+          option domain-name-servers 8.8.8.8, 8.8.4.4; # Defines the DNS nameservers which will be assigned to each host
+  }
+```
+
+- Start the DHCP service:
+
+```sh
+  systemctl start dhcp
+  systemctl enable dhcp
+```
+
+- Disable `firewalld` or allow dhcp port over firewall"
+
+```sh
+  systemctl stop firewalld
+```
+
+```sh
+  firewall-cmd --add-service=dhcp -permanent
+  firewall-cmd -reload
+```
+
+- Switch DHCP service from your router/modem to your new DHCP server:
+  - Login to your ISP provided router.
+  - Disable DHCP and enable forwarding to the new DHCP server.
+
