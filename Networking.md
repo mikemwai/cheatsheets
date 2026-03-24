@@ -2696,3 +2696,174 @@ fi
   - Login to your ISP provided router.
   - Disable DHCP and enable forwarding to the new DHCP server.
 
+## 30) Clustered Environment
+> - Refers to using two or more servers that work together as a single system to provide high availability (services keep running without any downtime). Additionally, it assists in load sharing which improves performance and systems respond faster.
+> - `Failover` means that if one server in a cluster stops working another server automatically takes over its job without stopping the service. The servers in a clustered environment are called `cluster nodes`.
+> - `Floating IP` is a single IP address used that can move between the cluster nodes.
+
+- List all the repositories in the 1st node:
+
+```sh
+  dnf repolist all
+```
+
+- Open the repository file to enable the `highavailability` repo id:
+
+```sh
+  vi /etc/yum.repos.d/CentOS-Stream-HighAvailability.repo
+
+  # Add the content below
+  [HighAvailability]
+  name=CentOS Stream $stream - HighAvailability
+  baseurl=https://mirror.stream.centos.org/9-stream/HighAvailability/$basearch/os/
+  enabled=1
+  gpgcheck=1
+  gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
+```
+
+- Remove previously installed metadata files (cache):
+
+```sh
+  dnf clean all
+```
+
+- Create a new cache:
+
+```sh
+  dnf makecache
+```
+
+- Install the required packages:
+
+```sh
+  dnf install -y pacemaker corosync pcs resource-agents fence-agents-all
+```
+
+> - `Pacemaker` refers to the brain of the cluster that decides which server will run which resource and ensure when one server goes down the other picks up the service.
+> - `Corosync` is used for communication between nodes, it keeps both service in touch with each other, shares heart beat signals and ensures that every node knows the current cluster status.
+> - `pcs` is the management tool used to configure the cluster easily with commands instead of editing complicated files, it helps us setup nodes.
+> - `resource-agents` are ready made scripts for different services such as IP addresses, Web servers, or databases.
+> - `fence-agents` are used for fencing in real setups (meaning if a node becomes unresponsive or misbehaves it will be forcefully powered off or isolated to protect the shared data and ensure no corruption happens).
+
+- Start the `pcs` service:
+
+```sh
+  systemctl enable --now pcsd
+  systemctl status pcsd
+```
+
+- Configure the firewall so that the cluster traffic can pass between the nodes:
+
+```sh
+  firewall-cmd --add-services=high-availability --permanent
+  firewall-cmd --reload # Reload to apply the change
+  firewall-cmd --list-services | grep high-availability # Confirm that high availability has been enabled in the list of allowed services
+```
+
+- Configure the cluster authentication user:
+
+```sh
+  passwd hacluster # Installed by default during the pcs installation
+  vi /etc/hosts
+
+  # Add the sections below
+  ipaddress 1st_hostname
+  ipaddress 2nd_hostname
+
+  pcs host auth 1st_hostname 2nd_hostname -u hacluster
+```
+
+- Setup the cluster:
+
+```sh
+  pcs cluster setup clustername 1st_ipaddress 2nd_ipaddress # Edit the clustername
+```
+
+- Ensure the system time is correct using NTP:
+
+```sh
+  systemctl enable --now chronyd
+  timedatectl
+```
+
+- Start and enable the cluster service on both machines at the same time:
+
+```sh
+  pcs cluster start --all
+  pcs cluster enable --all
+```
+
+- Turn off stonith:
+
+```sh
+  pcs property set stonith-enabled=false
+```
+
+*N/B: `Stonith` shuts down a bad node to keep data safe.*
+
+- Turn off no-quorum:
+
+```sh
+  pcs property set no-quorum-policy=ignore
+```
+
+- Create a floating IP:
+
+```sh
+  pcs resource create ClusterIP ocf:heartbeat:IPaddr2 ip=float_ip cidr_netmask=24 op monitor interval=30s
+  pcs resource # Check the cluster resource
+```
+
+- Repeat the same process on the 2nd node:
+
+```sh
+  dnf repolist all
+
+  vi /etc/yum.repos.d/CentOS-Stream-HighAvailability.repo
+
+  # Add the content below
+  [HighAvailability]
+  name=CentOS Stream $stream - HighAvailability
+  baseurl=https://mirror.stream.centos.org/9-stream/HighAvailability/$basearch/os/
+  enabled=1
+  gpgcheck=1
+  gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
+
+  dnf clean all
+  dnf makecache
+  dnf install -y pacemaker corosync pcs resource-agents fence-agents-all
+
+  systemctl enable --now pcsd
+  systemctl status pcsd
+
+  firewall-cmd --add-services=high-availability --permanent
+  firewall-cmd --reload # Reload to apply the change
+  firewall-cmd --list-services | grep high-availability # Confirm that high availability has been enabled in the list of allowed services
+
+  passwd hacluster
+
+  vi /etc/hosts
+
+  # Add the sections below
+  ipaddress 1st_hostname
+  ipaddress 2nd_hostname
+
+  systemctl enable --now chronyd
+  timedatectl
+```
+
+- Test the floating IP on another machine:
+
+```sh
+  ping float_ip
+```
+
+- Test the failover process:
+
+```sh
+  pcs cluster stop 1st_ipaddres # Stop the cluster service on the 1st node
+  ping float_ip # Should show no packet loss on the new machine
+  pcs status # Confirm on both the nodes
+```
+
+
