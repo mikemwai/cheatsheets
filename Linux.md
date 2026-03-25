@@ -1647,6 +1647,76 @@
     renice -n 12 PID
 ```
 
+## Disk Management and Run Levels
+### System Run Levels (0 thru 6)
+> - Brings the system in a different mode.
+> - You have to be root before running the system run levels.
+> - `init` is an executable command running at startup time. It's configuration files are located in `/etc/init.d`.
+
+#### Types of run levels
+1) Main Run Levels
+- `0` - Shut down the system:
+
+```sh
+    init 0 
+```
+
+- `1` - Single-user mode; usually aliased as s or S:
+
+```sh
+    init 1
+    init S
+    init s
+```
+
+- `6` - Reboot the system:
+
+```sh
+    init 6
+```
+
+2) Other Run Levels
+- `2` - Multiuser mode without networking (cannot communicate with other computers).
+- `3` - Multiuser mode with networking.
+- `4` - Not user defined.
+- `5` - Multiuser mode with networking and GUI.
+- Find out the run level you are in:
+
+```sh
+    who -r
+```
+
+- Set new default run-level:
+
+```sh
+    systemctl set-default [new target]
+```
+
+*`N/B:` Newer Linux versions `/etc/systemd/system/default.target` while older Linux versions `/etc/inittab`.*
+
+- Set run-level modify:
+
+```sh
+    vi /etc/inittab
+```
+
+### Linux Boot Process
+> - `Process for older RHEL versions:`
+> - `1) BIOS` - BIOS executes MBR.
+> - `2) MBR` - Master Boot Record executes GRUB.
+> - `3) GRUB` - Grand Unified Bootloader executes kernel.
+> - `4) Kernel` - Executes /sbin/init.
+> - `5) Init` - Executes runlevel programs.
+> - `6) Runlevel` - Runlevel programs are executed from /etc/rc.d/rc*.d/.
+>
+> - `Process for newer RHEL versions:`
+> - `1) BIOS` - BIOS executes POST.
+> - `2) POST` - Power On Self Test started.
+> - `3) MBR` - Master Boot Record executes GRUB2.
+> - `4) GRUB2` - Grand Unified Bootloader v2 loads linux kernel. Config file is `/boot/grub2/grub.cfg`.
+> - `5) Kernel` - Loads required drivers from `initrd.img` and starts the 1st OS process `systemd`.
+> - `6) Systemd (System Daemon)` - Starts all required processes. Reads `/etc/systemd/system/default.target` to bring the system to the run-level.
+
 ## 💽 Disk Usage
 
 - List the disks in the system:
