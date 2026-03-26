@@ -1799,6 +1799,13 @@
 > - `5) Kernel` - Loads required drivers from `initrd.img` and starts the 1st OS process `systemd`.
 > - `6) Systemd (System Daemon)` - Starts all required processes. Reads `/etc/systemd/system/default.target` to bring the system to the run-level.
 
+## Computer Storage
+> - `Types:`
+> - `1) Local Storage` - RAM, HDD, SSD
+> - `2) Direct Attached Storage (DAS)` - External disk directly attached with USB or cables.
+> - `3) Storage Area Network (SAN)` - Storage attached through iSCSI or fiber cable.
+> - `4) Network Attached Storage (NAS)` - Storage attached over network (TCP/IP) e.g. Samba, NFS.
+
 ## 💽 Disk Usage
 
 - List the disks in the system:
@@ -1819,7 +1826,7 @@
   du -sh * | grep G
 ```
 
-- List the disk space:
+- List the disk space (disk partitions):
 
 ```sh
     fdisk -l
