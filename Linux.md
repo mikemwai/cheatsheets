@@ -1647,6 +1647,33 @@
     renice -n 12 PID
 ```
 
+## Systemd-analyze
+> - `Benefits of systemd-analyze:`
+> - `1) Boot performance` - Helps one to understand how long the Linux system takes to boot by showing the time taken by the kernel, services and initrd. `initrd` is a temporary root file system used during the boot process to initialize the system's hardware.
+> - `2) Slow services` - It also identifies the slowest services known as the critical chain highlighting the service taking the longest start and may delay the boot process.
+> - `3) Optimizing startup times` - Lists services by start time in the blame list helping to identify which services are slowing down the boot time.
+> - Additionally, you can create a graphical boot chart showing configuration errors and service security.
+
+- View total boot time of machine:
+  
+```sh
+    systemd-analyze time
+```
+
+*`N/B:` Userspace means where user applications and processes run is seperate from the kernel, allowing user to interact with the system through applications.*
+
+- Check which services were started during boot:
+
+```sh
+    systemd-analyze blame
+```
+
+- Filter out services that started during boot time for the current user:
+
+```sh
+    systemd-analyze blame --user
+```
+
 ## Disk Management and Run Levels
 ### System Run Levels (0 thru 6)
 > - Brings the system in a different mode.
