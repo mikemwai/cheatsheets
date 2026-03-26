@@ -1474,6 +1474,61 @@
     ./output-screen
 ```
 
+## Message of the Day
+> - Refers to the first message users will see when they login to the Linux machine.
+> - Location of the file is `/etc/motd`.
+
+- Modify the message of the day:
+
+```sh
+    vi /etc/motd
+    # Add the message you want
+    cat /etc/motd # Confirm the status has been saved
+```
+
+- Passing along commands to the message of the day file:
+    - Create a new file in:
+    
+    ```sh
+      cd /etc/profile.d/
+    ```
+
+    - Add desired commands in motd.sh file:
+
+    ```sh
+       vi motd.sh
+
+      # Add the content
+      #!/bin/bash
+      echo -e "
+      ####################################
+      #
+      # Welcome to `hostname`
+      # This system is running `cat /etc/os-release`
+      # kernel is `uname -r`
+      #
+      # You are logged in as `whoami`
+      #
+      #####################################
+      "
+    ```
+
+    - Modify `/etc/ssh/sshd_config` file:
+
+    ```sh
+       cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+       vi /etc/ssh/sshd_config
+    
+       # Edit
+       PrintMotd no
+    ```
+
+    - Restart sshd service:
+
+    ```sh
+        systemctl restart sshd.service
+    ```
+
 ## Aliases
 - Used to cut down on lengthy and repetitive commands.
 
