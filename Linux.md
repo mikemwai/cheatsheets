@@ -1799,14 +1799,14 @@
 > - `5) Kernel` - Loads required drivers from `initrd.img` and starts the 1st OS process `systemd`.
 > - `6) Systemd (System Daemon)` - Starts all required processes. Reads `/etc/systemd/system/default.target` to bring the system to the run-level.
 
-## Computer Storage
+## 💽 Computer Storage
 > - `Types:`
 > - `1) Local Storage` - RAM, HDD, SSD
 > - `2) Direct Attached Storage (DAS)` - External disk directly attached with USB or cables.
 > - `3) Storage Area Network (SAN)` - Storage attached through iSCSI or fiber cable.
 > - `4) Network Attached Storage (NAS)` - Storage attached over network (TCP/IP) e.g. Samba, NFS.
 
-## 💽 Disk Usage
+### Disk Usage
 
 - List the disks in the system:
 
@@ -1826,18 +1826,12 @@
   du -sh * | grep G
 ```
 
+### Disk Partitioning
+
 - List the disk space (disk partitions):
 
 ```sh
     fdisk -l
-```
-
-- Partition a disk:
-
-```sh
-    fdisk /dev/disk
-    n - p - enter- enter - w
-    mkfs.xfs /dev/disk
 ```
 
 - Mount a disk:
@@ -1846,6 +1840,100 @@
     mkdir new_directory
     fdisk /dev/disk new_directory
 ```
+
+- Add a disk and create a disk partition:
+
+```sh
+    fdisk -l
+    fdisk /dev/sdb # Edit sdb to the assigned diskname by the system
+    n - p - enter - enter - w # m is for help to confirm what each letter does
+    fdisk -l # Confirm the diskname again
+    mkfs.xfs /dev/sdb1 # Edit sdb1 to the assigned diskname by the system
+    mkdir /data # Edit data to your preferred directory name
+    mount /dev/sdb1 /data # Mount the disk partition to the created directory
+    df -h # Verify
+    vi /etc/fstab # Enable it to be mounted everytime the system reboots
+
+    # Go to the bottom of the file, and hit O to add a new line
+    /dev/sdb1    /data    xfs    defaults    0    0
+
+    reboot # For the changes to be applied
+```
+
+*`N/B:` Ensure you have added a new disk in your VM or physical machine. `fstab` has all the information about the disk partitions.*
+
+- Unmount a disk:
+
+```sh
+    umount /data # Edit data to  your assigned mount point/ directory
+    df -h
+    mount -a # Mount back the unmounted disk
+```
+
+### Logical Volume Management (LVM)
+> - LVM allows disks to be combined together.
+> - This is achieved by combining disks together ad putting them in one volume group e.g. `datavg` and creating logical volumes (mount points) e.g. `/data1`, `/data2` etc. 
+> - LVM configuration is done during Linux installation. Anything that you have in LVM it will start with `/dev/mapper`.
+> - Format: `Hard Disks` -> `Partitions` -> `Physical Volume` -> `Volume Group` -> `Logical Volume(s)` -> `File System`.
+
+- Add disk and create LVM partition:
+
+```sh
+    fdisk -l
+    fdisk /dev/sdc # Edit sdc to the assigned diskname by the system
+    n - p - enter - enter - enter # m is for help to confirm what each letter does
+    p # Confirm the partition has been created before writing the changes
+    t - L (View hex codes associated with LVM) - 8e - p - w # Change the partition type to LVM
+
+    # Create a physical volume
+    pvcreate /dev/sdc1 # Edit the mount point name
+    pvdisplay # Verfiy physical volume has been created
+
+    # Create the volume group
+    vgcreate oracle_vg /dev/sdc1 # Edit oracle_vg to your preferred volume name & and the mount point name
+    vgdisplay oracle_vg # Verfiy volume group has been created
+
+    # Create the Logical Volume
+    lvcreate -n oracle_lv --size 1000M oracle_vg # Edit the parameters
+    lvdisplay
+
+    # Assign the file system to the logical volume
+    mkfs.xfs /dev/oracle_vg/oracle_lv
+    mkdir /oracle
+    mount /dev/oracle_vg/oracle_lv /oracle
+    df -h
+
+    # Enable the partition at boot time
+    vi /etc/fstab
+
+    # Go to the bottom of the file, and hit O to add a new line
+    /dev/oracle_vg/oracle_lv    /oracle    xfs    defaults    0    0
+```
+
+*`N/B:` Ensure you have added a new disk in your VM or physical machine.*
+
+- Add and extend disk using LVM:
+
+```sh
+    fdisk -l
+    fdisk /dev/sdd # Edit sdc to the assigned diskname by the system
+    n - p - enter - enter - enter # m is for help to confirm what each letter does
+    p # Confirm the partition has been created before writing the changes
+    t - L - 8e - p - w # Change the partition type to LVM
+    fdisk -l # Verify
+    reboot
+    fdisk -l /dev/sdd1
+
+    pvdisplay  or pvs
+    vgdisplay oracle_vg
+    pvcreate /dev/sdd1
+    vgextend oracle_vg /dev/sdd1
+    lvextend -L+1024M /dev/mapper/oracle_vg-oracle_lv
+    xfs_growfs /dev/mapper/oracle_vg-oracle_lv
+    df -h # Verify
+```
+
+*`N/B:` Ensure you have added a new disk in your VM or physical machine.*
 
 ## System Monitoring
 
