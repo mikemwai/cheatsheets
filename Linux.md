@@ -1196,8 +1196,7 @@
 ```
 
 ### 6) top 
-
-- Shows the running processes in real-time view.
+> - Shows the running processes in real-time view.
 
 - Check for CPU usage:
 
@@ -1246,7 +1245,7 @@
 - Sort all running processes by memory usage:
 
     ```sh
-        top 
+       top 
     ```
 
     - Then press `Shift` + `M` and `Shift` + `P`.
@@ -1935,6 +1934,72 @@
 
 *`N/B:` Ensure you have added a new disk in your VM or physical machine.*
 
+## Computer Memory 
+### Memory Statistics
+- Show the physical memory and your swap (Virtual memory):
+
+```sh
+    free -h # Makes the output human readable by showing MB, GB etc
+```
+
+- View the details of your memory:
+
+```sh
+    cat /proc/meminfo
+```
+
+- Sort all running processes by memory usage:
+
+    ```sh
+       top 
+    ```
+
+    - Then press `Shift` + `M` and `Shift` + `P`.
+
+### Add/ Extend Swap Space
+> - `Swap Space` refers to the space used when the physical memoery amount (RAM) is full. If the system needs more memory resources and the RAM is full, inactive pages in memory are moved to the swap space.
+> - While swap space can help machines with a small RAM amount, it should not be considered a replacement for more RAM. It is located on hard drives, which have a slower access time than physical memory.
+> - `/boot` directory is normally assigned to the RAM.
+> - `N/B:` Recommended swap size is twice the RAM size.
+
+- Extend the swap space:
+```sh
+    dd if=/dev/zero of=/newswap bs=1M count=1024 # Count shows the size to be extended
+    cd /
+    ls -ltr # Confirm the swap file has been created
+```
+
+- Change the permissions to avoid others reading the file:
+```sh
+    chmod go-r newswap or chmod 600 newswap
+```
+
+- Make the swap:
+```sh
+    mkswap /newswap
+```
+
+- Enable/ Turn on the swap:
+```sh
+    swapon /newswap
+```
+
+- Enable the swap during boot time:
+```sh
+    vi /etc/fstab
+
+    # Add a new line
+    /newswap    swap    swap    defaults    0    0
+
+    reboot # For the changes to be applied
+```
+
+- Delete the swap:
+```sh
+    swapoff /newswap # Disable/ Turn off/ Delete the swap
+    rm /newswap -y
+```
+
 ## System Monitoring
 
 `1) df` - Disk space usage
@@ -1982,7 +2047,7 @@
 - Show the physical memory and your swap (Virtual memory):
 
 ```sh
-    free
+    free -h # Makes the output human readable by showing MB, GB etc
 ```
 
 `5) cat /proc/cpuinfo`
