@@ -1825,6 +1825,36 @@
   du -sh * | grep G
 ```
 
+### XFS
+> - Journaling file system that organizes data in a hierarchical structure of directories and files.
+> - It efficiently manages disk space and ensures data integrity by keeping a log of changes before they are actually made.
+
+`xfs_info`
+> - Displays detailed information about an existing XFS filesystem (such as its size, and block size), structure of file system. Additionally, important for system monitoring, troubleshooting, and capacity planning.
+> - Helpful in understanding the current configuration and layout of an XFS filesystem on a disk. Provides a quick overview without modifying the file system.
+
+- View the type of file system being used by the disk partitions:
+```sh
+    df -T
+```
+
+- View the `xfs_info` version being ran:
+```sh
+    xfs_info -v
+```
+
+- Using `xfs_info`:
+```sh
+    xfs_info /dev/sda # Edit the disk partition
+
+    # Output Intepretation
+    meta-data - Stores file system's structure info such as file names, sizes, and permissions
+    data - Shows how the actual data is stored including block sizes, total number of available blocks
+    naming - Relates to file names and directories are handled within the system
+    log - Journal that protects data integrity by tracking changes before they are fully written
+    realtime - Handles real-time data 
+```
+
 ### Disk Partitioning
 
 - List the disk space (disk partitions):
