@@ -1964,6 +1964,75 @@
 
 *`N/B:` Ensure you have added a new disk in your VM or physical machine.*
 
+### Advanced Storage Features (Stratis)
+> - Red Hat 8 introduces the next generation volume management solution called `Stratis`.
+> - Uses thin provisioning by default. It combines the process of creating Logical Volume Management (LVM) and filesystems into one management.
+> - In LVM if a filesystem system gets full you will have to extend it manually whereas stratis extends the filesystem automatically if it has available space in its pool.
+
+- Install `Stratis` package:
+```sh
+    dnf install -y stratis-cli stratisd
+    rpm -qa | grep stratis # Verify installation has worked
+```
+
+- Enable and start `Stratis` service:
+```sh
+    systemctl enable stratisd
+    systemctl start stratisd
+```
+
+- Add new disks (2 x 5G) and verify at OS level:
+```sh
+    lsblk # Veerify the new disks have been added (List block device)
+```
+
+- Create a new `Stratis` pool and verify:
+```sh
+    stratis pool create pool1 /dev/sdb
+    stratis pool list
+```
+
+- Extend the pool:
+```sh
+    stratis pool add-data pool1 /dev/sdc
+    stratis pool list
+```
+
+- Create a new filesystem using stratis:
+```sh
+    stratis filesystem create pool1 fs1
+    stratis filesystem list # Filesystem will start with 546 MB
+```
+
+- Create a directory for mount point and mount filesystem:
+```sh
+    mkdir /bigdata
+    mount /dev/stratis/pool1/fs1 /bigdata
+    stratis filesystem list # Actual size being used
+    lsblk
+```
+
+- Create a snapshot of your filesystem:
+```sh
+    stratis filesystem snapshot pool1 fs1 fs1-snap
+    stratis filesystem list
+```
+
+- Add the entry to `/etc/fstab` to mount at boot:
+```sh
+    vi /etc/fstab
+    UUID="asf-0887afgdja-" /bigdata xfs defaults, x-systemd.requires=stratisd.service 0 0 # Tells fstab do not mount this filesystem unless the system starts stratisd.
+```
+
+### RAID
+> - Referred to Redundant Array of Independent Disks
+> - Reason for RAID: To create a redundancy meaning if one disk dies, you have another disk to avoid data loss.
+> - Types of RAID:
+> -    `1) RAID 0` - Used for data warehousing and backups (Combines data to form one big disk i.e. 5+5=10G). Disadvantage is that if one disk dies you have lost your data.
+> -    `2) RAID 1` - Disks are mirrorred (5,5=5G). Disadavantage is that it is slow because it has to replicate data from one disk to another.
+> -    `3) RAID 5` - You need to have 3 or more disks because it replicates data on each disk and saves some data on each disk (5+5+5=12G).
+> - Difference between RAID and LVM is that RAID is configured on the physical disks while LVM is configured on logical disks.
+
 ## Computer Memory 
 ### Memory Statistics
 - Show the physical memory and your swap (Virtual memory):
