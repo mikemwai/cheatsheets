@@ -2033,6 +2033,76 @@
 > -    `3) RAID 5` - You need to have 3 or more disks because it replicates data on each disk and saves some data on each disk (5+5+5=12G).
 > - Difference between RAID and LVM is that RAID is configured on the physical disks while LVM is configured on logical disks.
 
+### File System Check (fsck and xfs_repair)
+> - Linux fsck utility is used to check and repair Linux filesystems (ext2, ext3, ext4, etc).
+> - Linux xfs_repair utility is used to check and repair Linux filesystems for xfs filesystem type.
+> - Depending on when was the last time a file system was checked, the system runs the fsck during boot time to check whether the filesystem is in consistent state.
+> - Could also be ran manually when there is a problem with the filesystem. Execute ths fsck on an unmounted file system to avoid data corruption issues.
+> - xfs_repair utility is highly scalable and is designed to repair even very large file systems with many inodes efficiently. However, it does not run at boot time.
+> - `Exit Codes for fsck:`
+> -    `0 - No errors`
+> -    `1 - Filesystem errors corrected`
+> -    `2 - System should be rebooted`
+> -    `4 - Filesystem errors left uncorrected`
+> -    `8 - Operational error`
+> -    `16 - Usage or syntax error`
+> -    `32 - Fsck cancelled by user request`
+> -    `128 - Shared-library error`
+
+- View the type of filesystem:
+```sh
+    df -Th
+```
+
+- Repair a damaged xfs filesystem:
+```sh
+    xfs_repair /dev/sdb1 # Edit /dev/sdb1
+    echo $? # Check the status (If 0 it shows that the repair command ran successfully
+    mount /dev/sdb1 /data # Mount the file system
+```
+
+*`N/B:` For the xfs_repair to work you have to unmount the filesystem from the mount point.*
+
+- Unmount a filesystem:
+```sh
+    umount /data # Run as root and ensure you edit /data (the mount point)
+```
+
+- Force a filesystem check even if it's clean using:
+```sh
+    fsck /dev/sdc -f # Edit /dev/sdb1
+```
+
+*`N/B:` Ensure the filesystem is ext not xfs otherwise it will not work.*
+
+### System Backup 
+> - `Types of Backups:`
+> -    `1) System Backup` - Entire image using tools such as acronis, Veeam, Commvault, Netbackup etc.
+> -    `2) Application Backup` - 3rd party application backup solution.
+> -    `3) Database Backup` - Oracle dataguard, SQL backup etc.
+> -    `4) Filesystem Backup` - tar, gzip directories etc.
+> -    `5) Disk Backup/ Cloning` - dd command.
+
+`dd`
+> - It is a command utility whose primary purpose is to convert and copy files.
+> - It is used for tasks such as backing up the boot sector of a hard drive, and obtaining a fixed random data amount. The source and destination disk should be the same size.
+
+- Syntax:
+```sh
+    dd if=<source file name> of=<target file name> [Options]
+    dd if=/dev/sda of=/dev/sdb # Copies disk sda to sdb
+```
+
+- Copy the disk partition to a file:
+```sh
+    dd if=/dev/sda1 of=/data/boot.img
+```
+
+- Restore the image file to other machine after copying the .img:
+```sh
+    dd if=/data/boot.img of=/dev/sda2
+```
+
 ## Computer Memory 
 ### Memory Statistics
 - Show the physical memory and your swap (Virtual memory):
