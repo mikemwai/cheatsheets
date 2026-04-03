@@ -2103,6 +2103,100 @@
     dd if=/data/boot.img of=/dev/sda2
 ```
 
+### Network File System
+> - Client/ server system allowing users to access files across a network and treat them as if they resided in a local file directory.
+
+`Steps for NFS Server Configuration`
+- Install NFS packages: 
+```sh
+    dnf install nfs-utils rpcbind libnfsidmap
+    rpm -qa | grep nfs # Verfiy
+```
+
+- Enable and start NFS services: 
+```sh
+    systemctl enable rpcbind nfs-server
+    systemctl start rpcbind, nfs-server, rpc-statd, nfs-idmapd 
+```
+
+- Create NFS share directory and assign permissions:
+```sh
+    mkdir /mypretzels 
+    chmod a+rwx /mypretzels
+    touch kramer
+    echo "Hello" > kramer
+    ls -ltr # Verify
+```
+
+- Modify `/etc/exports` file to add new shared filesystem:
+```sh
+    cp /etc/exports /etc/exports.bak
+    vi /etc/exports
+
+    # Add the content
+    /mypretzels nfs_server_ip(rw,sync,no_root_squash) = for only 1 host 
+    /mypretzels *(rw,sync,no_root_squash) = for everyone
+```
+
+- Export the NFS filesystem:
+```sh 
+    exportfs -rv
+```
+
+- Stop and disable firewalld:
+```sh 
+    systemctl stop firewalld 
+    systemctl disable firewalld
+```
+
+`Steps for NFS Client Configuration`
+- Install NFS packages:
+```sh 
+    dnf install nfs-utils rpcbind
+    rpm -qa | grep nfs # Verify
+```
+
+- Enable and start rpcbind service:
+```sh 
+    systemctl rpcbind start
+    ps -ef | grep rpcbind # Verify rpcbind process is running
+```
+
+- Make sure firewalld or iptables stopped (if running):
+```sh 
+    ps –ef | egrep “firewall|iptable”
+```
+
+- Show mount from the NFS server:
+```sh
+    ping nfs_server_ip
+    showmount -e nfs_server_ip 
+```
+
+- Create a mount point:
+```sh 
+    mkdir /mnt/kramer
+```
+ 
+- Mount the NFS filesystem:
+```sh 
+    mount nfs_server_ip:/mypretzels /mnt/kramer
+    df –h # Verify mounted filesystem 
+```
+
+- Create a new file from the client and see if changes appear in the NFS server:
+```sh
+    cd /mypretzels
+    ls -ltr
+    touch david
+    ls -ltr
+```
+
+- To unmount:
+```sh 
+    umount /mnt/kramer
+```
+
 ## Computer Memory 
 ### Memory Statistics
 - Show the physical memory and your swap (Virtual memory):
