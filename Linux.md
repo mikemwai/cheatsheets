@@ -2811,6 +2811,10 @@
 ```
 
 ## 🛠️ Common commands
+- After changing the Network mode for your mcahine i.e. NAT to Bridged Adapter, restart the network of the machine:
+```sh
+    systemctl restart network
+```
 
 - Ever wondered how to check what Linux distro a server is running? Try running:
 
