@@ -2197,6 +2197,143 @@
     umount /mnt/kramer
 ```
 
+### Samba
+> - Linux tool allowing sharing for Linux resources such as files and printers to other operating systems.
+> - Main difference with NFS is that NFS shares within Linux like system whereas Samba shares with other OS e.g. Windows, MAC etc.
+> - Samba shares its filesystem through protocols  `Server Message Block (SMB)`, `NetBios Named Server (NMB)` or `Common Internet File System (CIFS) - extension of SMB`.
+
+`Installation and Configuration`
+- Install samba packages:
+```sh
+    dnf install -y samba samba-client samba-common
+```
+
+- Enable and start Samba services (smb and nmb):
+```sh
+    systemctl enable smb smb
+    systemctl start smb nmb
+```
+
+- Enable Samba to be allowed through firewall/ Disable firewall:
+```sh
+    firewall-cmd --permanent --zone=public --add-service=samba
+    firewall-cmd -reload
+```
+```sh
+    systemctl stop firewalld
+    systemctl disable firewalld
+```
+
+- Create Samba share directory and assign  permissions:
+```sh
+    mkdir -p /samba/morepretzels
+    chmod a+rwx /samba/morepretzels
+    chown -R nobody:nobody /samba
+```
+
+- Change the SELinux security context for the samba shared directory/ Disable SELinux:
+```sh
+    chcon -t samba_share_t /samba/morepretzels
+```
+```sh
+    sestatus
+    vi /etc/selinux/config
+
+    # Edit to
+    SELINUX=disabled
+
+    reboot
+```
+
+- Modify `/etc/samba/smb.conf` to add new shared filesystem:
+```sh
+    cd /etc/samba
+    cp smb.conf smb.conf.bak
+    vi smb.conf
+
+    # Delete everything and add this content
+    [global] 
+        workgroup = WORKGROUP 
+        netbios name = centos 
+        security = user 
+        map to guest = bad user 
+        dns proxy = no 
+    [Anonymous] 
+        path = /samba/morepretzels 
+        browsable = yes 
+        writable = yes 
+        guest ok = yes 
+        guest only = yes 
+        read only = no
+
+    testparm # Verify the setting
+```
+
+- Mount Samba share on Windows client:
+```sh
+    go to start and the search bar
+    Type \\samba_host_ipaddress
+```
+
+- Mount Samba share on Linux client:
+```sh
+    dnf install -y cifs-utils samba-client
+    mkdir /mnt/sambashare # Create a mount point directory
+    mount -t cifs //samba_host_ipaddress/Anonymous /mnt/sambashare/
+```
+
+`Secure Samba Serveer`
+- Create group `smbgrp` and user `larry` to access samba server with proper authentication:
+```sh
+    useradd larry
+    groupadd smbgrp
+    usermod -a -G smbgrp larry
+    smbpasswd -a larry
+```
+
+- Create a new share, set the permission on the share:
+```sh
+    mkdir /samba/securepretzels
+    chown -R larry:smbgrp /samba/securepretzels
+    chmod -R 0770 /samba/securepretzels
+    chcon -t samba_share_t /samba/securepretzels
+```
+
+- Modify `/etc/samba/smb.conf` to add new shared filesystem:
+```sh
+    cd /etc/samba
+    cp smb.conf smb.conf.bak
+    vi smb.conf
+
+    # Delete everything and add this content
+    [global] 
+        workgroup = WORKGROUP 
+        netbios name = centos 
+        security = user 
+        map to guest = bad user 
+        dns proxy = no 
+    [Anonymous] 
+        path = /samba/morepretzels 
+        browsable = yes 
+        writable = yes 
+        guest ok = yes 
+        guest only = yes 
+        read only = no
+    [Secure] 
+        path = /samba/securepretzels 
+        valid users = @smbgrp 
+        guest ok = no 
+        writable = yes 
+        browsable = yes 
+
+    testparm # Verify the setting
+```
+
+- Restart the services:
+```sh
+    systemctl restart smb nmb
+```
+
 ## Computer Memory 
 ### Memory Statistics
 - Show the physical memory and your swap (Virtual memory):
