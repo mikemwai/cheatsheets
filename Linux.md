@@ -586,7 +586,7 @@
         sudo useradd -m newusername
         sudo useradd -m newusername
         useradd username # Creates the user using the root user
-        useradd -g groupname -s /bin/ash -c "user description" -m -d /home/username username # Includes all the parameters that need to be defined
+        useradd username -g groupname -s /bin/ash -c "user description" -md /home/username # Includes all the parameters that need to be defined
         man useradd # Manual for useradd
     ```
 
