@@ -27,6 +27,7 @@
 |SMTP              |25                |
 |SSH               |22                |
 |Telnet            |23                |
+|Listener          |1521              |
 
 ## 🐧Linux
 > - Interface configuration files include:
