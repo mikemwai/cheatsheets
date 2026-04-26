@@ -40,6 +40,12 @@
       rm -rf directoryname
     ```
 
+    - Deleting a dashed filename:
+
+    ```sh
+        rm -- -
+    ```
+
     - Adding content to files:
 
     ```sh
@@ -162,6 +168,9 @@
     
     ```sh
       cat file_name
+      cat ./- # Read a dashed filename
+      cat spaces\ in\ a\ filename £ Read a file with spaces in its filename
+      cat .hidden_filename # Read a hidden file
     ```
 
     - Viewing files and folders in a directory:
@@ -3098,4 +3107,9 @@
 
 ```sh
     sleep no_of_seconds
+```
+
+- Reinitialize your terminal to its default state (Cleaning the garbage):
+```sh
+    reset
 ```
