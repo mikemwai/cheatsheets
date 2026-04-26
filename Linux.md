@@ -169,7 +169,7 @@
     ```sh
       cat file_name
       cat ./- # Read a dashed filename
-      cat spaces\ in\ a\ filename £ Read a file with spaces in its filename
+      cat spaces\ in\ a\ filename # Read a file with spaces in its filename
       cat .hidden_filename # Read a hidden file
     ```
 
