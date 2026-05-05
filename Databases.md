@@ -224,16 +224,16 @@
   info all
 ```
 
-- View OGG lag info in detail:
-
-```sh
-  view report
-```
-
 - View more information about a specific process based on the group name:
 
 ```sh
   info group_name
+```
+
+- View OGG lag info in detail:
+
+```sh
+  view report group_name
 ```
 
 > ## Resources
