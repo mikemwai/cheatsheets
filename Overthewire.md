@@ -10,3 +10,8 @@
 ```sh
   find / -user bandit7 -group bandit6 -size 33c 2>/dev/null
 ```
+
+- The password for the next level is stored in the file data.txt and is the only line of text that occurs only once:
+```sh
+  sort data.txt | uniq -u 
+```
