@@ -20,3 +20,9 @@
 ```sh
   strings data.txt | grep "=="
 ```
+
+- The password for the next level is stored in the file data.txt, which contains base64 encoded data:
+```sh
+  base64 -d data.txt # The -d flag decodes the data
+```
+
