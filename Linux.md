@@ -1973,6 +1973,33 @@
 
 *`N/B:` Ensure you have added a new disk in your VM or physical machine.*
 
+- Scan and list the status of each logical volume:
+```sh
+    lvscan
+    vgscan # For the volume groups
+    pvscan # For physical volumes
+```
+
+- If a LV is inactive, try:
+```sh
+    lvchange -ay lv_path # Update
+    lvscan # Verify
+```
+
+- If a VG is inactive, try:
+```sh
+    vgchange -ay vg_name # Update
+    vgscan # Verify
+```
+
+- If a filesystem was mounted on the LV, try:
+```sh
+    cat /etc/fstab | grep lv_name # Verify which filesystem specifically
+    mount -a # Mount it
+    mount lv_path /mount_point # Update. This is if the filesystem is not in /etc/fstab
+    df -kh # Verify filesystem has been mounted
+```
+
 ### Advanced Storage Features (Stratis)
 > - Red Hat 8 introduces the next generation volume management solution called `Stratis`.
 > - Uses thin provisioning by default. It combines the process of creating Logical Volume Management (LVM) and filesystems into one management.
@@ -2506,6 +2533,11 @@
 ```sh
     ip route
     ip route | column -t # Human readable format
+```
+
+- View the Kernel IP routing table:
+```sh
+    route -n
 ```
 
 `10) ss`
