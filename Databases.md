@@ -146,8 +146,24 @@
 
 *`N/B:` Edit the `database_name` parameter to the correct one.*
 
+*Optional Step:*
+- Create the HR schema:
+```sh
+  sql> @ $ORACLE_HOME/demo/schema/human_resources/hr_main_new.sql
+  # Default tablespace = users (parameter 2), temp (parameter 3), log path = hr.log (parameter 4) 
+```
+
+- Verify the schema has been created:
+```sh
+  sql> select username from dba_users where username='HR';
+  sql> select count(*) from hr.employees; # Verify there is data in the HR schema
+```
+
 ### 6) Verification
 - Verify the database instance is running:
+```sh
+  ps -ef | grep pmon # Confirm the pmon process is running
+```
 
 ```sh
   export ORACLE_SID=livedb
