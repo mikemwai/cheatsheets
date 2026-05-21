@@ -2627,6 +2627,12 @@
     sudo hostnamectl set-hostname new-hostname
 ```
 
+- View detailed hostname info:
+
+```sh
+    hostnamectl
+```
+
 - Reboot the system for the changes to be applied:
 
 ```sh
