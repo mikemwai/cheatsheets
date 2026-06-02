@@ -209,6 +209,24 @@
   certutil -error 0x*******
 ```
 
+## License
+> - You can only rearm the license 6 times.
+
+- Check how many times a license has been rearmed:
+```sh
+  slmgr -dlv
+```
+
+- Rearm the license:
+```sh
+  slmgr -rearm
+```
+
+- Restart the node:
+```sh
+  restart-computer
+```
+
 ---
 
 - View the PC serial number:
