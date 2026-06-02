@@ -227,6 +227,17 @@
   restart-computer
 ```
 
+## Key Shortcuts
+- Open File Explorer:
+```sh
+  Win + E
+```
+
+- Close a tab:
+```sh
+  Ctrl + W
+```
+
 ---
 
 - View the PC serial number:
@@ -260,4 +271,9 @@
 
 ```sh
   command /? # Works in command prompt and not powershell
+```
+
+- View the name of the host:
+```sh
+  hostname
 ```
