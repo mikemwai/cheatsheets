@@ -260,6 +260,57 @@
    git tag -d tagname
 ```
 
+## 10) Commit Prefixes
+- A new feature:
+```sh
+   feat: add user profile page # Update the message
+```
+
+- A bug fix:
+```sh
+   fix: correct login validation error # Update the message
+```
+
+- Documentation changes:
+```sh
+   docs: update README # Update
+```
+
+- Code style changes (formatting, whitespace, semicolons) that don't affect logic:
+```sh
+   style: apply prettier formatting # Update
+```
+
+- Code changes that improve structure without changing behavior:
+```sh
+   refactor: simplify user authentication flow # Update
+```
+
+- Adding/ modifying tests:
+```sh
+   test: add unit tests for payment service # Update
+```
+
+- Maintenance tasks, dependency updates, build scripts, configs:
+```sh
+   chore: update eslint to latest version
+```
+
+- Performance improvements:
+```sh
+   perf: optimize image loading
+```
+
+- Changes to CI/CD configurations:
+```sh
+   ci: update Azure DevOps workflow
+```
+
+- Changes affecting the build system or external dependencies:
+```sh
+   build: add webpack plugin for compression
+```
+
 # B) GitHub CLI
 - Display the active account & authentication state for each known GitHub host:
 ```sh
