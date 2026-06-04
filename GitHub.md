@@ -260,17 +260,30 @@
    git tag -d tagname
 ```
 
-## 10) Commit Prefixes
+## 10) Semantic Versioning
+> - Semantic version numbers include: `MAJOR.MINOR.PATCH`
+>   i) MAJOR - Breaking changes (e.g. Overhaul Authentication system)
+>   ii) MINOR - New features (e.g. Add a dark mode toggle)
+>   iii) PATCH - Bug fixes (e.g. Typo correction in settings page, fix crash on login)
+
+### MINOR Version Bump
 - A new feature:
 ```sh
    feat: add user profile page # Update the message
 ```
 
+### PATCH Version Bump
 - A bug fix:
 ```sh
    fix: correct login validation error # Update the message
 ```
 
+- Performance improvements:
+```sh
+   perf: optimize image loading
+```
+
+### No Version Bump
 - Documentation changes:
 ```sh
    docs: update README # Update
@@ -296,11 +309,6 @@
    chore: update eslint to latest version
 ```
 
-- Performance improvements:
-```sh
-   perf: optimize image loading
-```
-
 - Changes to CI/CD configurations:
 ```sh
    ci: update Azure DevOps workflow
@@ -310,6 +318,9 @@
 ```sh
    build: add webpack plugin for compression
 ```
+
+### MAJOR Version Bump
+- Breaking changes often marked with `!` or `BREAKING CHANGE:`.
 
 # B) GitHub CLI
 - Display the active account & authentication state for each known GitHub host:
