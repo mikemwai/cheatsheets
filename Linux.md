@@ -437,6 +437,10 @@
             Shift + zz # Save a file
             /keyword # Searches for the keyword in the file in vi mode
             :%s/keyword/new_keyword/ # Replace every keyword in a file
+            n # Move to the next search result 
+            N # Move to the previous search result
+            gg # Move to the top of the file
+            G # Move to the bottom of the file
         ```
         
 - Recover a terminated file from its swap file:
