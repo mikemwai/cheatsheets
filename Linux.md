@@ -197,7 +197,7 @@
             /sbin -> /usr/sbin - System/ filesystem commands
             /opt - Optional add-on apps (Not part of OS apps)
             /proc - Running processes
-            /lib -> /usr/lib - C programming librayr files needed by commands and apps
+            /lib -> /usr/lib - C programming library files needed by commands and apps
             /tmp - Contains temporary files
             /home - User directory
             /var - System logs
