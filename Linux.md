@@ -2508,6 +2508,14 @@
 
 `7) top` - CPU & memory usage
 
+- To perform advanced in-depth investigation on the CPU and memory, use:
+```sh
+    atop
+    dnf install atop # Install the atop package
+```
+
+> Prerequisite packages needed for `atop` are `glib2-devel` and `ncurses-devel`.
+
 `8) iostat` - CPU & I/O performance
 - View the input/ output statistics/ capability:
 
