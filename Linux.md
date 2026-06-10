@@ -3164,4 +3164,7 @@
 - Automate process of compiling and assembling software (to avoid typing long `gcc` commands manually):
 ```sh
     make
+    dnf install make # Install the make package
 ```
+
+> Prerequisite packages needed for `make` to work: `gcc (the C compiler)` and `pkg-config (locates library headers and flags)`.
