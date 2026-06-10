@@ -3018,7 +3018,7 @@
 - Run updates for a `Debian based distro`:
 
 ```sh
-  sudo apt update
+  sudo apt update # dnf update (For RHEL distros)
 ```
 
 - Download and install updates for each outdated package for a `Debian based distro`:
@@ -3037,6 +3037,11 @@
 
 ```sh
   sudo apt install package
+```
+
+- Search for a package in the packages repo:
+```sh
+    dnf search package_name
 ```
 
 - Upgrading the Linux distribution to the next version:
@@ -3154,4 +3159,9 @@
 - Reinitialize your terminal to its default state (Cleaning the garbage):
 ```sh
     reset
+```
+
+- Automate process of compiling and assembling software (to avoid typing long `gcc` commands manually):
+```sh
+    make
 ```
