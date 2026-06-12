@@ -2520,7 +2520,9 @@
 - View the input/ output statistics/ capability:
 
 ```sh
-  iostat
+    iostat
+    iostat -c # View the CPU utilization report
+    iostat -d # View the device utilization report  
 ```
 
 - Before using `iostat`, you have to install:
