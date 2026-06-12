@@ -238,6 +238,16 @@
   Ctrl + W
 ```
 
+- Close a program:
+```sh
+  Alt + F4
+```
+
+- Open a tab closed by mistake:
+```sh
+  Ctrl + Shift + T
+```
+
 ---
 
 - View the PC serial number:
