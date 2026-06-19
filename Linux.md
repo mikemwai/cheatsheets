@@ -295,7 +295,7 @@
          ```sh
              grep --version # Check grep version
              grep keyword file # Search for a keyword from a file
-             grep -c keyword file # Search for a keyword and count
+             grep -c keyword file # Search for a keyword and count i.e. grep error -c5
              grep -i keyword file # Search for a keyword ignore case-sensitive
              grep -n keyword file # Display the matched lines and their line numbers
              grep -v keyword file # Display everything but the keyword
