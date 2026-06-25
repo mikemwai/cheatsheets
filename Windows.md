@@ -287,3 +287,9 @@
 ```sh
   hostname
 ```
+
+- View the Windows version in your laptop:
+```sh
+  Win + R
+  winver
+```
