@@ -3178,3 +3178,8 @@
 ```
 
 > Prerequisite packages needed for `make` to work: `gcc (the C compiler)` and `pkg-config (locates library headers and flags)`.
+
+- List the supported ciphers:
+```sh
+    openssl ciphers -v 
+```
