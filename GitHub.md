@@ -322,6 +322,12 @@
 ### MAJOR Version Bump
 - Breaking changes often marked with `!` or `BREAKING CHANGE:`.
 
+## Git Issues 
+- Reference and close an issue in your commit message:
+```sh
+   git commit -m "Fix issue auth. Closes #1" # Edit the issue number 
+```
+
 # B) GitHub CLI
 - Display the active account & authentication state for each known GitHub host:
 ```sh
