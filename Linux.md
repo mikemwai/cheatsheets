@@ -224,6 +224,11 @@
       ls -ltrh
     ```
 
+    - Display detailed information (metadata) about a file:
+    ```sh
+        stat filename
+    ```
+
     ### 4) Input & Output Redirects
 
     - Redirects include:
