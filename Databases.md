@@ -285,7 +285,20 @@
   !hostname
 ```
 
-### Queries
+### Backend Data Extraction
+- For moderate data sizes use:
+```sh
+  spool file_name.csv
+  select ....
+  spool off
+```
+
+*`N/B:` By default the file will be saved in `/home/oracle`.*
+
+- For large data sizes use a script file:
+```sh
+  @file_name.sql
+```
 
 ---
 
