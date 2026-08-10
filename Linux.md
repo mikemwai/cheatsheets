@@ -185,6 +185,26 @@
       ls -l
       ll
     ```
+
+    - Display the extended attributes set on files:
+    ```sh
+        lsattr
+    ```
+
+    - Extended attributes include:
+    ```sh
+        i - Immutable (File can't be modified, deleted, renamed or even linked to until attribute is removed.)
+        e - File uses extents
+        a - append-on;y (File can only be opened in append mode for writing.)
+        c - compressed
+        s - secure deletion (Contents are zeroed when deleted)
+        u - undeletable (Contents are savaed when deleted.)
+    ```
+
+    - Set/ Remove the extended attributes:
+    ```sh
+        chattr +i filename # Make the file immutable
+    ```
     
     - Linux Filesystem:
         
