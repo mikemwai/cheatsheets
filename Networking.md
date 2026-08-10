@@ -45,6 +45,9 @@
   curl -v telnet://ip_address # Connects to a server via the Telnet protocol.
   curl http://website.com/filename # Downloads a file from a web server using the HTTP protocol.
   curl -O http://website.com/filename # Downloads the file.
+  curl -i ip_address # Include (Displays the HTTP response headers in the output above the body together with the server response)
+  curl -v ip_address # Verbose (Mostly used for troubleshooting as it shows what was sent & received)
+  curl -k ip_address # Insecure (Tells curl to skip TLS/SSL certificate validation)
 ```
 
 > - The default port number for Telnet is `23`.
