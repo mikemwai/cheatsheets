@@ -240,6 +240,7 @@ fi
     ip addr
     ip addr show
     ifconfig # Works if you have installed net-tools
+    ip a s enp0s3 # Display only the ip details for the specified network interface
 ```
 
 > - Examples of NICs:
