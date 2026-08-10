@@ -1566,6 +1566,16 @@
         systemctl restart sshd.service
     ```
 
+    - View the OpenSSH version:
+    ```sh
+        ssh -V
+    ```
+
+    - Confirm weak ciphers are not in use by ssh:
+    ```sh
+        ssh -v user@ip_address
+    ```
+
 ## Aliases
 - Used to cut down on lengthy and repetitive commands.
 
