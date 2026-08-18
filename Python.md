@@ -40,3 +40,18 @@
 ```sh
   pip install -U langchain langgraph
 ```
+
+- Check if multiple python versions are installed in the machine:
+```sh
+  py -0
+```
+
+- Install the python version you want:
+```sh
+  py install 3.12
+```
+
+- Recreate the virtual environment:
+```sh
+  py -3.12 -m venv .venv
+```
