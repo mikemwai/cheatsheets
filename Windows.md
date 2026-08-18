@@ -178,9 +178,42 @@
   wsl -d <DistributionName> -u root
 ```
 
-- Not sure which distributions you have? Liist them:
+- Not sure which distributions you have? List them:
 ```sh
   wsl --list --verbose
+```
+
+## Python
+- View the Python version:
+```sh
+  python --version
+```
+
+- Create a virtual environment:
+```sh
+  py -m venv .venv
+```
+
+- Activate the virtual environment:
+```sh
+  .venv\Scripts\Activate.ps1
+
+  Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass # Run this if activation is blocked
+```
+
+- Update pip:
+```sh
+  py -m pip install --upgrade pip
+```
+
+- Install Jupyter:
+```sh
+  pip install notebook ipykernel
+```
+
+- Start Jupyter:
+```sh
+  jupyter notebook
 ```
 
 ## Updates
