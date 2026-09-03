@@ -760,7 +760,9 @@
 
     ```sh
       chage --maxdays 90 username  
-    ```  
+    ```
+
+    - `PASS_MAX_DAYS` parameter is found in `/etc/login.defs`
 
 ### 4) Switching users and sudo access
 
