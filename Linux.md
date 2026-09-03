@@ -756,6 +756,12 @@
       chage username
     ```
 
+    - Apply password expiration is 90 days or less - users:
+
+    ```sh
+      chage --maxdays 90 username  
+    ```  
+
 ### 4) Switching users and sudo access
 
 - Verify the logged in user:
