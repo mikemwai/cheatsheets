@@ -92,3 +92,16 @@
 ```sh
   docker rm container_id
 ```
+
+## 3) Docker Compose
+- Stop the docker containers & networks while preserving database volumes:
+
+```sh
+  docker compose down
+```
+
+- Stop the containers without removing them:
+
+```sh
+  docker compose stop
+```
