@@ -94,6 +94,24 @@
 ```
 
 ## 3) Docker Compose
+- Start a docker service using compose:
+
+```sh
+  docker compose up --build
+```
+
+- List the running containers:
+
+```sh
+  docker compose ps service_name
+```
+
+- View live backend logs:
+
+```sh
+  docker compose logs -f service_name
+```
+
 - Stop the docker containers & networks while preserving database volumes:
 
 ```sh
