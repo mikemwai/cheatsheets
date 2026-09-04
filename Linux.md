@@ -162,6 +162,7 @@
 
     ```sh
         tail -f filename
+        tail -5f filename # View 5 newly added file contents  in real time
     ```
 
     - View contents of a file:
@@ -327,6 +328,7 @@
              grep keyword file | awk '{print $1}' # Search for a keyword and then only give the 1st field
              ls -l | grep keyword # Search for a keyword & then only give the 1st field
              egrep -i "keyword|keyword2" file # Search for 2 keywords
+             grep -E "keyword1|keyword2|keyword3" filename.txt # Searches several keywords in a file (Extended regex)
          ```
 
         - Complex command chain example:
