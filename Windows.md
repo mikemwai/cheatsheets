@@ -293,3 +293,9 @@
   Win + R
   winver
 ```
+
+- View/ Edit the group policy i.e. password policy etc:
+
+```sh
+  gpedit.msc # Put it in run
+```
