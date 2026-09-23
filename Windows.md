@@ -299,3 +299,9 @@
 ```sh
   gpedit.msc # Put it in run
 ```
+
+- Force a shutdown via command prompt:
+
+```sh
+  shutdown /s /t 0
+```
