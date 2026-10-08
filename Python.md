@@ -11,9 +11,14 @@
 
 - Activate the virtual environment:
 ```sh
+  # Windows
   .venv\Scripts\Activate.ps1
+  .venv\Scripts\Activate # Alternative
 
   Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass # Run this if activation is blocked
+
+  # Linux
+  source .venv/bin/activate
 ```
 
 - Update pip:
