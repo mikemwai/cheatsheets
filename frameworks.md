@@ -129,8 +129,8 @@
 ```sh
   Models -> Refers to a table in the DB (Recipe Cards).
   Routers -> Passes requests (URLs...APIs...Waiters)
-  Services -> Does the actual work.
-  Schemas -> Request/ response of the API.
+  Services -> Does the actual work (Cooks).
+  Schemas -> Request/ response of the API (Menu card & plate).
 ```
 
 
