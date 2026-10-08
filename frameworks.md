@@ -125,4 +125,16 @@
   uvicorn main:app --reload --port 8000
 ```
 
+- Folder structure:
+```sh
+  Models -> Refers to a table in the DB (Recipe Cards).
+  Routers -> Passes requests (URLs...APIs...Waiters)
+  Services -> Does the actual work.
+  Schemas -> Request/ response of the API.
+```
+
+
+
+
+
 
