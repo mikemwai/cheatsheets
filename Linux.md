@@ -2606,6 +2606,34 @@
     ss | more
 ```
 
+`11) lsof - list open files`
+- Displays information about files currently open by running processes.
+```sh
+    lsof
+```
+
+- Find what process has a specific file open:
+```sh
+    lsof /filepath
+```
+
+- View all files opened by a specific process:
+```sh
+    lsof -p <pid> # by Process ID
+    lsof -c <command> # by command name (e.g., lsof -c nginx)
+```
+
+- Find which process is listening on a specific port:
+```sh
+    lsof -i :8080 # TCP/UDP port 8080
+    lsof -i tcp:3306 # TCP port 3306
+```
+
+- Find open files by a specific user:
+```sh
+    lsof -u <username>
+```
+
 ## Log Monitoring
 
 > - Way of keeping record of the system activities.
