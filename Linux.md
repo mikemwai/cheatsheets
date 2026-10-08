@@ -2607,6 +2607,12 @@
 ```
 
 `11) lsof - list open files`
+- Installation:
+```sh
+    rpm -qa | grep lsof # Check if it's installed
+    dnf install -y lsof # Install if not available
+```
+
 - Displays information about files currently open by running processes.
 ```sh
     lsof
@@ -2632,6 +2638,12 @@
 - Find open files by a specific user:
 ```sh
     lsof -u <username>
+```
+
+- Find deleted files that a process still holds open (the `df` vs `du` trap):
+```sh
+    lsof | grep deleted
+    lsof +L1 # Alternative
 ```
 
 ## Log Monitoring
