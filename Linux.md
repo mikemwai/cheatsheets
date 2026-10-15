@@ -934,7 +934,7 @@
 ## Linux Directory Service - Account Authentication
 
 > - Types of Accounts:
->   1) Local Accounts - Stored locally in `/etc/passwd` and `/etc/shadow`.
+>   1) Local Accounts - Stored locally in `/etc/passwd`, `/etc/sudoers` and `/etc/shadow`.
 >   2) Domain/ Directory Accounts - Managed centrally through services like `LDAP - Lightweight Directory Access Protocol`. Makes use of central LDAP directories e.g. Windows = Active Directory, Linux = LDAP.
 
 ### Directory Services
