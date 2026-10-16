@@ -1586,6 +1586,24 @@
         ssh -v user@ip_address
     ```
 
+    - Create the banner message before login:
+    ```sh
+        vi /etc/issue.net
+        Authorized users only # Edit the message
+    ```
+
+    - Enable it in SSH config:
+    ```sh
+        vi /etc/ssh/sshd_config
+        Banner /etc/issue.net #Uncomment the line starting with Banner and enter the file with the message
+    ```
+
+    - Validate and restart the ssh service:
+    ```sh
+        sshd -t
+        systemctl restart ssh
+    ```
+
 ## Aliases
 - Used to cut down on lengthy and repetitive commands.
 
