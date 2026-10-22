@@ -36,7 +36,7 @@
   jupyter notebook
 ```
 
-- Install CHromaDB:
+- Install ChromaDB:
 ```sh
   pip install chromadb
 ```
@@ -60,6 +60,13 @@
 ```sh
   py -3.12 -m venv .venv
 ```
+
+- Install SQLAlchemy:
+```sh
+  pip install sqlalchemy "psycopg[binary]" pydantic-settings
+```
+
+> SQLAlchemy is the ORM that maps Python classes to tables.
 
 # Programming Terms
 `1) Class`
