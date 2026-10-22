@@ -93,6 +93,16 @@
   docker rm container_id
 ```
 
+- Check the docker version:
+```sh
+  docker version
+```
+
+- Confirm Docker is installed and can pull images and run containers correctly:
+```sh
+  docker run --rm hello-world
+```
+
 ## 3) Docker Compose
 - Start a docker service using compose:
 
@@ -122,4 +132,9 @@
 
 ```sh
   docker compose stop
+```
+
+- Check the docker compose version:
+```sh
+  docker compose version
 ```
