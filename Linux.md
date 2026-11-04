@@ -798,6 +798,12 @@
   sudo -u username -i # Cleaner version
 ```
 
+- List what your user is allowed to run with sudo:
+
+```sh
+    sudo -l
+```
+
 - Modify existing user privileges:
 
 ```sh
@@ -806,6 +812,14 @@
 
 ```sh
     sudo visudo # Edit the user privileges
+```
+
+- Example: Allowing user to switch to root without password `NOPASSWD`:
+
+```sh
+    sudo visudo
+    user ALL=(ALL:ALL) NOPASSWD: ALL # Ensure NOPASSWD is added & save the file
+    sudo -l # Confirm this has reflected
 ```
 
 - List the sudo users:
