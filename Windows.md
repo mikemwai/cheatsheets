@@ -305,3 +305,9 @@
 ```sh
   shutdown /s /t 0
 ```
+
+- View the current logged in user:
+
+```sh
+  whoami
+```
