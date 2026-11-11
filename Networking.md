@@ -2871,4 +2871,8 @@ fi
   pcs status # Confirm on both the nodes
 ```
 
+--- 
 
+## Resources
+
+> For interactive learning, [protocol explorer](https://a2aprotocol.ai/tools/protocol-explorer) can be used on Brave broswer.
