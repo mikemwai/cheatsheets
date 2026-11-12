@@ -248,6 +248,19 @@
   Ctrl + Shift + T
 ```
 
+## Group Policy Management
+- View/ Edit the group policy i.e. password policy etc:
+
+```sh
+  gpedit.msc # Put it in run
+```
+
+- Reapply all Group Policy settings on a machine:
+
+```sh
+  gpupdate /force
+```
+
 ---
 
 - View the PC serial number:
@@ -292,12 +305,6 @@
 ```sh
   Win + R
   winver
-```
-
-- View/ Edit the group policy i.e. password policy etc:
-
-```sh
-  gpedit.msc # Put it in run
 ```
 
 - Force a shutdown via command prompt:
