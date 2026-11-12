@@ -3141,7 +3141,7 @@
     export TEST
 ```
 
-## 🔄 Updates Management/ OS-level patching
+## 🔄 Updates Management
 > OS-level patching basically refers to updating installed packages.
 
 - Run updates for a `Debian based distro`:
@@ -3195,6 +3195,11 @@
 
 ```sh
     sudo apt clean
+```
+
+- Move to a whole new OS version:
+```sh
+    do-release-upgrade # Ubuntu
 ```
 
 ## SOS Report
