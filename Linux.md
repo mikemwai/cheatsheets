@@ -3166,6 +3166,12 @@
   sudo apt install package
 ```
 
+- View the installed packages:
+```sh
+    rpm -qa # RHEl distros
+    apt list --installed # Debian distros (Ubuntu)
+```
+
 - Search for a package in the packages repo:
 ```sh
     dnf search package_name
