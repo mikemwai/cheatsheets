@@ -3141,7 +3141,9 @@
     export TEST
 ```
 
-## 🔄 Updates Management
+## 🔄 Updates Management/ OS-level patching
+> OS-level patching basically refers to updating installed packages.
+
 - Run updates for a `Debian based distro`:
 
 ```sh
