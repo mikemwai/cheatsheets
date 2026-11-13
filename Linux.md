@@ -3143,6 +3143,7 @@
 
 ## 🔄 Updates Management
 > OS-level patching basically refers to updating installed packages.
+> Most of the time, the commands for updating the packages will most of the time perform the OS & kernel updates together.
 
 - Run updates for a `Debian based distro`:
 
@@ -3200,6 +3201,45 @@
 - Move to a whole new OS version:
 ```sh
     do-release-upgrade # Ubuntu
+```
+
+### Working with `.rpm` or `.deb` packages files
+> - The patch files are gotten directly from the vendor's official repositories/ portals.
+> - Some sources include: [Centos](https://mirror.stream.centos.org/9-stream/BaseOS/x86_64/os/Packages/), [Ubuntu](https://archive.ubuntu.com/ubuntu/pool/main/l/linux/), [Debian](https://deb.debian.org/debian/pool/main/k/), [RHEL](https://access.redhat.com/downloads)
+
+- Upload the patch files on the target servers and confirm what version the file contains:
+```sh
+    rpm -qpi package.rpm
+    rpm -K package.rpm # Verify the integrity of the file
+```
+
+- If updating a particular package, confirm if it is available:
+```sh
+   rpm -qa | grep -i package_name 
+```
+
+- Perform a dry run to show problems without changing anything:
+```sh
+    rpm -Uvh --test package.rpm
+```
+
+- Install the package (Replace the old version with the new one):
+```sh
+    rpm -Uvh package.rpm
+    rpm -qa | grep -i package_name # Confirm the new package is installed
+```
+
+- If installing a kernel, use: (Best used for kernel so that you have a fallback when the new kernel fails to boot)
+```sh
+    rpm -ivh package.rpm
+    sudo reboot # If you're installing a kernel
+    uname -r # Confirm the new kernel is installed
+```
+
+- `N/B:` Be careful when running this command especially if you have no fallback package:
+- Remove the old package:
+```sh
+    rpm -e package_name
 ```
 
 ## SOS Report
