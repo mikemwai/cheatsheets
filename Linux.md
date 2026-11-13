@@ -3212,21 +3212,35 @@
     rpm -qpi package.rpm
     rpm -K package.rpm # Verify the integrity of the file
 ```
+```sh
+    apt show ./package.deb           # Name, version, dependencies
+    sha256sum -c SHA256SUMS          # Verify integrity
+```
 
 - If updating a particular package, confirm if it is available:
 ```sh
    rpm -qa | grep -i package_name 
+```
+```sh
+    apt list --installed | grep -i package_name
 ```
 
 - Perform a dry run to show problems without changing anything:
 ```sh
     rpm -Uvh --test package.rpm
 ```
+```sh
+    apt install --simulate ./package.deb
+```
 
 - Install the package (Replace the old version with the new one):
 ```sh
     rpm -Uvh package.rpm
     rpm -qa | grep -i package_name # Confirm the new package is installed
+```
+```sh
+    apt install ./package.deb
+    apt list --installed | grep -i package_name
 ```
 
 - If installing a kernel, use: (Best used for kernel so that you have a fallback when the new kernel fails to boot)
@@ -3235,11 +3249,20 @@
     sudo reboot # If you're installing a kernel
     uname -r # Confirm the new kernel is installed
 ```
+```sh
+    apt install ./linux-image-*.deb
+    sudo reboot
+    uname -r
+```
 
 - `N/B:` Be careful when running this command especially if you have no fallback package:
 - Remove the old package:
 ```sh
     rpm -e package_name
+```
+```sh
+    apt remove package_name # Keep config files
+    apt purge package_name # Removes config files
 ```
 
 ## SOS Report
