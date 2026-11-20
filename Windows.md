@@ -7,6 +7,17 @@
   net user
 ```
 
+- Perform a password reset for a specific user:
+```sh
+  net user user_name * # Input hidden
+  net user user_name password
+```
+
+- Create an account together with its password:
+```sh
+  net user user_name * /add
+```
+
 ## Files, Folders and Directories Management
 - Create a new file:
 ```sh
