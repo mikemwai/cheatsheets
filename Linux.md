@@ -2846,6 +2846,16 @@
     uptime
 ```
 
+- View uptime details in a pretty format:
+```sh
+    uptime -p
+```
+
+View uptime details in `yyyy-mm-dd HH:MM:SS` format:
+```sh
+    uptime -s
+```
+
 - Show the calendar:
 
 ```sh
