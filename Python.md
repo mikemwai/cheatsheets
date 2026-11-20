@@ -68,6 +68,8 @@
 
 > SQLAlchemy is the ORM that maps Python classes to tables.
 
+## Pytest
+
 # Programming Terms
 `1) Class`
 - Refers to a blueprint for an object/ instance.
