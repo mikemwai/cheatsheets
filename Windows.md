@@ -329,3 +329,8 @@
 ```sh
   whoami
 ```
+
+- Windows alternative for `/etc/hosts` on Linux:
+```sh
+  C:\WINDOWS\system32\drivers\etc\hosts
+```
