@@ -2599,7 +2599,8 @@
 ```sh
     iostat
     iostat -c # View the CPU utilization report
-    iostat -d # View the device utilization report  
+    iostat -d # View the device utilization report
+    iostat -x # View extended statistics
 ```
 
 - Before using `iostat`, you have to install:
