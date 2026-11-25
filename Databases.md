@@ -231,7 +231,8 @@
 - Enter OGG command interpreter:
 
 ```sh
-  g
+  g # Mostly an alias for ggsci
+  alias # Confirm the file path where the alias points to
 ```
 
 - Check for OGG lag:
