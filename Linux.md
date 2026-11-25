@@ -2779,6 +2779,7 @@
     uname
     uname -a # Gives more details i.e. OS, hostname, kernel version, build date
     uname -r # Shows the kernel version
+    uname -mrs # View the machine hardware name, operating system version, & kernel name.
 ```
 
 - Read information about a computer's hardware:
