@@ -232,7 +232,7 @@
 
 ```sh
   g # Mostly an alias for ggsci
-  alias # Confirm the file path where the alias points to
+  alias g # Confirm the file path where the alias points to
 ```
 
 - Check for OGG lag:
