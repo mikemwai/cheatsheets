@@ -46,6 +46,11 @@
         rm -- -
     ```
 
+    - Filtering directories in the current location:
+    ```sh
+        ls -la | grep ^d
+    ```
+
     - Adding content to files:
 
     ```sh
@@ -81,6 +86,11 @@
     
     ```sh
         mv old_filename new_filename
+    ```
+
+    - Filtering files in the current location:
+    ```sh
+        ls -la | grep ^-
     ```
     
     - Move a directory:
