@@ -334,3 +334,8 @@
 ```sh
   C:\WINDOWS\system32\drivers\etc\hosts
 ```
+
+- View the current Windows OS name/ version:
+```sh
+  systeminfo | find "OS Name"
+```
